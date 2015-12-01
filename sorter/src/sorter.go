@@ -7,6 +7,8 @@ import (
     "io"
     "os"
     "strconv"
+    "algorithm/bubblesort"
+    "algorithm/qsort"
 )
 
 var infile *string = flag.String("i", "infile", "File contains values for sorting")
@@ -18,9 +20,11 @@ func main(){
   
     flag.Parse()
 
+    fmt.Printf("The flag input is wrong, num is %d, please input again\n",flag.NArg())
+
     fmt.Println(*infile)
     if infile != nil{
-        fmt.Println("infile = ", *infile, "outfile = ", *outfile, "algorithm = ", *algorithm)
+        fmt.Println("infile =", *infile, "outfile =", *outfile, "algorithm =", *algorithm)
     } else {
     	fmt.Println("please input the infile")
     	return
@@ -31,6 +35,18 @@ func main(){
         fmt.Println(err)
     }else{
         fmt.Println("Read values: ", values)
+    	t1 := time.Now()
+    	switch *algorithm{
+    		case "qsort":
+    			qsort.QuickSort(values)
+    		case "bubblesort":
+    			bubblesort.BubbleSort(values)
+    		default:
+    			fmt.Println("unknow method of sort")
+    	}
+    	t2 := time.Now()
+    	fmt.Println("sort algorithm", *algorithm, "costs", t2.Sub(t1), "to complete")
+    	writeValues(values, *outfile)
     }
 }
 
@@ -68,4 +84,19 @@ func readValues(infile string)(values []int, err error){
         values = append(values,value)
     }
     return
+}
+
+func writeValues(values []int, outfile string) error{
+	file, err := os.Create(outfile)
+	if err != nil {
+		fmt.Println("Failed to create outfile:", outfile)
+		return err
+	}
+	defer file.Close()
+
+	for _, value := range values{
+		str := strconv.Itoa(value)
+		file.WriteString(str + "\n")
+	}
+	return nil
 }
