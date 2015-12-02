@@ -18,7 +18,8 @@ func Play(source, mtype string){
 			fmt.Println("WAV format")
 			p = &wav.WAVPlayer{}
 		default:
-			fmt.Println("Unknow format", mtype)
+			fmt.Println("Unknow format", mtype,"please input MP3 or WAV")
+			return
 	}
 	p.Play(source)
 }

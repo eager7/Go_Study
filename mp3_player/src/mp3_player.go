@@ -10,7 +10,7 @@ import (
 )
 /***************************************local var*****************************************/
 var lib *manager.MusicManager
-var id int = 1
+var id int = 0
 //var ctrl, signal chan int
 /*****************************************main func***************************************/
 func main() {
@@ -22,7 +22,7 @@ func main() {
 		play <name> -- Play the specified music
 		`)
 
-	lib = manager.NewMusicManager
+	lib = manager.NewMusicManager()
 
 	r := bufio.NewReader(os.Stdin)
 

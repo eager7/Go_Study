@@ -2,10 +2,12 @@ package manager
 import "testing"
 import "fmt"
 
+var mm *MusicManager
+
 func TestOps(t *testing.T) {
 	println("This is a testing project")
 
-	mm := NewMusicManager()
+	mm = NewMusicManager()
 	if mm == nil{
 		t.Error("NewMusicManager Failed")
 	}
