@@ -1,5 +1,5 @@
 package qsort
-
+//import "fmt"
 func qulicksort(values []int){
 	if len(values) <= 1{
 		return
@@ -9,11 +9,13 @@ func qulicksort(values []int){
 	head, tail := 0, len(values)-1
 
 	for head < tail{
-		if values[p] < key{
+		//fmt.Println(values)
+		if values[p] > key{
 			values[p], values[tail] = values[tail], values[p]
 			tail--
 		} else {
 			values[p], values[head] = values[head], values[p]
+			head++
 			p++
 		}
 	}
