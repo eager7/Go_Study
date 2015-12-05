@@ -5,10 +5,13 @@ import (
 	"bufio"
 )
 
+var filenames = make(map[string]string)
+
 func main() {
 	println("dup2 test")
 
 	counts := make(map[string]int)
+
 	files := os.Args[1:]
 	if len(files) == 0 {
 		countLines(os.Stdin, counts)
@@ -25,7 +28,7 @@ func main() {
 	}
 
 	for key, value := range counts {
-		fmt.Println(key, value)
+		fmt.Println(key, value, filenames[key])
 	}
 }
 
@@ -38,6 +41,7 @@ func countLines(f *os.File, counts map[string]int){
 			return
 		} else {
 			counts[input.Text()]++ 
+			filenames[input.Text()] = f.Name()
 		}
 	}
 }
