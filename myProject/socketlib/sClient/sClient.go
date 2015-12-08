@@ -7,23 +7,25 @@ import (
 	"bytes"
 	"io"
 	"errors"
+	"time"
 )
 
 type SockClient struct {
 	conn net.Conn
+	addr string
+	port int
 	chjob chan string
-	//chsta chan bool
 }
 
-func NewClient() *SockClient {
-	return &SockClient{}
+func NewClient(addr string, port int) *SockClient {
+	chjob := make(chan string, 1)
+	return &SockClient{conn:nil, addr:addr, port:port, chjob:chjob}
 }
 
-func (s *SockClient) Init(addr string, port int) (err error) {
-	fmt.Println("init the socket client with", addr, port)
-	s.chjob = make(chan string, 1)
-	//s.chsta = make(chan bool, 1)
-	dial := addr + ":" + strconv.Itoa(port)
+func (s *SockClient) Init() (err error) {
+	fmt.Println("init the socket client with", s.addr, s.port)
+
+	dial := s.addr + ":" + strconv.Itoa(s.port)
 	s.conn, err = net.Dial("tcp", dial)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "socket client init err:%s\n", err.Error())
@@ -47,29 +49,27 @@ func (s *SockClient) SocketSendMsg(msg string)error{
 }
 
 func (s *SockClient) SocketReadMsg() (string, error) {
-
-	msg := <- s.chjob {
-		if msg == "" {
-			return "", errors.New("can't read msg from server")
-		}
+	msg := <- s.chjob
+	if msg == "" {
+		return "", errors.New("can't read msg from server")
 	}
 	return msg, nil			
 }
-/*
-func (s *SockClient) SocketReadMsgTimeMil(time uint16) (string, error) {
+
+func (s *SockClient) SocketReadMsgTime(timeout time.Duration) (string, error) {
 	select {
-		case msg := <- s.chjob {
+		case msg := <- s.chjob: {
 			if msg == "" {
 				return "", errors.New("can't read msg from server")
 			}
 			return msg, nil			
 		}
-		case <- time.After(time.Millisecond*time):{
+		case <- time.After(timeout): {
 			fmt.Println("time out")
 			return "", errors.New("time out")
 		}
 	}
-}*/
+}
 
 func (s *SockClient) readMsg()(string, error) {
 	bufw := bytes.NewBuffer(nil)
@@ -100,6 +100,16 @@ func (s *SockClient)service(chjob chan string) {
 			fmt.Println("socket read service exit..")
 			return
 		}
+		fmt.Println("read msg...:", result)
 		chjob <- result
+	}
+}
+
+func (s *SockClient)reconnect() {
+	s.Finished()
+	for {
+		if err := s.Init(); err == nil {
+			return
+		}
 	}
 }
