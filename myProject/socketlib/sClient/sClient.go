@@ -12,11 +12,11 @@ import (
 type SockClient struct {
 	conn net.Conn
 	chjob chan string
-	//chsta chan bool
+	chsta chan bool
 }
 
 func NewClient() *SockClient {
-	return &SockClient{make(net.Conn), make(chan string), make(chan bool)}
+	return &SockClient{net.Conn, chan string, chan bool}
 }
 
 func (s *SockClient) Init(addr string, port int) (err error) {
@@ -37,7 +37,7 @@ func (s *SockClient) Finished() {
 }
 
 func (s *SockClient) SocketSendMsg(msg string)error{
-	if _, err := s.conn.Write([]byte(string)); err != nil {
+	if _, err := s.conn.Write([]byte(msg)); err != nil {
 		fmt.Fprintf(os.Stderr, "socket send msg err:%s\n", err.Error())
 		return err
 	}
@@ -47,7 +47,7 @@ func (s *SockClient) SocketSendMsg(msg string)error{
 func (s *SockClient) SocketReadMsg() (string, error) {
 	msg := <- s.chjob
 	if msg == "" {
-		return _, errors.New("can't read msg from server")
+		return "", errors.New("can't read msg from server")
 	}
 	return msg, nil
 }
@@ -63,7 +63,7 @@ func (s *SockClient) readMsg()(string, error) {
 				return string(bufw.Bytes()), err
 			}
 			fmt.Fprintf(os.Stderr, "read msg from socket err:%s\n", err.Error())
-			return _, err
+			return "", err
 		}
 		if n < 2048 {
 			return string(bufw.Bytes()), nil
