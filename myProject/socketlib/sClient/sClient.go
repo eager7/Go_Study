@@ -12,15 +12,17 @@ import (
 type SockClient struct {
 	conn net.Conn
 	chjob chan string
-	chsta chan bool
+	//chsta chan bool
 }
 
 func NewClient() *SockClient {
-	return &SockClient{net.Conn, chan string, chan bool}
+	return &SockClient{}
 }
 
 func (s *SockClient) Init(addr string, port int) (err error) {
 	fmt.Println("init the socket client with", addr, port)
+	s.chjob = make(chan string, 1)
+	//s.chsta = make(chan bool, 1)
 	dial := addr + ":" + strconv.Itoa(port)
 	s.conn, err = net.Dial("tcp", dial)
 	if err != nil {
@@ -32,7 +34,7 @@ func (s *SockClient) Init(addr string, port int) (err error) {
 }
 
 func (s *SockClient) Finished() {
-	close(s.chjob)
+	//close(s.chjob)
 	s.conn.Close()
 }
 
@@ -45,12 +47,29 @@ func (s *SockClient) SocketSendMsg(msg string)error{
 }
 
 func (s *SockClient) SocketReadMsg() (string, error) {
-	msg := <- s.chjob
-	if msg == "" {
-		return "", errors.New("can't read msg from server")
+
+	msg := <- s.chjob {
+		if msg == "" {
+			return "", errors.New("can't read msg from server")
+		}
 	}
-	return msg, nil
+	return msg, nil			
 }
+/*
+func (s *SockClient) SocketReadMsgTimeMil(time uint16) (string, error) {
+	select {
+		case msg := <- s.chjob {
+			if msg == "" {
+				return "", errors.New("can't read msg from server")
+			}
+			return msg, nil			
+		}
+		case <- time.After(time.Millisecond*time):{
+			fmt.Println("time out")
+			return "", errors.New("time out")
+		}
+	}
+}*/
 
 func (s *SockClient) readMsg()(string, error) {
 	bufw := bytes.NewBuffer(nil)
@@ -78,6 +97,7 @@ func (s *SockClient)service(chjob chan string) {
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "socket service err:%s\n", err.Error())
 			chjob <- ""
+			fmt.Println("socket read service exit..")
 			return
 		}
 		chjob <- result
