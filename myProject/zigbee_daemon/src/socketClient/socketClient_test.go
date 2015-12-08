@@ -27,7 +27,7 @@ func TestZigbee(t *testing.T) {
 	s := new(SockClient)
 	s.Init(addr, port)
 
-	const total int = 20
+	const total int = 10
 	const interval = time.Millisecond*100
 	var num_succ int
 	var sequence int = 0
