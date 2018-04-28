@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"context"
 	"github.com/pkg/errors"
-	"github.com/eager7/go/mlog"
 )
 
 type Args struct {
@@ -24,7 +23,6 @@ func NewMethod()(*Method){
 }
 
 func (m *Method)Add(ctx context.Context, key, value string)(reply int32, err error){
-	mlog.Debug.Println("Add Method key:", key, "value:", value)
 	err = m.s.Set(key, value)
 	if err != nil {
 		fmt.Println(err)
@@ -37,7 +35,6 @@ func (m *Method)Add(ctx context.Context, key, value string)(reply int32, err err
 }
 
 func (m *Method)Get(ctx context.Context, key string)(value string, err error){
-	mlog.Debug.Println("Get Method:", key)
 	v, err := m.s.Get(key)
 	if err != nil {
 		fmt.Println(err)
