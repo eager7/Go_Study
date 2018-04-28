@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package txmsg;
+
+message versionReq{
+}
+
+message versionResp{
+    string version = 1;
+}
+
+message txTransfer{
+    string from = 1;
+    string to = 2;
+    string value = 3;
+    google.protobuf.Timestamp t = 4;
+}
+
+message txTransferResp{
+    bool ret = 1;
+}
+
+service GetVersion{
+    rpc GetVersion(versionReq) returns (versionResp);
+}
+
+service TransferTx{
+    rpc TransferTx(txTransfer) returns (txTransferResp);
+}
