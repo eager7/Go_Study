@@ -37,9 +37,7 @@ func (s *storage)Set(key, value interface{})error{
 func (s *storage)Get(key interface{})(value interface{}, err error){
 	v, err := redis.String(s.r.Do("GET", key))
 	if err != nil {
-		mlog.Error.Println(err)
 		return nil, err
 	}
-	mlog.Info.Println(v)
 	return v, nil
 }

@@ -1,0 +1,14 @@
+syntax = "proto3";
+package inf;
+
+message UserReq {
+    int32 id = 1;
+}
+
+message UserResp {
+    string name = 1;
+}
+
+service Data {
+    rpc GetUser(UserReq) returns (UserResp);
+}
