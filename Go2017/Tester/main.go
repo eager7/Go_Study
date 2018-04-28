@@ -9,8 +9,10 @@ import (
 	"github.com/eager7/go/mlog"
 )
 
+var log, _ = mlog.NewLogger("test", mlog.NoticeLog)
 func main(){
-mlog.Debug.Println("test")
+	defer fmt.Println("exit")
+	log.Info("test")
 }
 
 func testSql(){

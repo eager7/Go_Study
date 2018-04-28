@@ -21,6 +21,7 @@ const (
 )
 
 func main() {
+	log.Info("grpc client process")
 	call()
 }
 
@@ -30,11 +31,12 @@ func call(){
 		log.Fatal(err)
 	}
 	defer conn.Close()
+	log.Debug("connect success")
 	client := inf.NewDataClient(conn)
 
-	var req inf.UserReq
-	req.Id = 1
-
-	resp, _ := client.GetUser(context.Background(), &req)
+	resp, err := client.GetUser(context.Background(), &inf.UserReq{Id:1})
+	if err != nil {
+		log.Fatal(err)
+	}
 	log.Debug(resp.Name)
 }
