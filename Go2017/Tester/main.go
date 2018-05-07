@@ -7,12 +7,36 @@ import (
 	"time"
 	"github.com/garyburd/redigo/redis"
 	"github.com/eager7/go/mlog"
+	"bytes"
+	"encoding/binary"
 )
 
 var log, _ = mlog.NewLogger("test", mlog.NoticeLog)
 func main(){
-	defer fmt.Println("exit")
-	log.Info("test")
+	test_byte()
+}
+
+
+func test_byte(){
+	//b := []byte{0x00, 0x00, 0x03, 0xe8}
+
+	b_buf  :=  bytes.NewBuffer([]byte{0x00, 0x00, 0x03, 0xe8})
+
+	var x int32
+
+	binary.Read(b_buf, binary.BigEndian, &x)
+
+	fmt.Println(x)
+
+	//fmt.Println(strings.Repeat("-", 100))
+
+	x  =  200
+
+	//b_buf  =  bytes.NewBuffer([]byte{})
+
+	binary.Write(b_buf, binary.BigEndian, x)
+
+	fmt.Println(b_buf.Bytes())
 }
 
 func testSql(){
