@@ -2,8 +2,9 @@ package main
 
 import (
 	"crypto"
-	"github.com/vmihailenco/msgpack"
 	"fmt"
+
+	"github.com/vmihailenco/msgpack"
 )
 
 const HashLen = 32
@@ -39,7 +40,7 @@ func testMsgPack(){
 		Sig: struct {
 			PubKey  crypto.PublicKey
 			SigData []byte
-		}{PubKey: nil, SigData: []byte("")},
+		}{PubKey: "01aa76587cdcbf7e8a8ca66ed27fbba5ffd9a15f", SigData: []byte("12345678")},
 		hash:Hash{},
 	}
 
