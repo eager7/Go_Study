@@ -1,16 +1,17 @@
 package main
 
 import (
-	"github.com/ethereum/go-ethereum/trie"
-	"github.com/ethereum/go-ethereum/common"
 	"fmt"
-	"github.com/ethereum/go-ethereum/ethdb"
+	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/state"
+	"github.com/ethereum/go-ethereum/ethdb"
+	"github.com/ethereum/go-ethereum/trie"
 )
 
 func main() {
 	//testTrie()
-	testDiskDB()
+	//testDiskDB()
+	test3()
 }
 
 func testTrie() {
@@ -65,12 +66,32 @@ func testDiskDB() {
 	fmt.Println("dog value:", string(value))
 
 	tree.Commit(nil)
-
+	fmt.Println(tree.Hash().String())
 }
 
 func test3() {
 	diskDb, _ := ethdb.NewLDBDatabase("Test", 0, 0)
 	Db := state.NewDatabase(diskDb)
-	Db.OpenTrie()
+
+	root := common.HexToHash("0xd4cd937e4a4368d7931a9cf51686b7e10abb3dce38a39000fd7902a092b64585")
+	t, err := Db.OpenTrie(root)
+	if err != nil {
+		fmt.Println(err)
+		t, _ = Db.OpenTrie(common.Hash{})
+	}
+	value, err := t.TryGet([]byte("dog"))
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("dog value:", string(value))
+
+	t.TryUpdate([]byte("doe"), []byte("reindeer"))
+	t.TryUpdate([]byte("dog"), []byte("puppy"))
+	t.TryUpdate([]byte("dogglesworth"), []byte("cat"))
+	fmt.Println("root:", t.Hash().String())
+
+	trie := Db.TrieDB()
+	trie.Commit(t.Hash(), false)
 
 }
