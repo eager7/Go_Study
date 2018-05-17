@@ -74,6 +74,7 @@ func test3() {
 	Db := state.NewDatabase(diskDb)
 
 	root := common.HexToHash("0xd4cd937e4a4368d7931a9cf51686b7e10abb3dce38a39000fd7902a092b64585")
+	fmt.Println(root.String())
 	t, err := Db.OpenTrie(root)
 	if err != nil {
 		fmt.Println(err)
@@ -90,6 +91,7 @@ func test3() {
 	t.TryUpdate([]byte("dog"), []byte("puppy"))
 	t.TryUpdate([]byte("dogglesworth"), []byte("cat"))
 	fmt.Println("root:", t.Hash().String())
+	t.Commit(nil)
 
 	trie := Db.TrieDB()
 	trie.Commit(t.Hash(), false)
