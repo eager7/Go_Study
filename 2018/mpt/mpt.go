@@ -80,6 +80,7 @@ func test3() {
 		fmt.Println(err)
 		t, _ = Db.OpenTrie(common.Hash{})
 	}
+	fmt.Println("Root:", t.Hash().String())
 	value, err := t.TryGet([]byte("dog"))
 	if err != nil {
 		fmt.Println(err)
