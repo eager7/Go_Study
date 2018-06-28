@@ -1,5 +1,7 @@
 .idea
 *.iml
 *.pb.go
-*/Log
+Log/
+test/
+Test/
 
