@@ -7,11 +7,14 @@ import (
 )
 
 func main() {
-	testJson()
+	testSlice()
 }
 
-func testCPU() {
-
+func testSlice() {
+	list := make([][]byte, 2)
+	list[0] = []byte("1")
+	list[1] = []byte("2")
+	fmt.Println(list)
 }
 
 type Envelope struct {
@@ -88,3 +91,4 @@ func newT2() *t2{
 	t.t = &t1{}
 	return &t
 }
+
