@@ -12,6 +12,7 @@ var server *Server
 
 func main() {
 	test()
+	time.Sleep(time.Second * 10)
 }
 
 func test() {
@@ -27,9 +28,17 @@ func test() {
 	for {
 		select {
 		case <-timer.C:
-			pid.Tell(&Test{i})
+			value := &Test{i}
+			fmt.Println("Send Value:", value)
+			pid.Tell(value)
 			i += 1
 			timer.Reset(time.Second * 1)
+			if i > 10 {
+				return
+			}
+		default:
+			fmt.Println("Default")
+			time.Sleep(time.Second*1)
 		}
 	}
 }
@@ -70,6 +79,7 @@ func (l *PoolActor) Receive(ctx actor.Context) {
 	case *Test:
 		fmt.Println("test value:", msg.val)
 		l.server.SetValue(msg)
+		time.Sleep(time.Millisecond * 1500)
 	default:
 		fmt.Println("unknown type message:", msg, "type", reflect.TypeOf(msg))
 	}

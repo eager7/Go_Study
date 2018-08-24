@@ -4,10 +4,46 @@ import (
 	"fmt"
 	"math/big"
 	"encoding/json"
+	"unsafe"
+	"strconv"
+	"github.com/ecoball/go-ecoball/common"
+	"sync"
 )
 
+type AbaBftData struct {
+	NumberRound        uint32
+	PerBlockSignatures []common.Signature
+}
+
+type Mutex struct {
+	m sync.Mutex
+}
+
+func Defer(){
+	fmt.Println("defer")
+}
+
 func main() {
-	testSlice()
+	fmt.Println("main")
+	mutex := &Mutex{}
+	mutex.m.Lock()
+	mm := *mutex
+	mm.m.Lock()
+}
+func StringToUint64(str string) uint64 {
+	strPointerInt := fmt.Sprintf("%d", unsafe.Pointer(&str))
+	value, err := strconv.ParseUint(strPointerInt, 10, 0)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return value
+}
+
+func Uint64ToString(value uint64) string {
+	var s *string
+	s = *(**string)(unsafe.Pointer(&value))
+	str := *(*string)(unsafe.Pointer(s))
+	return string([]byte(str))
 }
 
 func testSlice() {
@@ -23,12 +59,30 @@ type Envelope struct {
 }
 
 type Sound struct {
-	Des string
-	Aut string
+	Des string `json:"Des"`
+	Aut string `json:"Aut"`
 }
 
 type Cowbell struct {
 	More bool
+}
+type Resource struct {
+	Ram struct {
+		Quota float32 `json:"quota"`
+		Used  float32 `json:"used"`
+	}
+	Net struct {
+		Staked    float32 `json:"staked"`
+		Used      float32 `json:"used"`
+		Available float32 `json:"available"`
+		Limit     float32 `json:"limit"`
+	}
+	Cpu struct {
+		Staked    float32 `json:"staked"`
+		Used      float32 `json:"used"`
+		Available float32 `json:"available"`
+		Limit     float32 `json:"limit"`
+	}
 }
 
 func testJson() {
@@ -51,6 +105,21 @@ func testJson() {
 	}
 	var desc string = env.Msg.(map[string]interface{})["Des"].(string)
 	fmt.Println(desc)
+}
+
+func testJsonString() {
+	map1 := make(map[Sound]interface{})
+	sound1 := Sound{"sound1", "value"}
+	sound2 := Sound{"sound2", "value"}
+	map1[sound1] = "hello"
+	map1[sound2] = "world"
+	//return []byte
+	str, err := json.Marshal(map1)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(string(str))
+	}
 }
 
 func test2() {
