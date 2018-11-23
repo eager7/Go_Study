@@ -1,0 +1,17 @@
+[logbunny]
+debug_level=0                           # 0: debug 1: info 2: warn 3: error 4: panic 5: fatal
+logger_type=0                           # 0: zap 1: logrus
+with_caller=false
+logger_encoder=1                        # 0: json 1: console
+skip=4                                  # depth
+time_pattern="2006-01-02 15:04:05.000"
+debug_log_filename="./logs/debug.log"   # or 'stdout' / 'stderr'
+info_log_filename="./logs/info.log"     # or 'stdout' / 'stderr'
+warn_log_filename="./logs/warn.log"     # or 'stdout' / 'stderr'
+error_log_filename="./logs/error.log"   # or 'stdout' / 'stderr'
+fatal_log_filename="./logs/fatal.log"   # or 'stdout' / 'stderr'
+#debug_log_filename="stdout"            # or 'stdout' / 'stderr'
+#info_log_filename="stdout"             # or 'stdout' / 'stderr'
+#error_log_filename="stdout"            # or 'stdout' / 'stderr'
+http_port=":50015"                      # RESTFul API to change logout level dynamically
+rolling_time_pattern="0 0 0 * * *"      # rolling the log everyday at 00:00:00

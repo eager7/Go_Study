@@ -2,7 +2,7 @@ package main
 
 import (
 	. "github.com/eager7/go/log"
-	. "github.com/eager7/go/error"
+	. "github.com/eager7/go/errors"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
 	"time"

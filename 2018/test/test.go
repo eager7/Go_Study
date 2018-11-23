@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"github.com/ecoball/go-ecoball/common"
 	"sync"
+	"sort"
 )
 
 type AbaBftData struct {
@@ -25,11 +26,38 @@ func Defer(){
 
 func main() {
 	fmt.Println("main")
-	mutex := &Mutex{}
-	mutex.m.Lock()
-	mm := *mutex
-	mm.m.Lock()
+	slice()
 }
+
+
+func slice() {
+	l := []byte("test")
+	for k, v := range l {
+		fmt.Println(k, v)
+	}
+}
+
+func SliceTest() {
+	list := make(map[uint64]uint64, 1)
+	list[1] = 3
+	list[2] = 2
+	list[3] = 1
+
+	fmt.Println(list)
+	var keys []uint64
+	for k := range list {
+		keys = append(keys, k)
+	}
+	fmt.Println("keys", keys)
+	sort.Slice(keys, func(i, j int) bool {
+		return keys[i] > keys[j]
+	})
+	fmt.Println("keys", keys)
+	for _, v := range keys {
+		fmt.Println(list[v])
+	}
+}
+
 func StringToUint64(str string) uint64 {
 	strPointerInt := fmt.Sprintf("%d", unsafe.Pointer(&str))
 	value, err := strconv.ParseUint(strPointerInt, 10, 0)
