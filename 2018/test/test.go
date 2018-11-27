@@ -9,6 +9,7 @@ import (
 	"github.com/ecoball/go-ecoball/common"
 	"sync"
 	"sort"
+	"time"
 )
 
 type AbaBftData struct {
@@ -25,10 +26,23 @@ func Defer(){
 }
 
 func main() {
-	fmt.Println("main")
-	slice()
+	swc(2.0052)
 }
 
+func swc(value float64) {
+	timeNow := time.Now().Unix()
+	var num int64 = 0
+	for ; ;  {
+		if value > 1.0 {
+			value = value - value * 0.01
+			num ++
+		} else {
+			break
+		}
+	}
+	t := timeNow + num * 600
+	fmt.Println(time.Unix(t, 0))
+}
 
 func slice() {
 	l := []byte("test")
