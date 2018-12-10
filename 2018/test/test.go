@@ -26,14 +26,14 @@ func Defer(){
 }
 
 func main() {
-	swc(2.0052)
+	swc(15.7403)
 }
 
 func swc(value float64) {
 	timeNow := time.Now().Unix()
 	var num int64 = 0
 	for ; ;  {
-		if value > 1.0 {
+		if value > 2.0 {
 			value = value - value * 0.01
 			num ++
 		} else {
