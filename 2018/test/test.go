@@ -1,15 +1,15 @@
 package main
 
 import (
-	"fmt"
-	"math/big"
 	"encoding/json"
-	"unsafe"
-	"strconv"
+	"fmt"
 	"github.com/ecoball/go-ecoball/common"
-	"sync"
+	"math/big"
 	"sort"
+	"strconv"
+	"sync"
 	"time"
+	"unsafe"
 )
 
 type AbaBftData struct {
@@ -21,26 +21,39 @@ type Mutex struct {
 	m sync.Mutex
 }
 
-func Defer(){
+func Defer() {
 	fmt.Println("defer")
 }
 
 func main() {
-	swc(15.7403)
+	//swc(40.6837)
+	mapGet()
+}
+
+func mapGet() {
+	m := make(map[string]string, 0)
+	m["pct"] = "pct"
+	var value string
+	if v, ok := m["pct"]; ok {
+		value = v
+	}
+	fmt.Println(value, m)
+	value = "test"
+	fmt.Println(value, m)
 }
 
 func swc(value float64) {
 	timeNow := time.Now().Unix()
 	var num int64 = 0
-	for ; ;  {
+	for {
 		if value > 2.0 {
-			value = value - value * 0.01
-			num ++
+			value = value - value*0.01
+			num++
 		} else {
 			break
 		}
 	}
-	t := timeNow + num * 600
+	t := timeNow + num*600
 	fmt.Println(time.Unix(t, 0))
 }
 
@@ -97,7 +110,7 @@ func testSlice() {
 
 type Envelope struct {
 	Type string
-	Msg interface{}
+	Msg  interface{}
 }
 
 type Sound struct {
@@ -128,11 +141,11 @@ type Resource struct {
 }
 
 func testJson() {
-	s := Envelope {
-		Type:"sound",
+	s := Envelope{
+		Type: "sound",
 		Msg: Sound{
-			Des:"des",
-			Aut:"aut",
+			Des: "des",
+			Aut: "aut",
 		},
 	}
 	buf, err := json.Marshal(s)
@@ -170,7 +183,7 @@ func test2() {
 	fmt.Println(n)
 
 	b := n.Bytes()
-	bb ,_ := n.GobEncode()
+	bb, _ := n.GobEncode()
 	fmt.Println(b)
 	fmt.Println(bb)
 
@@ -181,13 +194,11 @@ func test2() {
 	fmt.Println(mm)
 }
 
-
 func test() {
 	t := newT2()
 	t.t.val = 2
 	fmt.Println(t)
 }
-
 
 type t1 struct {
 	val int
@@ -197,9 +208,8 @@ type t2 struct {
 	t *t1
 }
 
-func newT2() *t2{
+func newT2() *t2 {
 	t := t2{}
 	t.t = &t1{}
 	return &t
 }
-
