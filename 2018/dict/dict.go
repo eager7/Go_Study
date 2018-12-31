@@ -13,19 +13,20 @@ func main(){
 		fmt.Println("read file error:", err)
 	}
 	fmt.Println(len(buffer))
-	ParseString(
-		`$a:"n. A As 或 A''s  安 ampere  a  art.一 n.字母A  [军] Analog.Digital 模拟 数字   =account of  帐上",
-$aaal:"American Academy of Arts and Letters 美国艺术和文学学会",
-$aachen:" 亚琛[德意志联邦共和国西部城市]",
-`)
+	ParseString(string(buffer))
 
 }
 
 func ParseString(str string) {
-	reg := regexp.MustCompile(`(^.*,)`)
+	reg := regexp.MustCompile(`(?m)(^.*,)`)//(?m)多行模式,(^.*)分组匹配多个
 	lists := reg.FindAllString(str, -1)
-	fmt.Println("word number:", len(lists), lists)
-	fmt.Println("first word:", lists[0])
+	for k, v := range lists {
+		reg := regexp.MustCompile(`^.*:`)
+		lists := reg.FindAllString(v, 1)
+		if len(lists) == 1 && len(lists[0])-2 == 12 {
+			fmt.Println(k, v)
+		}
+	}
 }
 
 func ReadFile(path string) ([]byte, error) {
