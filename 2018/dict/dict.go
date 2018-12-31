@@ -6,6 +6,10 @@ import (
 	"regexp"
 )
 
+const example = `$a:"n. A As 或 A''s  安 ampere  a  art.一 n.字母A  [军] Analog.Digital 模拟 数字   =account of  帐上",
+$aaal:"American Academy of Arts and Letters 美国艺术和文学学会",
+$aachen:" 亚琛[德意志联邦共和国西部城市]",`
+
 func main(){
 	fmt.Println("dict test program")
 	buffer, err := ReadFile("dictionary.js")
@@ -14,16 +18,15 @@ func main(){
 	}
 	fmt.Println(len(buffer))
 	ParseString(string(buffer))
-
 }
 
 func ParseString(str string) {
 	reg := regexp.MustCompile(`(?m)(^.*,)`)//(?m)多行模式,(^.*)分组匹配多个
 	lists := reg.FindAllString(str, -1)
 	for k, v := range lists {
-		reg := regexp.MustCompile(`^.*:`)
+		reg := regexp.MustCompile(`.[a-z]+`)//跳过开头的$符号，查找连续的小写字母
 		lists := reg.FindAllString(v, 1)
-		if len(lists) == 1 && len(lists[0])-2 == 12 {
+		if len(lists) == 1 && len(lists[0]) == 12 { //只查找到一个长度为12的字符时，这个就是单词
 			fmt.Println(k, v)
 		}
 	}
