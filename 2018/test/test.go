@@ -26,8 +26,8 @@ func Defer() {
 }
 
 func main() {
-	//swc(40.6837)
-	mapGet()
+	swc(12.6783)
+	//mapGet()
 }
 
 func mapGet() {

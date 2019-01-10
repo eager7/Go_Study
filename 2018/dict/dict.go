@@ -10,6 +10,8 @@ const example = `$a:"n. A As 或 A''s  安 ampere  a  art.一 n.字母A  [军] A
 $aaal:"American Academy of Arts and Letters 美国艺术和文学学会",
 $aachen:" 亚琛[德意志联邦共和国西部城市]",`
 
+var plainchant = "chant"
+
 func main(){
 	fmt.Println("dict test program")
 	buffer, err := ReadFile("dictionary.js")
@@ -26,7 +28,12 @@ func ParseString(str string) {
 	for k, v := range lists {
 		reg := regexp.MustCompile(`.[a-z]+`)//跳过开头的$符号，查找连续的小写字母
 		lists := reg.FindAllString(v, 1)
-		if len(lists) == 1 && len(lists[0]) == 12 { //只查找到一个长度为12的字符时，这个就是单词
+		if len(lists) != 0 && len(lists[0]) == 12 { //只查找到一个长度为12的字符时，这个就是单词
+			//fmt.Println(k, v)
+		}
+		reg = regexp.MustCompile(plainchant)
+		lists = reg.FindAllString(v, 1)
+		if len(lists) != 0 {
 			fmt.Println(k, v)
 		}
 	}
