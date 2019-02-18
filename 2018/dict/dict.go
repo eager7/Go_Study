@@ -28,13 +28,13 @@ func ParseString(str string) {
 	for k, v := range lists {
 		reg := regexp.MustCompile(`.[a-z]+`)//跳过开头的$符号，查找连续的小写字母
 		lists := reg.FindAllString(v, 1)
-		if len(lists) != 0 && len(lists[0]) == 12 { //只查找到一个长度为12的字符时，这个就是单词
-			//fmt.Println(k, v)
+		if len(lists) != 0 && len(lists[0]) == 10 { //只查找到一个长度为12的字符时，这个就是单词
+			fmt.Println("eos account:", k, v)
 		}
 		reg = regexp.MustCompile(plainchant)
 		lists = reg.FindAllString(v, 1)
 		if len(lists) != 0 {
-			fmt.Println(k, v)
+			fmt.Println("english name:", k, v)
 		}
 	}
 }
