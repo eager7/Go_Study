@@ -3,7 +3,9 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
+	"time"
 )
 
 type logger struct{}
@@ -25,19 +27,27 @@ type EOSTokenPriceInfo struct {
 	Timestamp    string
 }
 
-func main() {
-	gormDB := InitializeGorm()
-	defer checkError(gormDB.Close())
-	var modelTokenPrices EOSTokenPriceInfo
-
-	if err := gormDB.Find(&modelTokenPrices).Order("`index` DESC").Error; err != nil {
-		panic(err)
-	}
-	fmt.Println(modelTokenPrices)
+type mysql struct {
+	sql  *sql.DB
+	gorm *gorm.DB
 }
 
-func InitializeGorm() *gorm.DB {
-	dataSourceName := "root:zJY121123!@tcp(127.0.0.1:3306)/eos_park_canada_2?charset=utf8mb4&parseTime=true&loc=Local"
+func main() {
+	db := InitializeGorm()
+	defer checkError(db.sql.Close, db.gorm.Close)
+	var modelTokenPrices []EOSTokenPriceInfo
+
+	start := time.Now().UnixNano()
+	if err := db.gorm.Find(&modelTokenPrices).Error; err != nil {
+		fmt.Println(err)
+	}
+	end := time.Now().UnixNano()
+	fmt.Println("find result time:", (end - start)/1000000, "ms")
+}
+
+func InitializeGorm() *mysql {
+	dataSourceName := "root:zJY121123!@tcp(127.0.0.1:3306)/" +
+		"eos_park_canada_2?charset=utf8mb4&parseTime=true&loc=Local"
 	MySQLInlineActionClient, err := sql.Open("mysql", dataSourceName)
 	if err != nil {
 		panic(fmt.Sprintf("sql.Open command failed. err:%s, dataSourceName: %s", err.Error(), dataSourceName))
@@ -55,11 +65,16 @@ func InitializeGorm() *gorm.DB {
 	gormDefaultDB.DB().SetMaxOpenConns(2)
 	gormDefaultDB.DB().SetMaxIdleConns(1)
 	gormDefaultDB.LogMode(true).SetLogger(logger{})
-	return gormDefaultDB
+	return &mysql{
+		sql:  MySQLInlineActionClient,
+		gorm: gormDefaultDB,
+	}
 }
 
-func checkError(err error) {
-	if err != nil {
-		fmt.Println(err)
+func checkError(callBacks ...func() error) {
+	for _, callBack := range callBacks {
+		if err := callBack(); err != nil {
+			fmt.Println(err)
+		}
 	}
 }

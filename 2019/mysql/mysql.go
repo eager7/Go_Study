@@ -13,7 +13,7 @@ type DB struct {
 }
 
 func InitializeDB() (*DB, error) {
-	db, err := sql.Open("mysql", "root:pct@tcp(127.0.0.1:3306)/plainchant")
+	db, err := sql.Open("mysql", "root:zJY121123!@tcp(127.0.0.1:3306)/plainchant")
 	if err != nil {
 		return nil, err
 	}
