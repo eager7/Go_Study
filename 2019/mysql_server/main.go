@@ -71,6 +71,28 @@ func InitializeGorm() *mysql {
 	}
 }
 
+func SearchAll(db *mysql) {
+	var modelTokenPrices []EOSTokenPriceInfo
+
+	start := time.Now().UnixNano()
+	if err := db.gorm.Find(&modelTokenPrices).Error; err != nil {
+		fmt.Println(err)
+	}
+	end := time.Now().UnixNano()
+	fmt.Println("find result time:", (end - start)/1000000, "ms")
+}
+
+func Search(db *mysql, tokens... string) {
+	var modelTokenPrices []EOSTokenPriceInfo
+
+	start := time.Now().UnixNano()
+	if err := db.gorm.Find(&modelTokenPrices).Error; err != nil {
+		fmt.Println(err)
+	}
+	end := time.Now().UnixNano()
+	fmt.Println("find result time:", (end - start)/1000000, "ms")
+}
+
 func checkError(callBacks ...func() error) {
 	for _, callBack := range callBacks {
 		if err := callBack(); err != nil {
