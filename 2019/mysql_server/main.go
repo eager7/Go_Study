@@ -35,14 +35,12 @@ type mysql struct {
 func main() {
 	db := InitializeGorm()
 	defer checkError(db.sql.Close, db.gorm.Close)
-	var modelTokenPrices []EOSTokenPriceInfo
-
-	start := time.Now().UnixNano()
-	if err := db.gorm.Find(&modelTokenPrices).Error; err != nil {
-		fmt.Println(err)
+	if err := SearchList(db, []TokenRequest{{
+		symbol:  "SVN",
+		account: "eoseventoken",
+	}}...); err != nil{
+		panic(err)
 	}
-	end := time.Now().UnixNano()
-	fmt.Println("find result time:", (end - start)/1000000, "ms")
 }
 
 func InitializeGorm() *mysql {
@@ -79,18 +77,32 @@ func SearchAll(db *mysql) {
 		fmt.Println(err)
 	}
 	end := time.Now().UnixNano()
-	fmt.Println("find result time:", (end - start)/1000000, "ms")
+	fmt.Println("find result time:", (end-start)/1000000, "ms")
 }
 
-func Search(db *mysql, tokens... string) {
-	var modelTokenPrices []EOSTokenPriceInfo
+type TokenRequest struct {
+	symbol  string
+	account string
+}
 
+func SearchList(db *mysql, tokens ...TokenRequest) error {
+	var modelTokenPrices []EOSTokenPriceInfo
 	start := time.Now().UnixNano()
+	for _, token := range tokens {
+		var modelTokenPrice EOSTokenPriceInfo
+		if err := db.gorm.Where("symbol = ? AND issue_account = ?", token.symbol, token.account).
+			Order("`index` DESC").Limit(1).Find(&modelTokenPrice).Error; err != nil {
+			return err
+		}
+		modelTokenPrices = append(modelTokenPrices, modelTokenPrice)
+	}
 	if err := db.gorm.Find(&modelTokenPrices).Error; err != nil {
-		fmt.Println(err)
+		return err
 	}
 	end := time.Now().UnixNano()
-	fmt.Println("find result time:", (end - start)/1000000, "ms")
+	fmt.Println("find result time:", (end-start)/1000000, "ms")
+	//fmt.Println("result:", modelTokenPrices)
+	return nil
 }
 
 func checkError(callBacks ...func() error) {
