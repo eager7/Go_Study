@@ -38,6 +38,9 @@ func main() {
 	if err := SearchList(db, []TokenRequest{{
 		symbol:  "SVN",
 		account: "eoseventoken",
+	}, {
+		symbol:  "POKER",
+		account: "eospokercoin",
 	}}...); err != nil{
 		panic(err)
 	}
@@ -89,6 +92,7 @@ func SearchList(db *mysql, tokens ...TokenRequest) error {
 	var modelTokenPrices []EOSTokenPriceInfo
 	start := time.Now().UnixNano()
 	for _, token := range tokens {
+		fmt.Println("search token:", token)
 		var modelTokenPrice EOSTokenPriceInfo
 		if err := db.gorm.Where("symbol = ? AND issue_account = ?", token.symbol, token.account).
 			Order("`index` DESC").Limit(1).Find(&modelTokenPrice).Error; err != nil {
@@ -96,12 +100,9 @@ func SearchList(db *mysql, tokens ...TokenRequest) error {
 		}
 		modelTokenPrices = append(modelTokenPrices, modelTokenPrice)
 	}
-	if err := db.gorm.Find(&modelTokenPrices).Error; err != nil {
-		return err
-	}
 	end := time.Now().UnixNano()
 	fmt.Println("find result time:", (end-start)/1000000, "ms")
-	//fmt.Println("result:", modelTokenPrices)
+	fmt.Println("result:", modelTokenPrices)
 	return nil
 }
 
