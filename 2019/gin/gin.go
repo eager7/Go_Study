@@ -59,7 +59,7 @@ func SendAndRecv(reqUrl string, recvBody interface{}) error {
 	if err != nil {
 		return err
 	}
-	if err := json.Unmarshal(body, &recvBody); err != nil {
+	if err := json.Unmarshal(body, recvBody); err != nil {
 		fmt.Println("Unmarshal err:", reqUrl, " body:", string(body))
 		return err
 	}
