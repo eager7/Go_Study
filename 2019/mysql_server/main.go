@@ -27,6 +27,15 @@ type EOSTokenPriceInfo struct {
 	Timestamp    string
 }
 
+type EosTokenGroup struct {
+	Symbol    string
+	Timestamp string
+}
+
+func (EosTokenGroup) TableName() string {
+	return "t_token_price_info"
+}
+
 type mysql struct {
 	sql  *sql.DB
 	gorm *gorm.DB
@@ -35,19 +44,25 @@ type mysql struct {
 func main() {
 	db := InitializeGorm()
 	defer checkError(db.sql.Close, db.gorm.Close)
-	if err := SearchList(db, []TokenRequest{{
-		symbol:  "SVN",
-		account: "eoseventoken",
-	}, {
-		symbol:  "POKER",
-		account: "eospokercoin",
-	}}...); err != nil{
-		panic(err)
+
+	SearchAll(db)
+
+	if false {
+		if err := SearchList(db, []TokenRequest{{
+			symbol:  "SVN",
+			account: "eoseventoken",
+		}, {
+			symbol:  "POKER",
+			account: "eospokercoin",
+		}}...); err != nil {
+			panic(err)
+		}
 	}
+
 }
 
 func InitializeGorm() *mysql {
-	dataSourceName := "root:zJY121123!@tcp(127.0.0.1:3306)/" +
+	dataSourceName := "root:zJY121123!@tcp(127.0.0.1:3305)/" +
 		"eos_park_canada_2?charset=utf8mb4&parseTime=true&loc=Local"
 	MySQLInlineActionClient, err := sql.Open("mysql", dataSourceName)
 	if err != nil {
@@ -66,6 +81,7 @@ func InitializeGorm() *mysql {
 	gormDefaultDB.DB().SetMaxOpenConns(2)
 	gormDefaultDB.DB().SetMaxIdleConns(1)
 	gormDefaultDB.LogMode(true).SetLogger(logger{})
+	fmt.Println("connect sql success")
 	return &mysql{
 		sql:  MySQLInlineActionClient,
 		gorm: gormDefaultDB,
@@ -73,14 +89,17 @@ func InitializeGorm() *mysql {
 }
 
 func SearchAll(db *mysql) {
+	//var modelTokenPrices []EOSTokenPriceInfo
 	var modelTokenPrices []EOSTokenPriceInfo
-
 	start := time.Now().UnixNano()
-	if err := db.gorm.Find(&modelTokenPrices).Error; err != nil {
+	if err := db.gorm.Raw("select * from t_token_price_info where (symbol,issue_account,timestamp) in " +
+		"(select symbol, issue_account, max(timestamp) from t_token_price_info group by symbol, issue_account)").Scan(&modelTokenPrices); err != nil {
 		fmt.Println(err)
 	}
+
 	end := time.Now().UnixNano()
 	fmt.Println("find result time:", (end-start)/1000000, "ms")
+	fmt.Println(len(modelTokenPrices))
 }
 
 type TokenRequest struct {
