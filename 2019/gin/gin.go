@@ -32,6 +32,7 @@ type Ping struct {
 func InitializeGin() {
 	router := gin.Default()
 	router.GET("/:who/ping", PingHandle)
+	router.POST("/post_test", PostHandle)
 	if err := router.Run(); err != nil {
 		panic(err)
 	}
@@ -52,6 +53,17 @@ func PingHandle(context *gin.Context) {
 		context.JSON(200, resp)
 	}
 	context.JSON(200, gin.H{"message": fmt.Sprintf("%s pong", who.who)})
+}
+
+func PostHandle(context *gin.Context) {
+	form, err := context.MultipartForm()
+	fmt.Println(err, form)
+	if err != nil {
+		fmt.Println(err)
+		context.JSON(500, gin.H{"message": "param error"})
+		return
+	}
+	context.JSON(200, gin.H{"message": "post resp"})
 }
 
 func SendAndRecv(reqUrl string, recvBody interface{}) error {
