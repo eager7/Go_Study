@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/eager7/go/mlog"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"net"
@@ -32,7 +33,7 @@ type Ping struct {
 func InitializeGin() {
 	router := gin.Default()
 	router.GET("/:who/ping", PingHandle)
-	router.POST("/post_test", PostHandle)
+	router.POST("/file_update", FileHandle)
 	if err := router.Run(); err != nil {
 		panic(err)
 	}
@@ -54,15 +55,19 @@ func PingHandle(context *gin.Context) {
 	}
 	context.JSON(200, gin.H{"message": fmt.Sprintf("%s pong", who.who)})
 }
-
-func PostHandle(context *gin.Context) {
-	form, err := context.MultipartForm()
-	fmt.Println(err, form)
+/*
+curl 测试：
+curl -X POST http://localhost:8080/file_update -H "Content-Type: multipart/form-data" --form-string "account"="pct"
+*/
+func FileHandle(context *gin.Context) {
+	form, err := context.MultipartForm()//多文件上传
 	if err != nil {
-		fmt.Println(err)
+		mlog.L.Error(err)
 		context.JSON(500, gin.H{"message": "param error"})
 		return
 	}
+	mlog.L.Debug(form.Value, form.File)
+	mlog.L.Debug(form.Value["file1"])
 	context.JSON(200, gin.H{"message": "post resp"})
 }
 
