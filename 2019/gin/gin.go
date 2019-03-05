@@ -57,7 +57,7 @@ func PingHandle(context *gin.Context) {
 }
 /*
 curl 测试：
-curl -X POST http://localhost:8080/file_update -H "Content-Type: multipart/form-data" --form-string "account"="pct"
+curl -X POST http://localhost:8080/file_update -H "Content-Type: multipart/form-data" -F "account=pct" -F "file=@./send_post.sh"
 */
 func FileHandle(context *gin.Context) {
 	form, err := context.MultipartForm()//多文件上传
@@ -67,7 +67,21 @@ func FileHandle(context *gin.Context) {
 		return
 	}
 	mlog.L.Debug(form.Value, form.File)
-	mlog.L.Debug(form.Value["file1"])
+	mlog.L.Debug(form.Value["account"], len(form.File["file"]))
+	if len(form.File["file"]) > 0 {
+		f := form.File["file"][0]
+		mlog.L.Debug(f.Filename)
+		if fi, err := f.Open(); err != nil {
+			mlog.L.Error(err)
+		} else {
+			if buffer, err := ioutil.ReadAll(fi); err != nil {
+				mlog.L.Error(err)
+			} else {
+				mlog.L.Info("context:", string(buffer))
+			}
+		}
+	}
+
 	context.JSON(200, gin.H{"message": "post resp"})
 }
 
