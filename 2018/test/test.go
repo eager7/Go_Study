@@ -28,7 +28,11 @@ func Defer() {
 
 func main() {
 	swc(12.6783)
-	fmt.Println(reflect.TypeOf(mapGet))
+	fmt.Println(reflect.TypeOf(mapGet).Name())
+	fmt.Println(reflect.TypeOf(new(int64)).Name())
+	fmt.Println(reflect.TypeOf(new(int64)).String())
+	fmt.Println(reflect.Indirect(reflect.ValueOf(mapGet)).Type().Name())
+	fmt.Println(reflect.Indirect(reflect.ValueOf(new(int64))).Type().Name())
 }
 
 func mapGet() {
