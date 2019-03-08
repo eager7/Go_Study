@@ -14,7 +14,7 @@ const port = 50001
 type Data struct {
 }
 
-var log, _ = mlog.NewLogger("grpc", mlog.NoticeLog)
+var log = mlog.NewLogger("grpc", mlog.NoticeLog)
 
 func main() {
 	lis, err := net.Listen("tcp", ":"+strconv.Itoa(port))
@@ -23,12 +23,14 @@ func main() {
 	}
 	s := grpc.NewServer()
 	inf.RegisterDataServer(s, &Data{})
-	s.Serve(lis)
+	if err := s.Serve(lis); err != nil {
+		panic(err)
+	}
 }
 
 func (d *Data) GetUser(ctx context.Context, req *inf.UserReq) (*inf.UserResp, error) {
 	log.Debug("receive client request:", req)
-	resp := &inf.UserResp{Name:strconv.Itoa(int(req.Id)) + ":test"}
+	resp := &inf.UserResp{Name: strconv.Itoa(int(req.Id)) + ":test"}
 
 	return resp, nil
 }

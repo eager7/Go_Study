@@ -80,6 +80,9 @@ func FileHandle(context *gin.Context) {
 				mlog.L.Info("context:", string(buffer))
 			}
 		}
+		if err := context.SaveUploadedFile(f, fmt.Sprintf("/tmp/file/%s", f.Filename)); err != nil {
+			mlog.L.Error("save file error:", err)
+		}
 	}
 
 	context.JSON(200, gin.H{"message": "post resp"})

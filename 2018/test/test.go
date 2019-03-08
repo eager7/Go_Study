@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/ecoball/go-ecoball/common"
 	"math/big"
+	"reflect"
 	"sort"
 	"strconv"
 	"sync"
@@ -27,7 +28,7 @@ func Defer() {
 
 func main() {
 	swc(12.6783)
-	//mapGet()
+	fmt.Println(reflect.TypeOf(mapGet))
 }
 
 func mapGet() {

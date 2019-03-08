@@ -11,7 +11,7 @@ import (
 var (
 	wg sync.WaitGroup
 )
-var log,_ = mlog.NewLogger("client", mlog.NoticeLog)
+var log = mlog.NewLogger("client", mlog.NoticeLog)
 const (
 	networkType = "tcp"
 	server      = "127.0.0.1"
