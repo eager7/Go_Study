@@ -40,7 +40,7 @@ func (s *Server) Register(receiver interface{}) error {
 		return errors.New("rpc.Register: type " + sName + " is not exported")
 	}
 	_service.name = sName
-	_service.methods[]
+	//_service.methods[]
 	return nil
 }
 
