@@ -49,11 +49,11 @@ func FetchTokenPriceListFromNewDex() ([]TokenPrice, error) {
 		Contract string  `json:"contract"`
 		Currency string  `json:"currency"`
 		Last     float64 `json:"last"`
-		Change   float64 `json:"change"`
-		High     float64 `json:"high"`
-		Low      float64 `json:"low"`
-		Amount   float64 `json:"amount"`
-		Volume   float64 `json:"volume"`
+		//Change   float64 `json:"change"`
+		//High     float64 `json:"high"`
+		//Low      float64 `json:"low"`
+		//Amount   float64 `json:"amount"`
+		//Volume   float64 `json:"volume"`
 	}
 	type tResponse struct {
 		Code int            `json:"code"`
