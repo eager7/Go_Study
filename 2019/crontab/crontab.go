@@ -8,7 +8,7 @@ import (
 )
 
 func Initialize() error {
-	_, _ = runCmd(fmt.Sprintf("touch /tmp/crontab-start-%s", time.Now().Local()))
+	_, _ = runCmd(fmt.Sprintf("date >> /tmp/crontab_test"))
 	task := cron.New()
 	//秒里有1时执行任务
 	if err := task.AddFunc("1 * * * *", func() {
@@ -38,28 +38,28 @@ func Initialize() error {
 	if err := task.AddFunc("@every 1h", func() {
 		msg := fmt.Sprintf("touch /tmp/task5-%s", time.Now().Local())
 		fmt.Println(msg)
-		_, _ = runCmd(msg)
+		_, _ = runCmd(fmt.Sprintf("date >> /tmp/crontab_test"))
 	}); err != nil {
 		return err
 	}
 	if err := task.AddFunc("0 0 */2 * *", func() {
 		msg := fmt.Sprintf("touch /tmp/task6-%s", time.Now().Local())
 		fmt.Println(msg)
-		_, _ = runCmd(msg)
+		_, _ = runCmd(fmt.Sprintf("date >> /tmp/crontab_test"))
 	}); err != nil {
 		return err
 	}
 	if err := task.AddFunc("0 0 1 * *", func() {
 		msg := fmt.Sprintf("touch /tmp/task7-%s", time.Now().Local())
 		fmt.Println(msg)
-		_, _ = runCmd(msg)
+		_, _ = runCmd(fmt.Sprintf("date >> /tmp/crontab_test"))
 	}); err != nil {
 		return err
 	}
 	if err := task.AddFunc("0 0 2 * *", func() {
 		msg := fmt.Sprintf("touch /tmp/task8-%s", time.Now().Local())
 		fmt.Println(msg)
-		_, _ = runCmd(msg)
+		_, _ = runCmd(fmt.Sprintf("date >> /tmp/crontab_test"))
 	}); err != nil {
 		return err
 	}
