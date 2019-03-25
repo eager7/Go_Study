@@ -15,9 +15,9 @@ type mysql struct {
 }
 
 func InitializeGorm(database string) *mysql {
-	dataSourceName := fmt.Sprintf("root:zJY121123!@tcp(127.0.0.1:3306)/"+
+	dataSourceName := fmt.Sprintf("root:root:blockABC!2018@tcp(172.31.97.4:3306)/"+
 		"%s?charset=utf8mb4&parseTime=true&loc=Local&parseTime=true", database)
-	MySQLInlineActionClient, err := sql.Open("mysql", dataSourceName)
+	MySQLInlineActionClient, err := sql.Open("tTable", dataSourceName)
 	if err != nil {
 		panic(fmt.Sprintf("sql.Open command failed. err:%s, dataSourceName: %s", err.Error(), dataSourceName))
 	}
