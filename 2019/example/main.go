@@ -1,13 +1,16 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"log"
+	"os"
 	"time"
 )
 
 func main() {
 	fmt.Println("start example...")
-
+	fmt.Println(getContext("/tmp/data.dat"))
 }
 
 func sliceCopy() {
@@ -39,4 +42,30 @@ func init() {
 
 func init() {
 	fmt.Println("init 2")
+}
+
+func getContext(contextFilePath string) (string, int64) {
+	var lastRunEndDate string
+	var startIndex int64
+	actionIndexFile, e := os.Open(contextFilePath)
+	if e != nil {
+		log.Println("can't read action table index:", e.Error())
+		return lastRunEndDate, startIndex
+	}
+	defer actionIndexFile.Close()
+
+	scanner := bufio.NewScanner(actionIndexFile)
+	for scanner.Scan() {
+		indexLine := scanner.Text()
+		fmt.Sscanf(indexLine, "%s %d", &lastRunEndDate, &startIndex)
+
+		log.Printf("date: %s, index: %d", lastRunEndDate, startIndex)
+		break
+	}
+
+	if lastRunEndDate == "" || startIndex == 0 {
+		log.Println("fail to read executed context")
+	}
+
+	return lastRunEndDate, startIndex
 }
