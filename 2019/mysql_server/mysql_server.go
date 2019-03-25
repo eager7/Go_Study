@@ -102,7 +102,7 @@ func BatchInsertWithRawSql(db *gorm.DB, objArr []interface{}, builder BatchInser
 	)
 
 	mainScope.Raw(rawSql)
-
+	fmt.Println("sql cmd:", mainScope.SQLVars)
 	result, err := mainScope.SQLDB().Exec(mainScope.SQL, mainScope.SQLVars...)
 	if err != nil {
 		fmt.Println("fail to exec batch insert. err:", err)

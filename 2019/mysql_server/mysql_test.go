@@ -1,9 +1,8 @@
 package mysql_server
 
 import (
+	"encoding/json"
 	"fmt"
-	"strconv"
-	"strings"
 	"testing"
 	"time"
 )
@@ -24,51 +23,44 @@ func (ContractStatInfo) TableName() string {
 	return "t_contract_stat_info"
 }
 
+type contractStat struct {
+	ContractName      string               // account 就是 contract name
+	InvokedTimes      int                  // 被调用次数
+	Invokers          map[string]time.Time // 调用者集合
+	EosTransferAmount float64              // EOS 转入转出总额
+	TradeVolume       float64              // 交易量
+}
+
+type tStatMap = map[string]contractStat
+
 func TestContractStatInfoBatch(t *testing.T) {
 	db := InitializeGorm("eos_park")
-
-	text := ` {0 eosbluejacks 20190325 0 1 0 0 0.01 0} {0 eoschessteam 20190325 0 1 0 0 0 0} {0 eosjackscoin 20190325 0 6 0 0 0 0} {0 eosbiggame22 20190325 0 1 0 0 0 0} {0 llgcontract2 20190325 0 1 0 0 0 0} {0 llgonebtotal 20190325 0 1 0 0 0 0} {0 endlesstoken 20190325 0 4 0 0 0 0} {0 eosdotaprod1 20190325 0 2 0 0 0 0} {0 eosbaccarat1 20190325 0 1 0 0 8 0} {0 bgbgbgbgbgbg 20190325 0 4 0 0 0 0}{0 eostgctoken1 20190325 0 13 0 0 0 0} {0 whaleextrust 20190325 0 3 0 0 0 0} {0 chessiotoken 20190325 0 4 0 0 0 0} {0 eosio.null 20190325 0 1 0 0 0 0} {0 endlessdicex 20190325 0 1 0 0 0.1 0} {0 eosjackslead 20190325 0 2 0 0 0 0} {0 leekdaogroup 20190325 0 1 0 0 0 0} {0betsacetoken 20190325 0 1 0 0 0 0} {0 tgoncomeon11 20190325 0 3 0 0 0 0} {0 betdicetasks 20190325 0 2 0 0 0 0} {0 eosknightsio 201903250 5 0 0 0 0} {0 eosmaxiobull 20190325 0 2 0 0 0 0} {0 trustdicelog 20190325 0 1 0 0 0 0} {0 eosbiggame55 20190325 0 2 0 0 10.161000000000001 0} {0 eosbetdice11 20190325 0 5 0 0 0 0} {0 baccarat.e 20190325 0 2 0 0 0 0} {0 vsvscontract 20190325 0 8 0 0 0 0} {0 eospokeriniu 20190325 0 1 0 0 0 0} {0 betdicelucky 20190325 0 1 0 0 0 0} {0 pokereosbull 20190325 0 0 0 0 8 0} {0 vsvsvsbetbet 20190325 0 7 0 0 0.1289 0} {0 godice.e 20190325 0 4 0 0 0 0} {0 eostowergame 20190325 0 1 0 0 0 0} {0 eosnowbetext 20190325 0 0 0 0 0.01 0} {0 eoschessdice 20190325 0 2 0 0 1 0} {0 bgbetwallet1 20190325 0 1 0 0 0 0} {0 eoshashdices 20190325 0 1 0 0 0 0} {0 trustdicewin 20190325 0 1 0 0 1.888 0} {0 betdicetoken 20190325 0 6 0 0 0 0} {0 eosbetbank11 20190325 0 5 0 0 0.40630000000000005 0} {0 pornhashbaby 20190325 0 24 0 0 00} {0 huobideposit 20190325 0 0 0 0 1053 0} {0 lynxtoken123 20190325 0 1 0 0 0 0} {0 ffgameniuniu 20190325 0 1 0 0 0 0} {0 vsvsvsvipvip 20190325 0 4 0 0 0 0} {0 biggamerefer 20190325 0 1 0 0 0 0} {0 newdexpocket 20190325 0 0 0 0 0.0118 0} {0 bntbntbntbnt 20190325 0 2 0 0 00} {0 eosjacksjack 20190325 0 6 0 0 0 0} {0 everipediaiq 20190325 0 5 0 0 0 0} {0 fuckeoscpuuu 20190325 0 1 0 0 0 0} {0 findexfindex 20190325 0 2 0 0 4.4292 0} {0 ezeosaccount 20190325 0 3 0 0 1 0} {0 betdicegroup 20190325 0 4 0 0 0 0} {0 biggameminer 20190325 0 1 0 0 0 0} {0 thisisbancor 20190325 0 0 0 0 40.4 0} {0 betdiceadmin 20190325 0 7 0 0 0 0} {0 endlesslogs1 20190325 0 2 0 0 0 0} {0 houseaccount 20190325 0 3 0 0 0 0} {0 betdicelotto 20190325 0 2 0 0 0 0} {0 betdividends 20190325 0 2 0 0 0 0}`
-	text = strings.Replace(text, " {", "", -1)
-	list := strings.Split(text, "}")
-	statInfoList := make([]interface{}, 0)
-	for _, l := range list {
-		objs := strings.Split(l, " ")
-		fmt.Println("objs:", len(objs), objs)
-		if len(objs) != 9 {
-			continue
-		}
-		//invokerNum, err := strconv.ParseInt(objs[3], 10, 32)
-		//if err != nil {
-		//	t.Fatal(err)
-		//}
-		invokerTimes, err := strconv.ParseInt(objs[4], 10, 32)
-		if err != nil {
-			t.Fatal(err)
-		}
-		//invokerNum7d, err := strconv.ParseInt(objs[5], 10, 32)
-		//if err != nil {
-		//	t.Fatal(err)
-		//}
-		//invokerTimes7d, err := strconv.ParseInt(objs[6], 10, 32)
-		//if err != nil {
-		//	t.Fatal(err)
-		//}
-		eosTransferAmount, err := strconv.ParseFloat(objs[7], 64)
-		if err != nil {
-			t.Fatal(err)
-		}
-		tradeVolume24, err := strconv.ParseFloat(objs[8], 64)
-		if err != nil {
-			t.Fatal(err)
-		}
-		statInfoList = append(statInfoList, ContractStatInfo{
-			Account:              objs[1],
-			Date:                 time.Now().Format("20060102"),
-			InvokedTimes:         int(invokerTimes),
-			EOSTransferAmount24h: float64(eosTransferAmount),
-			TradeVolume24h:       float64(tradeVolume24),
-		})
+	stats := make(map[string]contractStat)
+	//allStats["test"] = map[string]contractStat{
+	//	"statMap": {
+	//		ContractName:      "contractStat",
+	//		InvokedTimes:      0,
+	//		Invokers:          map[string]time.Time{"pct": time.Now()},
+	//		EosTransferAmount: 10,
+	//		TradeVolume:       20,
+	//	},
+	//}
+	jsonString := `{"betdiceadmin":{"ContractName":"betdiceadmin","InvokedTimes":5,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"betdicegroup":{"ContractName":"betdicegroup","InvokedTimes":2,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"betdicelotto":{"ContractName":"betdicelotto","InvokedTimes":2,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"betdicestake":{"ContractName":"betdicestake","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"betdicetasks":{"ContractName":"betdicetasks","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"betdividends":{"ContractName":"betdividends","InvokedTimes":4,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"betsandbacca":{"ContractName":"betsandbacca","InvokedTimes":1,"Invokers":{},"EosTransferAmount":1.2,"TradeVolume":0},"bgbetwallet1":{"ContractName":"bgbetwallet1","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"bostonshrimp":{"ContractName":"bostonshrimp","InvokedTimes":0,"Invokers":{},"EosTransferAmount":2,"TradeVolume":0},"chessiotoken":{"ContractName":"chessiotoken","InvokedTimes":3,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"dappbaccarat":{"ContractName":"dappbaccarat","InvokedTimes":0,"Invokers":{},"EosTransferAmount":0.4,"TradeVolume":0},"depostoken11":{"ContractName":"depostoken11","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"dragonoption":{"ContractName":"dragonoption","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"dtheoschain1":{"ContractName":"dtheoschain1","InvokedTimes":3,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"endlesstoken":{"ContractName":"endlesstoken","InvokedTimes":2,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eosbetbank11":{"ContractName":"eosbetbank11","InvokedTimes":8,"Invokers":{},"EosTransferAmount":0.0002,"TradeVolume":0},"eosbetdice11":{"ContractName":"eosbetdice11","InvokedTimes":5,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eosbettokens":{"ContractName":"eosbettokens","InvokedTimes":4,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eosbiggame55":{"ContractName":"eosbiggame55","InvokedTimes":2,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eosdotaprod1":{"ContractName":"eosdotaprod1","InvokedTimes":7,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eoshashdices":{"ContractName":"eoshashdices","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eosio.null":{"ContractName":"eosio.null","InvokedTimes":3,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eosjackscoin":{"ContractName":"eosjackscoin","InvokedTimes":6,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eosjacksdice":{"ContractName":"eosjacksdice","InvokedTimes":2,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eosjacksjack":{"ContractName":"eosjacksjack","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0.1038,"TradeVolume":0},"eosjackslead":{"ContractName":"eosjackslead","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eosjoygame1b":{"ContractName":"eosjoygame1b","InvokedTimes":0,"Invokers":{},"EosTransferAmount":0.0956,"TradeVolume":0},"eosjoyiocoin":{"ContractName":"eosjoyiocoin","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eosknightsio":{"ContractName":"eosknightsio","InvokedTimes":6,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eosluckycoin":{"ContractName":"eosluckycoin","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eosmax1token":{"ContractName":"eosmax1token","InvokedTimes":5,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eosmaxiobull":{"ContractName":"eosmaxiobull","InvokedTimes":2,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eosmaxiodraw":{"ContractName":"eosmaxiodraw","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eosmaxioslot":{"ContractName":"eosmaxioslot","InvokedTimes":2,"Invokers":{},"EosTransferAmount":2.1364,"TradeVolume":0},"eosmaxioteam":{"ContractName":"eosmaxioteam","InvokedTimes":3,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eosplaybrand":{"ContractName":"eosplaybrand","InvokedTimes":2,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eospokeriniu":{"ContractName":"eospokeriniu","InvokedTimes":2,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eostgctoken1":{"ContractName":"eostgctoken1","InvokedTimes":13,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"eosyxtoken11":{"ContractName":"eosyxtoken11","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"ezeosaccount":{"ContractName":"ezeosaccount","InvokedTimes":6,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"ffgametongbi":{"ContractName":"ffgametongbi","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"godice.e":{"ContractName":"godice.e","InvokedTimes":0,"Invokers":{},"EosTransferAmount":0.2,"TradeVolume":0},"higoldtokens":{"ContractName":"higoldtokens","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"houseaccount":{"ContractName":"houseaccount","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0.3629,"TradeVolume":0},"llgcontract1":{"ContractName":"llgcontract1","InvokedTimes":3,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"llgcontract2":{"ContractName":"llgcontract2","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"llgonebtotal":{"ContractName":"llgonebtotal","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"murmurdappco":{"ContractName":"murmurdappco","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"pornhashbaby":{"ContractName":"pornhashbaby","InvokedTimes":31,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"prochaintech":{"ContractName":"prochaintech","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"roulettespin":{"ContractName":"roulettespin","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"trustdicelog":{"ContractName":"trustdicelog","InvokedTimes":1,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"trustdicewin":{"ContractName":"trustdicewin","InvokedTimes":3,"Invokers":{},"EosTransferAmount":0.4238,"TradeVolume":0},"vsvscontract":{"ContractName":"vsvscontract","InvokedTimes":10,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"vsvsvsbetbet":{"ContractName":"vsvsvsbetbet","InvokedTimes":16,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0},"vsvsvsvipvip":{"ContractName":"vsvsvsvipvip","InvokedTimes":8,"Invokers":{},"EosTransferAmount":0,"TradeVolume":0}}`
+	if err := json.Unmarshal([]byte(jsonString), &stats); err != nil {
+		t.Fatal(err)
 	}
+
+	statInfoList := make([]interface{}, 0, 120)
+		for _, statInfo := range stats {
+			statInfoList = append(statInfoList, ContractStatInfo{
+				Account:              statInfo.ContractName,
+				Date:                 "",
+				InvokedTimes:         statInfo.InvokedTimes,
+				EOSTransferAmount24h: statInfo.EosTransferAmount,
+				TradeVolume24h:       statInfo.TradeVolume,
+			})
+		}
+
 	f := func(tableName, fields, valuePlaceholders string) string {
 		cmd := fmt.Sprintf("INSERT INTO %s (%s) VALUES %s ON DUPLICATE KEY UPDATE "+
 			"`invoked_times`=`invoked_times`+VALUES(`invoked_times`), "+
@@ -118,7 +110,7 @@ func TestSearch(t *testing.T) {
 		Order("`index` DESC").
 		Limit(7).
 		Scan(&stats).Error; err != nil {
-			t.Fatal(err)
+		t.Fatal(err)
 	}
 	t.Log(stats)
 }
