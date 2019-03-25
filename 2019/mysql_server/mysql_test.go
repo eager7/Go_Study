@@ -34,7 +34,7 @@ type contractStat struct {
 type tStatMap = map[string]contractStat
 
 func TestContractStatInfoBatch(t *testing.T) {
-	db := InitializeGorm("eos_park")
+	db := InitializeGorm("tTable")
 	stats := make(map[string]contractStat)
 	//allStats["test"] = map[string]contractStat{
 	//	"statMap": {
