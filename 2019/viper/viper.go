@@ -11,6 +11,9 @@ func Initialize(file string) error {
 	viper.SetConfigFile(file)
 	viper.SetDefault("key1", "value1")
 	viper.SetDefault("key2", "value2")
+	viper.SetDefault("log.level", "value2")
+	viper.SetDefault("log.dir", "value2")
+	viper.SetDefault("log.people.pct", "value2")
 	fmt.Println("config file:", viper.ConfigFileUsed())
 	if _, err := os.Stat(viper.ConfigFileUsed()); os.IsNotExist(err) {
 		if _, err := os.Create(viper.ConfigFileUsed()); err != nil {

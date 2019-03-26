@@ -14,5 +14,5 @@ func TestViper(t *testing.T) {
 	fmt.Println(viper.Get("key1"))
 	fmt.Println(viper.Get("key2"))
 
-	make(chan interface{}, 0) <- struct{}{}
+	//make(chan interface{}, 0) <- struct{}{}
 }
