@@ -130,14 +130,19 @@ func GetEtherScanTrxList() {
 	}
 	r := Resp{}
 	res := gorequest.New()
-	ret, body, errs := res.Timeout(time.Second*10).Get("http://api.etherscan.io/api").
-		Set("module", "account").Set("action", "txlist").Set("address", "0x1BcF4912fEecad5c1F7c74705273A562fA6002e5").
-		Set("startblock", "0").Set("endblock", "99999999").Set("sort", "asc").Set("apikey", "4EVHX9TZ7EPWY8MMFANBJMHTH6FGSH81K9").EndStruct(&r)
+	ret, body, errs := res.Timeout(time.Second * 10).Get("http://api.etherscan.io/api").Query(map[string]string{
+		"module":     "account",
+		"action":     "txlist",
+		"address":    "0x1BcF4912fEecad5c1F7c74705273A562fA6002e5",
+		"startblock": "0",
+		"endblock":   "99999999",
+		"sort":       "asc",
+		"apikey":     "4EVHX9TZ7EPWY8MMFANBJMHTH6FGSH81K9"}).EndStruct(&r)
+	req, err := res.MakeRequest()
+	if err == nil {
+		fmt.Printf("request body:%+v\n", req)
+	}
 	if errs != nil || ret.StatusCode != http.StatusOK {
-		req, err := res.MakeRequest()
-		if err == nil {
-			fmt.Printf("request body:%+v\n", req)
-		}
 		fmt.Println(errs, string(body))
 		return
 	}
@@ -146,7 +151,7 @@ func GetEtherScanTrxList() {
 
 func Example() {
 	res := gorequest.New()
-	ret, body, errs := res.Timeout(time.Second*20).Get("http://api.etherscan.io/api?module=account&action=txlist&address=0x1BcF4912fEecad5c1F7c74705273A562fA6002e5&startblock=0&endblock=99999999&sort=asc&apikey=4EVHX9TZ7EPWY8MMFANBJMHTH6FGSH81K9").End()
+	ret, body, errs := res.Timeout(time.Second * 20).Get("http://api.etherscan.io/api?module=account&action=txlist&address=0x1BcF4912fEecad5c1F7c74705273A562fA6002e5&startblock=0&endblock=99999999&sort=asc&apikey=4EVHX9TZ7EPWY8MMFANBJMHTH6FGSH81K9").End()
 	if errs != nil || ret.StatusCode != http.StatusOK {
 		req, err := res.MakeRequest()
 		if err == nil {

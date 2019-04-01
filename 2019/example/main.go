@@ -5,12 +5,13 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 	"time"
 )
 
 func main() {
 	fmt.Println("start example...")
-	fmt.Println(getContext("/tmp/data.dat"))
+	HexAndBigInt()
 }
 
 func sliceCopy() {
@@ -68,4 +69,35 @@ func getContext(contextFilePath string) (string, int64) {
 	}
 
 	return lastRunEndDate, startIndex
+}
+
+func HexFormat(s string) string {
+	if len(s) > 1 {
+		if s[0:2] == "0x" || s[0:2] == "0X" {
+			s = s[2:]
+		}
+	}
+	if len(s)%2 == 1 {
+		s = "0" + s
+	}
+	return s
+}
+
+func HexToUint64(hex string) (uint64, error) {
+	n, err := strconv.ParseUint(HexFormat(hex), 16, 64)
+	if err != nil {
+		return 0, err
+	}
+	return n, nil
+}
+
+func HexAndBigInt() {
+	h := "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+	hn, err := HexToUint64(h)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("hex:%d\n", hn)
+	c := 18446744073709551615 - 115792089237316266660066408626602828282606886466848266086008062602462446642046
+	fmt.Println("c:", c)
 }
