@@ -4,7 +4,9 @@ import (
 	"bufio"
 	"fmt"
 	"log"
+	"net"
 	"os"
+	"reflect"
 	"strconv"
 	"time"
 )
@@ -100,4 +102,21 @@ func HexAndBigInt() {
 	fmt.Printf("hex:%d\n", hn)
 	c := 18446744073709551615 - 115792089237316266660066408626602828282606886466848266086008062602462446642046
 	fmt.Println("c:", c)
+}
+
+func GetMacAddress(macAddr *string) {
+	// 获取本机的MAC地址
+	interfaces, err := net.Interfaces()
+	if err != nil {
+		panic("Poor soul, here is what you got: " + err.Error())
+	}
+	for _, inter := range interfaces {
+		//fmt.Println(inter.Name)
+		if "en0" == inter.Name {
+			mac := inter.HardwareAddr //获取本机MAC地址
+			fmt.Println("mac = ", reflect.TypeOf(mac))
+			*macAddr = string([]byte(mac))
+			fmt.Println("macAddr = ", *macAddr)
+		}
+	}
 }
