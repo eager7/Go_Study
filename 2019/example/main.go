@@ -4,14 +4,13 @@ import (
 	"bufio"
 	"fmt"
 	"log"
+	"net"
 	"os"
+	"reflect"
 	"time"
 )
 
-func main() {
-	fmt.Println("start example...")
-	fmt.Println(getContext("/tmp/data.dat"))
-}
+
 
 func sliceCopy() {
 	s := make([]int, 0)
@@ -68,4 +67,27 @@ func getContext(contextFilePath string) (string, int64) {
 	}
 
 	return lastRunEndDate, startIndex
+}
+
+func main() {
+	fmt.Println("start example...")
+	var m string
+	GetMacAddress(&m)
+	fmt.Println("m:", m)
+}
+func GetMacAddress(macAddr *string) {
+	// 获取本机的MAC地址
+	interfaces, err := net.Interfaces()
+	if err != nil {
+		panic("Poor soul, here is what you got: " + err.Error())
+	}
+	for _, inter := range interfaces {
+		//fmt.Println(inter.Name)
+		if "en0" == inter.Name {
+			mac := inter.HardwareAddr //获取本机MAC地址
+			fmt.Println("mac = ", reflect.TypeOf(mac))
+			*macAddr = string([]byte(mac))
+			fmt.Println("macAddr = ", *macAddr)
+		}
+	}
 }
