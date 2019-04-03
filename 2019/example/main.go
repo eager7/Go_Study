@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"log"
+	"math/big"
 	"net"
 	"os"
 	"reflect"
@@ -13,7 +14,8 @@ import (
 
 func main() {
 	fmt.Println("start example...")
-	HexAndBigInt()
+	ch := make(chan  interface{}, 100)
+	fmt.Println(<-ch)
 }
 
 func sliceCopy() {
@@ -94,14 +96,10 @@ func HexToUint64(hex string) (uint64, error) {
 }
 
 func HexAndBigInt() {
-	h := "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-	hn, err := HexToUint64(h)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("hex:%d\n", hn)
-	c := 18446744073709551615 - 115792089237316266660066408626602828282606886466848266086008062602462446642046
-	fmt.Println("c:", c)
+	h := "20a4768c99456c4358c"
+	b, f := new(big.Int).SetString(h, 16)
+	fmt.Println("hex:", b, f)
+	fmt.Printf("%d\n", b)
 }
 
 func GetMacAddress(macAddr *string) {
