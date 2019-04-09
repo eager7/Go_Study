@@ -161,6 +161,7 @@ func (c *ChainData) FormatReceipts(e *Eth, txs map[common.Hash]*Transaction, rec
 					var transferEvent token.LogTransfer
 					err := contractAbi.Unpack(&transferEvent, "Transfer", logger.Data)
 					if err != nil {
+						fmt.Println("can't unpack log data:", len(logger.Topics), utils.JsonString(logger))
 						return errors.New(fmt.Sprintf("abi unpack err:%v", err))
 					}
 					if transferEvent.From.Hex() == new(common.Address).Hex() && len(logger.Topics) == 3 { //符合标准协议的ERC20 Transfer事件-event Transfer(address indexed _from, address indexed _to, uint256 _value)
