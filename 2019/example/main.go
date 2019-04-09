@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"encoding/hex"
 	"fmt"
 	"log"
 	"math/big"
@@ -14,8 +15,9 @@ import (
 
 func main() {
 	fmt.Println("start example...")
-	ch := make(chan  interface{}, 100)
-	fmt.Println(<-ch)
+	s := `0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000d5350494e2050726f746f636f6c00000000000000000000000000000000000000`
+	n, err := hex.DecodeString(s)
+	fmt.Println(string(n), err)
 }
 
 func sliceCopy() {
