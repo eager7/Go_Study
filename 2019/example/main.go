@@ -3,6 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"hash/crc32"
+	"io"
 	"log"
 	"math/big"
 	"net"
@@ -14,8 +16,18 @@ import (
 
 func main() {
 	fmt.Println("start example...")
-	ch := make(chan  interface{}, 100)
-	fmt.Println(<-ch)
+	ieee := crc32.NewIEEE()
+	io.WriteString(ieee, "eos")
+
+	s := ieee.Sum32()
+	fmt.Println("IEEE(%s) = 0x%x", "eos", s)
+	fmt.Println("IEEE", CRC32("eos"))
+}
+
+func CRC32(s string) uint32 {
+	ieee := crc32.NewIEEE()
+	_, _ = ieee.Write([]byte(s))
+	return ieee.Sum32()
 }
 
 func sliceCopy() {

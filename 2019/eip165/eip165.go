@@ -8,7 +8,12 @@ import (
 
 func main() {
 	fmt.Println("transfer:", EIP165Method("transfer(address,uint256)"))
+	fmt.Println("symbol():", EIP165Method("symbol()"))
+	fmt.Println("stopTime()", EIP165Method("stopTime()"))
+
 	fmt.Println("event:", EIP165Event(`Transfer(address,address,uint256)`))
+	fmt.Println("event:", EIP165Event(`Approval(address,address,uint256)`))
+	fmt.Println("event:", EIP165Event(`Approval(address,address,uint256)`))
 
 }
 
