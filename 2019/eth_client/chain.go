@@ -31,7 +31,6 @@ func (e *Eth) GetChainDataByNumber(number *big.Int) (*ChainData, error) {
 		return nil, errors.New(fmt.Sprintf("get chain block err:%v", err))
 	}
 	chain.FormatBlock(block)
-
 	txs, err := e.AnalysisTransactions(block)
 	if err != nil {
 		return nil, errors.New(fmt.Sprintf("get chain txs err:%v", err))
@@ -85,7 +84,6 @@ func (c *ChainData) FormatTransactions(txs map[common.Hash]*Transaction, receipt
 			BlockNumber:      c.Block.Number,
 			Timestamp:        c.Block.Timestamp,
 			From:             tx.From,
-			To:               utils.HexFormat(tx.To().Hex()),
 			Gas:              tx.Gas(),
 			GasUsed:          receipts[tx.Hash()].GasUsed,
 			GasPrice:         utils.BigIntToHex(tx.GasPrice()),
@@ -98,6 +96,9 @@ func (c *ChainData) FormatTransactions(txs map[common.Hash]*Transaction, receipt
 			V:                utils.BigIntToHex(v),
 			S:                utils.BigIntToHex(s),
 			R:                utils.BigIntToHex(r),
+		}
+		if tx.To() != nil {
+			txInfo.To = utils.HexFormat(tx.To().Hex())
 		}
 		//合约代码存储到合约表单
 		if receipts[tx.Hash()].ContractAddress.Hex() != new(common.Address).Hex() {
@@ -142,10 +143,10 @@ func (c *ChainData) FormatReceipts(e *Eth, txs map[common.Hash]*Transaction, rec
 		} else { //普通交易或者调用合约交易，事件会放到日志的topics中，普通转账交易则没有日志
 			contractAbi, err := abi.JSON(strings.NewReader(string(token.TokenABI)))
 			if err != nil {
-				return err
+				return errors.New(fmt.Sprintf("create abi err:%v", err))
 			}
 			for _, logger := range receipt.Logs {
-				switch logger.Topics[0].Hex() {
+				switch utils.HexFormat(logger.Topics[0].Hex()) {
 				case evm.EIP165Event("Transfer(address,address,uint256)"):
 					event := tables.TableEventInfo{
 						Address:          utils.HexFormat(logger.Address.Hex()),
@@ -160,12 +161,26 @@ func (c *ChainData) FormatReceipts(e *Eth, txs map[common.Hash]*Transaction, rec
 					var transferEvent token.LogTransfer
 					err := contractAbi.Unpack(&transferEvent, "Transfer", logger.Data)
 					if err != nil {
-						return err
+						return errors.New(fmt.Sprintf("abi unpack err:%v", err))
+					}
+					if transferEvent.From.Hex() == new(common.Address).Hex() && len(logger.Topics) == 3 { //符合标准协议的ERC20 Transfer事件-event Transfer(address indexed _from, address indexed _to, uint256 _value)
+						transferEvent.From = common.HexToAddress(logger.Topics[1].Hex())
+						transferEvent.To = common.HexToAddress(logger.Topics[2].Hex())
+					} else if transferEvent.From.Hex() == new(common.Address).Hex() && len(logger.Topics) == 4 { //符合标准协议的ERC721 Transfer事件event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);
+						transferEvent.From = common.HexToAddress(logger.Topics[1].Hex())
+						transferEvent.To = common.HexToAddress(logger.Topics[2].Hex())
+						transferEvent.Value = logger.Topics[3].Big()
+					} else {
+						fmt.Println("can't find handle func:", len(logger.Topics), utils.JsonString(logger))
+						continue
 					}
 					event.From = utils.HexFormat(transferEvent.From.Hex())
 					event.To = utils.HexFormat(transferEvent.To.Hex())
-					event.Value = utils.BigIntToHex(transferEvent.Tokens)
+					event.Value = utils.BigIntToHex(transferEvent.Value)
 					c.Events = append(c.Events, &event)
+					if err := c.GetAssertInfo(e, logger.Address.Hex(), transferEvent.From.Hex(), transferEvent.To.Hex()); err != nil {
+						return errors.New(fmt.Sprintf("get assert data err:%s", err.Error()))
+					}
 				}
 				if err := c.GetAccountInfo(e, txs[receipt.TxHash].From, txs[receipt.TxHash].To().Hex()); err != nil {
 					return errors.New(fmt.Sprintf("get account data err:%s", err.Error()))
@@ -194,6 +209,22 @@ func (c *ChainData) GetAccountInfo(e *Eth, address ...string) error {
 			Type:      1,
 		}
 		c.Accounts = append(c.Accounts, &acc)
+	}
+	return nil
+}
+
+func (c *ChainData) GetAssertInfo(e *Eth, contract string, address ...string) error {
+	for _, addr := range address {
+		v, err := token.BalanceAt(addr, contract, e.client)
+		if err != nil {
+			return err
+		}
+		assert := tables.TableAssertsInfo{
+			Address:  utils.HexFormat(addr),
+			Balance:  utils.BigIntToHex(v),
+			Contract: utils.HexFormat(contract),
+		}
+		c.Asserts = append(c.Asserts, &assert)
 	}
 	return nil
 }

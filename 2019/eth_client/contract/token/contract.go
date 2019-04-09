@@ -14,6 +14,14 @@ import (
 	"strings"
 )
 
+func BalanceAt(address, contract string, client *ethclient.Client) (*big.Int, error) {
+	instance, err := NewToken(common.HexToAddress(contract), client)
+	if err != nil {
+		return nil, errors.New(fmt.Sprintf("new token err:%v", err))
+	}
+	return instance.BalanceOf(&bind.CallOpts{}, common.HexToAddress(address))
+}
+
 func ReadTokenInfo(address string, client *ethclient.Client) (string, string, uint8, *big.Int, error) {
 	instance, err := NewToken(common.HexToAddress(address), client)
 	if err != nil {
@@ -39,9 +47,9 @@ func ReadTokenInfo(address string, client *ethclient.Client) (string, string, ui
 }
 
 type LogTransfer struct {
-	From   common.Address
-	To     common.Address
-	Tokens *big.Int
+	From  common.Address
+	To    common.Address
+	Value *big.Int
 }
 
 type LogApproval struct {
@@ -78,7 +86,7 @@ func ListenTransferEvent(ctx context.Context, client *ethclient.Client, address 
 			transferEvent.To = common.HexToAddress(l.Topics[2].Hex())
 			fmt.Printf("From: %s\n", transferEvent.From.Hex())
 			fmt.Printf("To: %s\n", transferEvent.To.Hex())
-			fmt.Printf("Tokens: %s\n", transferEvent.Tokens.String())
+			fmt.Printf("Tokens: %s\n", transferEvent.Value.String())
 		default:
 			fmt.Println("unknown topic:", l.Topics[0].Hex())
 		}

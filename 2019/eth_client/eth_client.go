@@ -4,9 +4,12 @@ import (
 	"errors"
 	"fmt"
 	"github.com/BlockABC/wallet_eth_client/common/context"
+	"github.com/BlockABC/wallet_eth_client/common/elog"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
+
+var log = elog.Log
 
 type Eth struct {
 	url    string
