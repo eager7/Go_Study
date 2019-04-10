@@ -6,8 +6,7 @@ import (
 	"github.com/BlockABC/wallet_eth_client/common/evm"
 	"github.com/BlockABC/wallet_eth_client/common/utils"
 	"github.com/BlockABC/wallet_eth_client/database/tables"
-	"github.com/eager7/go_study/2019/eth_client/contract/token"
-	"github.com/ethereum/go-ethereum/accounts/abi"
+	"github.com/eager7/go_study/2019/eth_client/contract/erc20"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"math/big"
@@ -123,7 +122,7 @@ func (c *ChainData) FormatReceipts(e *Eth, txs map[common.Hash]*Transaction, rec
 			c.Contracts = append(c.Contracts, &contract)
 			//根据合约二进制代码检测合约是否为代币合约，如果是代币合约则放入代币表单中
 			if t := evm.CheckTokenInterface(contract.Code); t != evm.None {
-				name, symbol, decimals, supply, err := token.ReadTokenInfo(receipt.ContractAddress.Hex(), e.Client())
+				name, symbol, decimals, supply, err := erc20.ReadTokenInfo(receipt.ContractAddress.Hex(), e.Client())
 				if err != nil {
 					return errors.New(fmt.Sprintf("get chain data err:%s", err.Error()))
 				}
@@ -141,10 +140,6 @@ func (c *ChainData) FormatReceipts(e *Eth, txs map[common.Hash]*Transaction, rec
 				c.Tokens = append(c.Tokens, &tok)
 			}
 		} else { //普通交易或者调用合约交易，事件会放到日志的topics中，普通转账交易则没有日志
-			contractAbi, err := abi.JSON(strings.NewReader(string(token.TokenABI)))
-			if err != nil {
-				return errors.New(fmt.Sprintf("create abi err:%v", err))
-			}
 			for _, logger := range receipt.Logs {
 				switch utils.HexFormat(logger.Topics[0].Hex()) {
 				case evm.EIP165Event("Transfer(address,address,uint256)"):
@@ -158,30 +153,28 @@ func (c *ChainData) FormatReceipts(e *Eth, txs map[common.Hash]*Transaction, rec
 						Input:            utils.ByteToHex(logger.Data),
 						TransactionIndex: uint16(logger.TxIndex),
 					}
-					var transferEvent token.LogTransfer
-					err := contractAbi.Unpack(&transferEvent, "Transfer", logger.Data)
-					if err != nil {
-						fmt.Println("can't unpack log data:", len(logger.Topics), utils.JsonString(logger))
-						return errors.New(fmt.Sprintf("abi unpack err:%v", err))
-					}
-					if transferEvent.From.Hex() == new(common.Address).Hex() && len(logger.Topics) == 3 { //符合标准协议的ERC20 Transfer事件-event Transfer(address indexed _from, address indexed _to, uint256 _value)
-						transferEvent.From = common.HexToAddress(logger.Topics[1].Hex())
-						transferEvent.To = common.HexToAddress(logger.Topics[2].Hex())
-					} else if transferEvent.From.Hex() == new(common.Address).Hex() && len(logger.Topics) == 4 { //符合标准协议的ERC721 Transfer事件event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);
-						transferEvent.From = common.HexToAddress(logger.Topics[1].Hex())
-						transferEvent.To = common.HexToAddress(logger.Topics[2].Hex())
-						transferEvent.Value = logger.Topics[3].Big()
+					if len(logger.Topics) == 3 { //符合标准协议的ERC20 Transfer事件-event Transfer(address indexed _from, address indexed _to, uint256 _value)
+						event.From = utils.HexFormat(common.HexToAddress(logger.Topics[1].Hex()).Hex()) //topic是32字节，地址是20字节，因此需要做转换
+						event.To = utils.HexFormat(common.HexToAddress(logger.Topics[2].Hex()).Hex())
+						event.Value = utils.BigIntToHex(new(big.Int).SetBytes(logger.Data))
+
+						if err := c.GetErc20AssertInfo(e, logger.Address.Hex(), "0x"+event.From, "0x"+event.To); err != nil {
+							log.Warn(utils.JsonString(logger))
+							return errors.New(fmt.Sprintf("get assert data err:%v", err))
+						}
+					} else if len(logger.Topics) == 4 { //符合标准协议的ERC721 Transfer事件event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);
+						event.From = utils.HexFormat(common.HexToAddress(logger.Topics[1].Hex()).Hex())
+						event.To = utils.HexFormat(common.HexToAddress(logger.Topics[3].Hex()).Hex())
+						event.Value = utils.BigIntToHex(logger.Topics[1].Big())
 					} else {
-						fmt.Println("can't find handle func:", len(logger.Topics), utils.JsonString(logger))
-						continue
+						var err error
+						event.From, event.To, event.Value, err = HandleSpecialContractEvent(logger.Address.Hex(), logger.Data)
+						if err != nil {
+							continue
+						}
 					}
-					event.From = utils.HexFormat(transferEvent.From.Hex())
-					event.To = utils.HexFormat(transferEvent.To.Hex())
-					event.Value = utils.BigIntToHex(transferEvent.Value)
 					c.Events = append(c.Events, &event)
-					if err := c.GetAssertInfo(e, logger.Address.Hex(), transferEvent.From.Hex(), transferEvent.To.Hex()); err != nil {
-						return errors.New(fmt.Sprintf("get assert data err:%s", err.Error()))
-					}
+
 				}
 				if err := c.GetAccountInfo(e, txs[receipt.TxHash].From, txs[receipt.TxHash].To().Hex()); err != nil {
 					return errors.New(fmt.Sprintf("get account data err:%s", err.Error()))
@@ -190,6 +183,21 @@ func (c *ChainData) FormatReceipts(e *Eth, txs map[common.Hash]*Transaction, rec
 		}
 	}
 	return nil
+}
+
+func HandleSpecialContractEvent(address string, input []byte) (string, string, string, error) {
+	switch strings.ToLower(address) {
+	case strings.ToLower("0x06012c8cf97BEaD5deAe237070F9587f8E7A266d"): //加密猫Transfer
+		data := utils.HexFormat(utils.ByteToHex(input))
+		if len(data) < 192 {
+			fmt.Println("the data len is err:", data)
+			return "", "", "", errors.New("the data len is err")
+		}
+		return common.BytesToAddress([]byte(data[:63])).Hex(), common.BytesToAddress([]byte(data[63:127])).Hex(), utils.BigIntToHex(new(big.Int).SetBytes(input[63:95])), nil
+	default:
+		log.Warn("unsupported contract:", address)
+		return "", "", "", errors.New("unsupported contract")
+	}
 }
 
 func (c *ChainData) GetAccountInfo(e *Eth, address ...string) error {
@@ -214,9 +222,9 @@ func (c *ChainData) GetAccountInfo(e *Eth, address ...string) error {
 	return nil
 }
 
-func (c *ChainData) GetAssertInfo(e *Eth, contract string, address ...string) error {
+func (c *ChainData) GetErc20AssertInfo(e *Eth, contract string, address ...string) error {
 	for _, addr := range address {
-		v, err := token.BalanceAt(addr, contract, e.client)
+		v, err := erc20.BalanceAt(addr, contract, e.client)
 		if err != nil {
 			return err
 		}
