@@ -5,6 +5,8 @@ import (
 	"github.com/BlockABC/wallet_eth_client/common/context"
 	"github.com/eager7/go_study/2019/eth_client"
 	"github.com/eager7/go_study/2019/eth_client/contract/token"
+	"github.com/ethereum/go-ethereum/accounts/abi"
+	"strings"
 	"testing"
 )
 
@@ -22,4 +24,12 @@ func TestListenTransferEvent(t *testing.T) {
 		t.Fatal(err)
 	}
 	fmt.Println(token.ListenTransferEvent(eth.CTX().Context(), eth.Client()), "0xB8c77482e45F1F44dE1745F52C74426C631bDD52")
+}
+
+func TestAbi(t *testing.T) {
+	contractAbi, err := abi.JSON(strings.NewReader(string(token.TokenABI)))
+	if err != nil {
+		t.Fatal(err)
+	}
+	fmt.Println(contractAbi.Events)
 }
