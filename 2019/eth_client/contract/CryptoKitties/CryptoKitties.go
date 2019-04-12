@@ -28,18 +28,18 @@ var (
 )
 
 // CryptoKittiesABI is the input ABI used to generate the binding from.
-const CryptoKittiesABI = "[{\"constant\":false,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"name\":\"_startingPrice\",\"type\":\"uint256\"},{\"name\":\"_endingPrice\",\"type\":\"uint256\"},{\"name\":\"_duration\",\"type\":\"uint256\"},{\"name\":\"_seller\",\"type\":\"address\"}],\"name\":\"createAuction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"unpause\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"bid\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"withdrawBalance\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"getAuction\",\"outputs\":[{\"name\":\"seller\",\"type\":\"address\"},{\"name\":\"startingPrice\",\"type\":\"uint256\"},{\"name\":\"endingPrice\",\"type\":\"uint256\"},{\"name\":\"duration\",\"type\":\"uint256\"},{\"name\":\"startedAt\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"ownerCut\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"pause\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"cancelAuctionWhenPaused\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"cancelAuction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"getCurrentPrice\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"nonFungibleContract\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"_nftAddress\",\"type\":\"address\"},{\"name\":\"_cut\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"tokenId\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"startingPrice\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"endingPrice\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"duration\",\"type\":\"uint256\"}],\"name\":\"AuctionCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"tokenId\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"totalPrice\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"winner\",\"type\":\"address\"}],\"name\":\"AuctionSuccessful\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"AuctionCancelled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"Pause\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"Unpause\",\"type\":\"event\"}]"
+const CryptoKittiesABI = "[{\"constant\":true,\"inputs\":[{\"name\":\"_interfaceID\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"cfoAddress\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"name\":\"_preferredTransport\",\"type\":\"string\"}],\"name\":\"tokenMetadata\",\"outputs\":[{\"name\":\"infoUrl\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"promoCreatedCount\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"ceoAddress\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"GEN0_STARTING_PRICE\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_address\",\"type\":\"address\"}],\"name\":\"setSiringAuctionAddress\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"pregnantKitties\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_kittyId\",\"type\":\"uint256\"}],\"name\":\"isPregnant\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"GEN0_AUCTION_DURATION\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"siringAuction\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_address\",\"type\":\"address\"}],\"name\":\"setGeneScienceAddress\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_newCEO\",\"type\":\"address\"}],\"name\":\"setCEO\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_newCOO\",\"type\":\"address\"}],\"name\":\"setCOO\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_kittyId\",\"type\":\"uint256\"},{\"name\":\"_startingPrice\",\"type\":\"uint256\"},{\"name\":\"_endingPrice\",\"type\":\"uint256\"},{\"name\":\"_duration\",\"type\":\"uint256\"}],\"name\":\"createSaleAuction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"unpause\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"sireAllowedToAddress\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_matronId\",\"type\":\"uint256\"},{\"name\":\"_sireId\",\"type\":\"uint256\"}],\"name\":\"canBreedWith\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"kittyIndexToApproved\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_kittyId\",\"type\":\"uint256\"},{\"name\":\"_startingPrice\",\"type\":\"uint256\"},{\"name\":\"_endingPrice\",\"type\":\"uint256\"},{\"name\":\"_duration\",\"type\":\"uint256\"}],\"name\":\"createSiringAuction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"val\",\"type\":\"uint256\"}],\"name\":\"setAutoBirthFee\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_addr\",\"type\":\"address\"},{\"name\":\"_sireId\",\"type\":\"uint256\"}],\"name\":\"approveSiring\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_newCFO\",\"type\":\"address\"}],\"name\":\"setCFO\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_genes\",\"type\":\"uint256\"},{\"name\":\"_owner\",\"type\":\"address\"}],\"name\":\"createPromoKitty\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"secs\",\"type\":\"uint256\"}],\"name\":\"setSecondsPerBlock\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"withdrawBalance\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"ownerOf\",\"outputs\":[{\"name\":\"owner\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"GEN0_CREATION_LIMIT\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"newContractAddress\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_address\",\"type\":\"address\"}],\"name\":\"setSaleAuctionAddress\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"name\":\"count\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_v2Address\",\"type\":\"address\"}],\"name\":\"setNewAddress\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"secondsPerBlock\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"pause\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"}],\"name\":\"tokensOfOwner\",\"outputs\":[{\"name\":\"ownerTokens\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_matronId\",\"type\":\"uint256\"}],\"name\":\"giveBirth\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"withdrawAuctionBalances\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"cooldowns\",\"outputs\":[{\"name\":\"\",\"type\":\"uint32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"kittyIndexToOwner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"cooAddress\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"autoBirthFee\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"erc721Metadata\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_genes\",\"type\":\"uint256\"}],\"name\":\"createGen0Auction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_kittyId\",\"type\":\"uint256\"}],\"name\":\"isReadyToBreed\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"PROMO_CREATION_LIMIT\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_contractAddress\",\"type\":\"address\"}],\"name\":\"setMetadataAddress\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"saleAuction\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"getKitty\",\"outputs\":[{\"name\":\"isGestating\",\"type\":\"bool\"},{\"name\":\"isReady\",\"type\":\"bool\"},{\"name\":\"cooldownIndex\",\"type\":\"uint256\"},{\"name\":\"nextActionAt\",\"type\":\"uint256\"},{\"name\":\"siringWithId\",\"type\":\"uint256\"},{\"name\":\"birthTime\",\"type\":\"uint256\"},{\"name\":\"matronId\",\"type\":\"uint256\"},{\"name\":\"sireId\",\"type\":\"uint256\"},{\"name\":\"generation\",\"type\":\"uint256\"},{\"name\":\"genes\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_sireId\",\"type\":\"uint256\"},{\"name\":\"_matronId\",\"type\":\"uint256\"}],\"name\":\"bidOnSiringAuction\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"gen0CreatedCount\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"geneScience\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_matronId\",\"type\":\"uint256\"},{\"name\":\"_sireId\",\"type\":\"uint256\"}],\"name\":\"breedWithAuto\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"matronId\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"sireId\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"cooldownEndBlock\",\"type\":\"uint256\"}],\"name\":\"Pregnant\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"from\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"approved\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"kittyId\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"matronId\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"sireId\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"genes\",\"type\":\"uint256\"}],\"name\":\"Birth\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"newContract\",\"type\":\"address\"}],\"name\":\"ContractUpgrade\",\"type\":\"event\"}]"
 
 // CryptoKittiesBin is the compiled bytecode used for deploying new contracts.
-const CryptoKittiesBin = `606060405260008060146101000a81548160ff021916908315150217905550341561002957600080fd5b60405160408061176d833981016040528080519060200190919080519060200190919050506000336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555061271082111515156100a157600080fd5b816002819055508290508073ffffffffffffffffffffffffffffffffffffffff166301ffc9a7639a20483d7c0100000000000000000000000000000000000000000000000000000000026000604051602001526040518263ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180827bffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167bffffffffffffffffffffffffffffffffffffffffffffffffffffffff19168152602001915050602060405180830381600087803b151561018357600080fd5b6102c65a03f1151561019457600080fd5b5050506040518051905015156101a957600080fd5b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550505050611571806101fc6000396000f3006060604052600436106100d0576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806327ebe40a146100d55780633f4ba83a14610132578063454a2ab31461015f5780635c975abb146101775780635fd8c710146101a457806378bd7935146101b957806383b5ff8b146102385780638456cb5914610261578063878eb3681461028e5780638da5cb5b146102b157806396b5a75514610306578063c55d0f5614610329578063dd1b7a0f14610360578063f2fde38b146103b5575b600080fd5b34156100e057600080fd5b610130600480803590602001909190803590602001909190803590602001909190803590602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506103ee565b005b341561013d57600080fd5b610145610513565b604051808215151515815260200191505060405180910390f35b61017560048080359060200190919050506105d8565b005b341561018257600080fd5b61018a61060c565b604051808215151515815260200191505060405180910390f35b34156101af57600080fd5b6101b761061f565b005b34156101c457600080fd5b6101da600480803590602001909190505061072a565b604051808673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018581526020018481526020018381526020018281526020019550505050505060405180910390f35b341561024357600080fd5b61024b61084d565b6040518082815260200191505060405180910390f35b341561026c57600080fd5b610274610853565b604051808215151515815260200191505060405180910390f35b341561029957600080fd5b6102af600480803590602001909190505061091a565b005b34156102bc57600080fd5b6102c46109ec565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561031157600080fd5b6103276004808035906020019091905050610a11565b005b341561033457600080fd5b61034a6004808035906020019091905050610aad565b6040518082815260200191505060405180910390f35b341561036b57600080fd5b610373610aea565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34156103c057600080fd5b6103ec600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610b10565b005b6103f66114c7565b600060149054906101000a900460ff1615151561041257600080fd5b846fffffffffffffffffffffffffffffffff168514151561043257600080fd5b836fffffffffffffffffffffffffffffffff168414151561045257600080fd5b8267ffffffffffffffff168314151561046a57600080fd5b6104743387610be5565b151561047f57600080fd5b6104893387610cd1565b60a0604051908101604052808373ffffffffffffffffffffffffffffffffffffffff168152602001866fffffffffffffffffffffffffffffffff168152602001856fffffffffffffffffffffffffffffffff1681526020018467ffffffffffffffff1681526020014267ffffffffffffffff16815250905061050b8682610de1565b505050505050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561057057600080fd5b600060149054906101000a900460ff16151561058b57600080fd5b60008060146101000a81548160ff0219169083151502179055507f7805862f689e2f13df9f062ff482ad3ad112aca9e0847911ed832e158c525b3360405160405180910390a16001905090565b600060149054906101000a900460ff161515156105f457600080fd5b6105fe8134610fc6565b506106093382611165565b50565b600060149054906101000a900460ff1681565b600080600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1691506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614806106cd57508173ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16145b15156106d857600080fd5b8173ffffffffffffffffffffffffffffffffffffffff166108fc3073ffffffffffffffffffffffffffffffffffffffff16319081150290604051600060405180830381858888f1935050505090505050565b60008060008060008060036000888152602001908152602001600020905061075181611241565b151561075c57600080fd5b8060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff168160010160009054906101000a90046fffffffffffffffffffffffffffffffff168260010160109054906101000a90046fffffffffffffffffffffffffffffffff168360020160009054906101000a900467ffffffffffffffff168460020160089054906101000a900467ffffffffffffffff16836fffffffffffffffffffffffffffffffff169350826fffffffffffffffffffffffffffffffff1692508167ffffffffffffffff1691508067ffffffffffffffff169050955095509550955095505091939590929450565b60025481565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156108b057600080fd5b600060149054906101000a900460ff161515156108cc57600080fd5b6001600060146101000a81548160ff0219169083151502179055507f6985a02210a168e66602d3235cb6db0e70f92b3ba4d376a33c0f3d9434bff62560405160405180910390a16001905090565b60008060149054906101000a900460ff16151561093657600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561099157600080fd5b6003600083815260200190815260200160002090506109af81611241565b15156109ba57600080fd5b6109e8828260000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1661126f565b5050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600080600360008481526020019081526020016000209150610a3282611241565b1515610a3d57600080fd5b8160000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1690508073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610a9e57600080fd5b610aa8838261126f565b505050565b600080600360008481526020019081526020016000209050610ace81611241565b1515610ad957600080fd5b610ae2816112bd565b915050919050565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610b6b57600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff16141515610be257806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505b50565b60008273ffffffffffffffffffffffffffffffffffffffff16600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16636352211e846000604051602001526040518263ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180828152602001915050602060405180830381600087803b1515610c9757600080fd5b6102c65a03f11515610ca857600080fd5b5050506040518051905073ffffffffffffffffffffffffffffffffffffffff1614905092915050565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166323b872dd8330846040518463ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019350505050600060405180830381600087803b1515610dc957600080fd5b6102c65a03f11515610dda57600080fd5b5050505050565b603c816060015167ffffffffffffffff1610151515610dff57600080fd5b806003600084815260200190815260200160002060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060208201518160010160006101000a8154816fffffffffffffffffffffffffffffffff02191690836fffffffffffffffffffffffffffffffff16021790555060408201518160010160106101000a8154816fffffffffffffffffffffffffffffffff02191690836fffffffffffffffffffffffffffffffff16021790555060608201518160020160006101000a81548167ffffffffffffffff021916908367ffffffffffffffff16021790555060808201518160020160086101000a81548167ffffffffffffffff021916908367ffffffffffffffff1602179055509050507fa9c8dfcda5664a5a124c713e386da27de87432d5b668e79458501eb296389ba78282602001516fffffffffffffffffffffffffffffffff1683604001516fffffffffffffffffffffffffffffffff16846060015167ffffffffffffffff166040518085815260200184815260200183815260200182815260200194505050505060405180910390a15050565b6000806000806000806000600360008a81526020019081526020016000209550610fef86611241565b1515610ffa57600080fd5b611003866112bd565b945084881015151561101457600080fd5b8560000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff169350611044896113b0565b600085111561109e576110568561146c565b925082850391508373ffffffffffffffffffffffffffffffffffffffff166108fc839081150290604051600060405180830381858888f19350505050151561109d57600080fd5b5b84880390503373ffffffffffffffffffffffffffffffffffffffff166108fc829081150290604051600060405180830381858888f1935050505015156110e357600080fd5b7f4fcc30d90a842164dd58501ab874a101a3749c3d4747139cefe7c876f4ccebd2898633604051808481526020018381526020018273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001935050505060405180910390a184965050505050505092915050565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb83836040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050600060405180830381600087803b151561122957600080fd5b6102c65a03f1151561123a57600080fd5b5050505050565b6000808260020160089054906101000a900467ffffffffffffffff1667ffffffffffffffff16119050919050565b611278826113b0565b6112828183611165565b7f2809c7e17bf978fbc7194c0a694b638c4215e9140cacc6c38ca36010b45697df826040518082815260200191505060405180910390a15050565b600080600090508260020160089054906101000a900467ffffffffffffffff1667ffffffffffffffff16421115611316578260020160089054906101000a900467ffffffffffffffff1667ffffffffffffffff16420390505b6113a88360010160009054906101000a90046fffffffffffffffffffffffffffffffff166fffffffffffffffffffffffffffffffff168460010160109054906101000a90046fffffffffffffffffffffffffffffffff166fffffffffffffffffffffffffffffffff168560020160009054906101000a900467ffffffffffffffff1667ffffffffffffffff1684611487565b915050919050565b60036000828152602001908152602001600020600080820160006101000a81549073ffffffffffffffffffffffffffffffffffffffff02191690556001820160006101000a8154906fffffffffffffffffffffffffffffffff02191690556001820160106101000a8154906fffffffffffffffffffffffffffffffff02191690556002820160006101000a81549067ffffffffffffffff02191690556002820160086101000a81549067ffffffffffffffff0219169055505050565b6000612710600254830281151561147f57fe5b049050919050565b600080600080858510151561149e578693506114bc565b8787039250858584028115156114b057fe5b05915081880190508093505b505050949350505050565b60a060405190810160405280600073ffffffffffffffffffffffffffffffffffffffff16815260200160006fffffffffffffffffffffffffffffffff16815260200160006fffffffffffffffffffffffffffffffff168152602001600067ffffffffffffffff168152602001600067ffffffffffffffff16815250905600a165627a7a72305820030b5a941725951cc77daa1158f74567b93b59abad87a0bed4c2dde8265cf79e0029`
+const CryptoKittiesBin = `606060409081526002805460a060020a60ff02191690556101c090519081016040908152603c82526078602083015261012c9082015261025860608201526107086080820152610e1060a0820152611c2060c082015261384060e082015261708061010082015261e100610120820152620151806101408201526202a3006101608201526205460061018082015262093a806101a0820152620000a790600390600e620004e4565b50600f60055566071afd498d0000600e553415620000c457600080fd5b6002805460008054600160a060020a033316600160a060020a03199182168117835560a060020a60ff02199093167401000000000000000000000000000000000000000017169091179091556200012f90808060001981640100000000620028f06200013682021704565b5062000649565b6000806200014362000587565b600063ffffffff891689146200015857600080fd5b63ffffffff881688146200016b57600080fd5b61ffff871687146200017c57600080fd5b600287049250600d8361ffff1611156200019557600d92505b61010060405190810160409081528782526001604060020a0342166020830152600090820181905263ffffffff808c1660608401528a16608083015260a082015261ffff80851660c0830152881660e082015260068054919350600191808301620002018382620005cb565b6000928352602090922085916002020181518155602082015160018201805467ffffffffffffffff19166001604060020a039290921691909117905560408201518160010160086101000a8154816001604060020a0302191690836001604060020a0316021790555060608201518160010160106101000a81548163ffffffff021916908363ffffffff16021790555060808201518160010160146101000a81548163ffffffff021916908363ffffffff16021790555060a08201518160010160186101000a81548163ffffffff021916908363ffffffff16021790555060c082015181600101601c6101000a81548161ffff021916908361ffff16021790555060e08201516001909101805461ffff929092167e0100000000000000000000000000000000000000000000000000000000000002600160f060020a039092169190911790555003905063ffffffff811681146200035e57600080fd5b7f0a5311bd2a6608f08a180df2ee7c5946819a649b204b554bb8e39825b2c50ad58582846060015163ffffffff16856080015163ffffffff168651604051600160a060020a03909516855260208501939093526040808501929092526060840152608083019190915260a0909101905180910390a1620003ef60008683640100000000620025e0620003fb82021704565b98975050505050505050565b600160a060020a03808316600081815260086020908152604080832080546001019055858352600790915290208054600160a060020a03191690911790558316156200048f57600160a060020a03831660009081526008602090815260408083208054600019019055838352600a82528083208054600160a060020a03199081169091556009909252909120805490911690555b7fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef838383604051600160a060020a039384168152919092166020820152604080820192909252606001905180910390a1505050565b600283019183908215620005755791602002820160005b838211156200054157835183826101000a81548163ffffffff021916908363ffffffff1602179055509260200192600401602081600301049283019260010302620004fb565b8015620005735782816101000a81549063ffffffff021916905560040160208160030104928301926001030262000541565b505b5062000583929150620005ff565b5090565b6101006040519081016040908152600080835260208301819052908201819052606082018190526080820181905260a0820181905260c0820181905260e082015290565b815481835581811511620005fa57600202816002028360005260206000209182019101620005fa919062000626565b505050565b6200062391905b808211156200058357805463ffffffff1916815560010162000606565b90565b6200062391905b808211156200058357600080825560018201556002016200062d565b61309380620006596000396000f3006060604052600436106102a55763ffffffff60e060020a60003504166301ffc9a781146102dd5780630519ce79146103295780630560ff441461035857806305e45546146103f157806306fdde0314610416578063095ea7b3146104295780630a0f81681461044b5780630e583df01461045e57806314001f4c1461047157806318160ddd14610490578063183a7947146104a35780631940a936146104b657806319c2f201146104cc57806321717ebf146104df57806323b872dd146104f257806324e7a38a1461051a57806327d7874c146105395780632ba73c15146105585780633d7d3f5a146105775780633f4ba83a1461059657806346116e6f146105a957806346d22c70146105bf578063481af3d3146105d85780634ad8c938146105ee5780634b85fd551461060d5780634dfff04f146106235780634e0a33791461064557806356129134146106645780635663896e146106865780635c975abb1461069c5780635fd8c710146106af5780636352211e146106c2578063680eba27146106d85780636af04a57146106eb5780636fbde40d146106fe57806370a082311461071d578063715879881461073c5780637a7d49371461075b5780638456cb591461076e5780638462151c1461078157806388c2a0bf146107f357806391876e571461080957806395d89b411461081c5780639d6fac6f1461082f578063a45f4bfc1461085e578063a9059cbb14610874578063b047fb5014610896578063b0c35c05146108a9578063bc4006f5146108bc578063c3bea9af146108cf578063d3e6f49f146108e5578063defb9584146108fb578063e17b25af1461090e578063e6cbe3511461092d578063e98b7f4d14610940578063ed60ade6146109ae578063f1ca9410146109bc578063f2b47d52146109cf578063f7d8c883146109e2575b600b5433600160a060020a03908116911614806102d05750600c5433600160a060020a039081169116145b15156102db57600080fd5b005b34156102e857600080fd5b6103157fffffffff00000000000000000000000000000000000000000000000000000000600435166109f0565b604051901515815260200160405180910390f35b341561033457600080fd5b61033c610c77565b604051600160a060020a03909116815260200160405180910390f35b341561036357600080fd5b61037a600480359060248035908101910135610c86565b60405160208082528190810183818151815260200191508051906020019080838360005b838110156103b657808201518382015260200161039e565b50505050905090810190601f1680156103e35780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b34156103fc57600080fd5b610404610d63565b60405190815260200160405180910390f35b341561042157600080fd5b61037a610d69565b341561043457600080fd5b6102db600160a060020a0360043516602435610da0565b341561045657600080fd5b61033c610e2a565b341561046957600080fd5b610404610e39565b341561047c57600080fd5b6102db600160a060020a0360043516610e44565b341561049b57600080fd5b610404610ef1565b34156104ae57600080fd5b610404610efc565b34156104c157600080fd5b610315600435610f02565b34156104d757600080fd5b610404610f47565b34156104ea57600080fd5b61033c610f4e565b34156104fd57600080fd5b6102db600160a060020a0360043581169060243516604435610f5d565b341561052557600080fd5b6102db600160a060020a0360043516610fe4565b341561054457600080fd5b6102db600160a060020a0360043516611091565b341561056357600080fd5b6102db600160a060020a03600435166110e3565b341561058257600080fd5b6102db600435602435604435606435611135565b34156105a157600080fd5b6102db611214565b34156105b457600080fd5b61033c6004356112ac565b34156105ca57600080fd5b6103156004356024356112c7565b34156105e357600080fd5b61033c600435611347565b34156105f957600080fd5b6102db600435602435604435606435611362565b341561061857600080fd5b6102db600435611428565b341561062e57600080fd5b6102db600160a060020a0360043516602435611448565b341561065057600080fd5b6102db600160a060020a03600435166114a2565b341561066f57600080fd5b6102db600435600160a060020a03602435166114f4565b341561069157600080fd5b6102db600435611560565b34156106a757600080fd5b6103156115c8565b34156106ba57600080fd5b6102db6115d8565b34156106cd57600080fd5b61033c600435611649565b34156106e357600080fd5b61040461166d565b34156106f657600080fd5b61033c611673565b341561070957600080fd5b6102db600160a060020a0360043516611682565b341561072857600080fd5b610404600160a060020a036004351661172f565b341561074757600080fd5b6102db600160a060020a036004351661174a565b341561076657600080fd5b6104046117d8565b341561077957600080fd5b6102db6117de565b341561078c57600080fd5b6107a0600160a060020a036004351661186a565b60405160208082528190810183818151815260200191508051906020019060200280838360005b838110156107df5780820151838201526020016107c7565b505050509050019250505060405180910390f35b34156107fe57600080fd5b61040460043561194b565b341561081457600080fd5b6102db611c1b565b341561082757600080fd5b61037a611d0e565b341561083a57600080fd5b610845600435611d45565b60405163ffffffff909116815260200160405180910390f35b341561086957600080fd5b61033c600435611d72565b341561087f57600080fd5b6102db600160a060020a0360043516602435611d8d565b34156108a157600080fd5b61033c611e30565b34156108b457600080fd5b610404611e3f565b34156108c757600080fd5b61033c611e45565b34156108da57600080fd5b6102db600435611e54565b34156108f057600080fd5b610315600435611f47565b341561090657600080fd5b610404612010565b341561091957600080fd5b6102db600160a060020a0360043516612016565b341561093857600080fd5b61033c612053565b341561094b57600080fd5b610956600435612062565b6040519915158a5297151560208a01526040808a01979097526060890195909552608088019390935260a087019190915260c086015260e0850152610100840152610120830191909152610140909101905180910390f35b6102db6004356024356121c3565b34156109c757600080fd5b610404612316565b34156109da57600080fd5b61033c61231c565b6102db60043560243561232b565b60006040517f737570706f727473496e7465726661636528627974657334290000000000000081526019016040518091039020600160e060020a03191682600160e060020a0319161480610c6f57506040517f746f6b656e4d657461646174612875696e743235362c737472696e67290000008152601d0160405180910390206040517f746f6b656e734f664f776e657228616464726573732900000000000000000000815260160160405180910390206040517f7472616e7366657246726f6d28616464726573732c616464726573732c75696e81527f7432353629000000000000000000000000000000000000000000000000000000602082015260250160405180910390206040517f7472616e7366657228616464726573732c75696e743235362900000000000000815260190160405180910390206040517f617070726f766528616464726573732c75696e74323536290000000000000000815260180160405180910390206040517f6f776e65724f662875696e743235362900000000000000000000000000000000815260100160405180910390206040517f62616c616e63654f662861646472657373290000000000000000000000000000815260120160405180910390206040517f746f74616c537570706c792829000000000000000000000000000000000000008152600d0160405180910390206040517f73796d626f6c2829000000000000000000000000000000000000000000000000815260080160405180910390206040517f6e616d652829000000000000000000000000000000000000000000000000000081526006016040518091039020181818181818181818600160e060020a03191682600160e060020a031916145b90505b919050565b600154600160a060020a031681565b610c8e612fa0565b610c96612fb2565b600d54600090600160a060020a03161515610cb057600080fd5b600d54600160a060020a031663cb4799f2878787600060405160a0015260405160e060020a63ffffffff861602815260048101848152604060248301908152604483018490529091606401848480828437820191505094505050505060a060405180830381600087803b1515610d2557600080fd5b6102c65a03f11515610d3657600080fd5b50505060405180608001805160209091016040529092509050610d59828261251d565b9695505050505050565b60115481565b60408051908101604052600d81527f43727970746f4b69747469657300000000000000000000000000000000000000602082015281565b60025460a060020a900460ff1615610db757600080fd5b610dc13382612572565b1515610dcc57600080fd5b610dd68183612592565b7f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925338383604051600160a060020a039384168152919092166020820152604080820192909252606001905180910390a15050565b600054600160a060020a031681565b662386f26fc1000081565b6000805433600160a060020a03908116911614610e6057600080fd5b5080600160a060020a0381166376190f8f6000604051602001526040518163ffffffff1660e060020a028152600401602060405180830381600087803b1515610ea857600080fd5b6102c65a03f11515610eb957600080fd5b505050604051805190501515610ece57600080fd5b600c8054600160a060020a031916600160a060020a039290921691909117905550565b600654600019015b90565b600f5481565b6000808211610f1057600080fd5b6006805483908110610f1e57fe5b600091825260209091206002909102016001015460c060020a900463ffffffff16151592915050565b6201518081565b600c54600160a060020a031681565b60025460a060020a900460ff1615610f7457600080fd5b600160a060020a0382161515610f8957600080fd5b30600160a060020a031682600160a060020a031614151515610faa57600080fd5b610fb433826125c0565b1515610fbf57600080fd5b610fc98382612572565b1515610fd457600080fd5b610fdf8383836125e0565b505050565b6000805433600160a060020a0390811691161461100057600080fd5b5080600160a060020a0381166354c15b826000604051602001526040518163ffffffff1660e060020a028152600401602060405180830381600087803b151561104857600080fd5b6102c65a03f1151561105957600080fd5b50505060405180519050151561106e57600080fd5b60108054600160a060020a031916600160a060020a039290921691909117905550565b60005433600160a060020a039081169116146110ac57600080fd5b600160a060020a03811615156110c157600080fd5b60008054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a039081169116146110fe57600080fd5b600160a060020a038116151561111357600080fd5b60028054600160a060020a031916600160a060020a0392909216919091179055565b60025460a060020a900460ff161561114c57600080fd5b6111563385612572565b151561116157600080fd5b61116a84610f02565b1561117457600080fd5b600b5461118b908590600160a060020a0316612592565b600b54600160a060020a03166327ebe40a858585853360405160e060020a63ffffffff88160281526004810195909552602485019390935260448401919091526064830152600160a060020a0316608482015260a401600060405180830381600087803b15156111fa57600080fd5b6102c65a03f1151561120b57600080fd5b50505050505050565b60005433600160a060020a0390811691161461122f57600080fd5b60025460a060020a900460ff16151561124757600080fd5b600b54600160a060020a0316151561125e57600080fd5b600c54600160a060020a0316151561127557600080fd5b601054600160a060020a0316151561128c57600080fd5b601354600160a060020a0316156112a257600080fd5b6112aa6126c8565b565b600a60205260009081526040902054600160a060020a031681565b600080808085116112d757600080fd5b600084116112e457600080fd5b60068054869081106112f257fe5b9060005260206000209060020201915060068481548110151561131157fe5b9060005260206000209060020201905061132d8286838761271b565b801561133e575061133e848661289b565b95945050505050565b600960205260009081526040902054600160a060020a031681565b60025460a060020a900460ff161561137957600080fd5b6113833385612572565b151561138e57600080fd5b61139784611f47565b15156113a257600080fd5b600c546113b9908590600160a060020a0316612592565b600c54600160a060020a03166327ebe40a858585853360405160e060020a63ffffffff88160281526004810195909552602485019390935260448401919091526064830152600160a060020a0316608482015260a401600060405180830381600087803b15156111fa57600080fd5b60025433600160a060020a0390811691161461144357600080fd5b600e55565b60025460a060020a900460ff161561145f57600080fd5b6114693382612572565b151561147457600080fd5b6000908152600a602052604090208054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a039081169116146114bd57600080fd5b600160a060020a03811615156114d257600080fd5b60018054600160a060020a031916600160a060020a0392909216919091179055565b60025460009033600160a060020a0390811691161461151257600080fd5b5080600160a060020a03811615156115325750600254600160a060020a03165b601154611388901061154357600080fd5b60118054600101905561155a6000808086856128f0565b50505050565b60025433600160a060020a039081169116148061158b575060005433600160a060020a039081169116145b806115a4575060015433600160a060020a039081169116145b15156115af57600080fd5b60035463ffffffff1681106115c357600080fd5b600555565b60025460a060020a900460ff1681565b600154600090819033600160a060020a039081169116146115f857600080fd5b30600160a060020a0316319150600e54600f546001010290508082111561164557600154600160a060020a031681830380156108fc0290604051600060405180830381858888f150505050505b5050565b600081815260076020526040902054600160a060020a0316801515610c7257600080fd5b61afc881565b601354600160a060020a031681565b6000805433600160a060020a0390811691161461169e57600080fd5b5080600160a060020a0381166385b861886000604051602001526040518163ffffffff1660e060020a028152600401602060405180830381600087803b15156116e657600080fd5b6102c65a03f115156116f757600080fd5b50505060405180519050151561170c57600080fd5b600b8054600160a060020a031916600160a060020a039290921691909117905550565b600160a060020a031660009081526008602052604090205490565b60005433600160a060020a0390811691161461176557600080fd5b60025460a060020a900460ff16151561177d57600080fd5b60138054600160a060020a031916600160a060020a0383161790557f450db8da6efbe9c22f2347f7c2021231df1fc58d3ae9a2fa75d39fa44619930581604051600160a060020a03909116815260200160405180910390a150565b60055481565b60025433600160a060020a0390811691161480611809575060005433600160a060020a039081169116145b80611822575060015433600160a060020a039081169116145b151561182d57600080fd5b60025460a060020a900460ff161561184457600080fd5b6002805474ff0000000000000000000000000000000000000000191660a060020a179055565b611872612fa0565b600061187c612fa0565b600080600061188a8761172f565b94508415156118ba5760006040518059106118a25750595b90808252806020026020018201604052509550611941565b846040518059106118c85750595b908082528060200260200182016040525093506118e3610ef1565b925060009150600190505b82811161193d57600081815260076020526040902054600160a060020a0388811691161415611935578084838151811061192457fe5b602090810290910101526001909101905b6001016118ee565b8395505b5050505050919050565b600080600080600080600080600260149054906101000a900460ff1615151561197357600080fd5b600680548a90811061198157fe5b60009182526020909120600290910201600181015490975067ffffffffffffffff1615156119ae57600080fd5b611a438761010060405190810160409081528254825260019092015467ffffffffffffffff8082166020840152680100000000000000008204169282019290925263ffffffff608060020a83048116606083015260a060020a83048116608083015260c060020a83041660a082015261ffff60e060020a8304811660c083015260f060020a90920490911660e0820152612b9c565b1515611a4e57600080fd5b60018701546006805460c060020a90920463ffffffff1697509087908110611a7257fe5b600091825260209091206001808a015460029093029091019081015490965061ffff60f060020a92839004811696509190041684901115611ac057600185015460f060020a900461ffff1693505b6010548754865460018a0154600160a060020a0390931692630d9f5aed92919068010000000000000000900467ffffffffffffffff166000190160006040516020015260405160e060020a63ffffffff86160281526004810193909352602483019190915267ffffffffffffffff166044820152606401602060405180830381600087803b1515611b5057600080fd5b6102c65a03f11515611b6157600080fd5b505050604051805160008b81526007602052604090205460018a810154929650600160a060020a039091169450611bb092508b9160c060020a900463ffffffff1690870161ffff1686866128f0565b6001880180547bffffffff00000000000000000000000000000000000000000000000019169055600f8054600019019055600e54909150600160a060020a0333169080156108fc0290604051600060405180830381858888f150939c9b505050505050505050505050565b60025433600160a060020a0390811691161480611c46575060005433600160a060020a039081169116145b80611c5f575060015433600160a060020a039081169116145b1515611c6a57600080fd5b600b54600160a060020a0316635fd8c7106040518163ffffffff1660e060020a028152600401600060405180830381600087803b1515611ca957600080fd5b6102c65a03f11515611cba57600080fd5b5050600c54600160a060020a03169050635fd8c7106040518163ffffffff1660e060020a028152600401600060405180830381600087803b1515611cfd57600080fd5b6102c65a03f11515610fdf57600080fd5b60408051908101604052600281527f434b000000000000000000000000000000000000000000000000000000000000602082015281565b600381600e8110611d5257fe5b60089182820401919006600402915054906101000a900463ffffffff1681565b600760205260009081526040902054600160a060020a031681565b60025460a060020a900460ff1615611da457600080fd5b600160a060020a0382161515611db957600080fd5b30600160a060020a031682600160a060020a031614151515611dda57600080fd5b600b54600160a060020a0383811691161415611df557600080fd5b600c54600160a060020a0383811691161415611e1057600080fd5b611e1a3382612572565b1515611e2557600080fd5b6116453383836125e0565b600254600160a060020a031681565b600e5481565b600d54600160a060020a031681565b60025460009033600160a060020a03908116911614611e7257600080fd5b60125461afc89010611e8357600080fd5b611e92600080600085306128f0565b600b54909150611eac908290600160a060020a0316612592565b600b54600160a060020a03166327ebe40a82611ec6612bd4565b6000620151803060405160e060020a63ffffffff88160281526004810195909552602485019390935260448401919091526064830152600160a060020a0316608482015260a401600060405180830381600087803b1515611f2657600080fd5b6102c65a03f11515611f3757600080fd5b5050601280546001019055505050565b600080808311611f5657600080fd5b6006805484908110611f6457fe5b906000526020600020906002020190506120098161010060405190810160409081528254825260019092015467ffffffffffffffff8082166020840152680100000000000000008204169282019290925263ffffffff608060020a83048116606083015260a060020a83048116608083015260c060020a83041660a082015261ffff60e060020a8304811660c083015260f060020a90920490911660e0820152612c82565b9392505050565b61138881565b60005433600160a060020a0390811691161461203157600080fd5b600d8054600160a060020a031916600160a060020a0392909216919091179055565b600b54600160a060020a031681565b600080600080600080600080600080600060068c81548110151561208257fe5b906000526020600020906002020190508060010160189054906101000a900463ffffffff1663ffffffff16600014159a50438160010160089054906101000a900467ffffffffffffffff1667ffffffffffffffff161115995080600101601c9054906101000a900461ffff1661ffff1698508060010160089054906101000a900467ffffffffffffffff1667ffffffffffffffff1697508060010160189054906101000a900463ffffffff1663ffffffff1696508060010160009054906101000a900467ffffffffffffffff1667ffffffffffffffff1695508060010160109054906101000a900463ffffffff1663ffffffff1694508060010160149054906101000a900463ffffffff1663ffffffff16935080600101601e9054906101000a900461ffff1661ffff16925080600001549150509193959799509193959799565b60025460009060a060020a900460ff16156121dd57600080fd5b6121e73383612572565b15156121f257600080fd5b6121fb82611f47565b151561220657600080fd5b6122108284612cb9565b151561221b57600080fd5b600c54600160a060020a031663c55d0f568460006040516020015260405160e060020a63ffffffff84160281526004810191909152602401602060405180830381600087803b151561226c57600080fd5b6102c65a03f1151561227d57600080fd5b5050506040518051600e549092508201341015905061229b57600080fd5b600c54600e54600160a060020a039091169063454a2ab39034038560405160e060020a63ffffffff851602815260048101919091526024016000604051808303818588803b15156122eb57600080fd5b6125ee5a03f115156122fc57600080fd5b50505050610fdf8263ffffffff168463ffffffff16612d08565b60125481565b601054600160a060020a031681565b600254600090819060a060020a900460ff161561234757600080fd5b600e5434101561235657600080fd5b6123603385612572565b151561236b57600080fd5b612375838561289b565b151561238057600080fd5b600680548590811061238e57fe5b906000526020600020906002020191506124338261010060405190810160409081528254825260019092015467ffffffffffffffff8082166020840152680100000000000000008204169282019290925263ffffffff608060020a83048116606083015260a060020a83048116608083015260c060020a83041660a082015261ffff60e060020a8304811660c083015260f060020a90920490911660e0820152612c82565b151561243e57600080fd5b600680548490811061244c57fe5b906000526020600020906002020190506124f18161010060405190810160409081528254825260019092015467ffffffffffffffff8082166020840152680100000000000000008204169282019290925263ffffffff608060020a83048116606083015260a060020a83048116608083015260c060020a83041660a082015261ffff60e060020a8304811660c083015260f060020a90920490911660e0820152612c82565b15156124fc57600080fd5b6125088285838661271b565b151561251357600080fd5b61155a8484612d08565b612525612fa0565b61252d612fa0565b6000808460405180591061253e5750595b818152601f19601f8301168101602001604052905092505060208201905084612568828287612e72565b5090949350505050565b600090815260076020526040902054600160a060020a0391821691161490565b6000918252600960205260409091208054600160a060020a031916600160a060020a03909216919091179055565b600090815260096020526040902054600160a060020a0391821691161490565b600160a060020a03808316600081815260086020908152604080832080546001019055858352600790915290208054600160a060020a031916909117905583161561267357600160a060020a03831660009081526008602090815260408083208054600019019055838352600a82528083208054600160a060020a03199081169091556009909252909120805490911690555b7fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef838383604051600160a060020a039384168152919092166020820152604080820192909252606001905180910390a1505050565b60005433600160a060020a039081169116146126e357600080fd5b60025460a060020a900460ff1615156126fb57600080fd5b6002805474ff000000000000000000000000000000000000000019169055565b60008184141561272d57506000612893565b6001850154608060020a900463ffffffff1682148061275c5750600185015460a060020a900463ffffffff1682145b1561276957506000612893565b6001830154608060020a900463ffffffff168414806127985750600183015460a060020a900463ffffffff1684145b156127a557506000612893565b6001830154608060020a900463ffffffff1615806127d257506001850154608060020a900463ffffffff16155b156127df57506001612893565b60018581015490840154608060020a9182900463ffffffff9081169290910416148061282a575060018086015490840154608060020a900463ffffffff90811660a060020a90920416145b1561283757506000612893565b6001808601549084015460a060020a900463ffffffff908116608060020a90920416148061288257506001858101549084015460a060020a9182900463ffffffff9081169290910416145b1561288f57506000612893565b5060015b949350505050565b6000818152600760205260408082205484835290822054600160a060020a0391821691168082148061133e57506000858152600a6020526040902054600160a060020a03908116908316149250505092915050565b6000806128fb612fdb565b600063ffffffff8916891461290f57600080fd5b63ffffffff8816881461292157600080fd5b61ffff8716871461293157600080fd5b600287049250600d8361ffff16111561294957600d92505b610100604051908101604090815287825267ffffffffffffffff42166020830152600090820181905263ffffffff808c1660608401528a16608083015260a082015261ffff80851660c0830152881660e0820152600680549193506001918083016129b4838261301f565b6000928352602090922085916002020181518155602082015160018201805467ffffffffffffffff191667ffffffffffffffff9290921691909117905560408201518160010160086101000a81548167ffffffffffffffff021916908367ffffffffffffffff16021790555060608201518160010160106101000a81548163ffffffff021916908363ffffffff16021790555060808201518160010160146101000a81548163ffffffff021916908363ffffffff16021790555060a08201518160010160186101000a81548163ffffffff021916908363ffffffff16021790555060c082015181600101601c6101000a81548161ffff021916908361ffff16021790555060e08201516001909101805461ffff9290921660f060020a027dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff9092169190911790555003905063ffffffff81168114612b0f57600080fd5b7f0a5311bd2a6608f08a180df2ee7c5946819a649b204b554bb8e39825b2c50ad58582846060015163ffffffff16856080015163ffffffff168651604051600160a060020a03909516855260208501939093526040808501929092526060840152608083019190915260a0909101905180910390a1612b90600086836125e0565b98975050505050505050565b60008160a0015163ffffffff1615801590610c6f57504367ffffffffffffffff16826040015167ffffffffffffffff16111592915050565b600b5460009081908190600160a060020a031663eac9d94c82604051602001526040518163ffffffff1660e060020a028152600401602060405180830381600087803b1515612c2257600080fd5b6102c65a03f11515612c3357600080fd5b50505060405180519250506fffffffffffffffffffffffffffffffff82168214612c5c57600080fd5b50600281048101662386f26fc10000811015612c7c5750662386f26fc100005b92915050565b60008160a0015163ffffffff16158015610c6f57504367ffffffffffffffff16826040015167ffffffffffffffff16111592915050565b6000806000600685815481101515612ccd57fe5b90600052602060002090600202019150600684815481101515612cec57fe5b9060005260206000209060020201905061133e8286838761271b565b600080600683815481101515612d1a57fe5b90600052602060002090600202019150600684815481101515612d3957fe5b600091825260209091206002909102016001810180547bffffffff000000000000000000000000000000000000000000000000191660c060020a63ffffffff8716021790559050612d8982612eb7565b612d9281612eb7565b6000848152600a602090815260408083208054600160a060020a031990811690915586845281842080549091169055600f8054600190810190915587845260079092529182902054908301547f241ea03ca20251805084d27d4440371c34a0b85ff108f6bb5611248f73818b8092600160a060020a0390921691879187916801000000000000000090910467ffffffffffffffff1690518085600160a060020a0316600160a060020a031681526020018481526020018381526020018267ffffffffffffffff16815260200194505050505060405180910390a150505050565b60005b60208210612e985782518452602084019350602083019250602082039150612e75565b6001826020036101000a03905080198351168185511617909352505050565b600554600182015443919060039060e060020a900461ffff16600e8110612eda57fe5b600891828204019190066004029054906101000a900463ffffffff1663ffffffff16811515612f0557fe5b6001840180546fffffffffffffffff0000000000000000191668010000000000000000939092049390930167ffffffffffffffff16919091021790819055600d60e060020a90910461ffff161015612f9d576001818101805461ffff60e060020a8083048216909401169092027fffff0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff9092169190911790555b50565b60206040519081016040526000815290565b60806040519081016040526004815b60008152600019919091019060200181612fc15790505090565b6101006040519081016040908152600080835260208301819052908201819052606082018190526080820181905260a0820181905260c0820181905260e082015290565b815481835581811511610fdf57600083815260209020610fdf91610ef99160029182028101918502015b808211156130635760008082556001820155600201613049565b50905600a165627a7a72305820a6465fc1ce7ab1a92906ff7206b23d80a21bbd50b85b4bde6a91f8e6b2e3edde0029`
 
 // DeployCryptoKitties deploys a new Ethereum contract, binding an instance of CryptoKitties to it.
-func DeployCryptoKitties(auth *bind.TransactOpts, backend bind.ContractBackend, _nftAddress common.Address, _cut *big.Int) (common.Address, *types.Transaction, *CryptoKitties, error) {
+func DeployCryptoKitties(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *CryptoKitties, error) {
 	parsed, err := abi.JSON(strings.NewReader(CryptoKittiesABI))
 	if err != nil {
 		return common.Address{}, nil, nil, err
 	}
-	address, tx, contract, err := bind.DeployContract(auth, parsed, common.FromHex(CryptoKittiesBin), backend, _nftAddress, _cut)
+	address, tx, contract, err := bind.DeployContract(auth, parsed, common.FromHex(CryptoKittiesBin), backend)
 	if err != nil {
 		return common.Address{}, nil, nil, err
 	}
@@ -188,156 +188,618 @@ func (_CryptoKitties *CryptoKittiesTransactorRaw) Transact(opts *bind.TransactOp
 	return _CryptoKitties.Contract.contract.Transact(opts, method, params...)
 }
 
-// GetAuction is a free data retrieval call binding the contract method 0x78bd7935.
+// GEN0AUCTIONDURATION is a free data retrieval call binding the contract method 0x19c2f201.
 //
-// Solidity: function getAuction(uint256 _tokenId) constant returns(address seller, uint256 startingPrice, uint256 endingPrice, uint256 duration, uint256 startedAt)
-func (_CryptoKitties *CryptoKittiesCaller) GetAuction(opts *bind.CallOpts, _tokenId *big.Int) (struct {
-	Seller        common.Address
-	StartingPrice *big.Int
-	EndingPrice   *big.Int
-	Duration      *big.Int
-	StartedAt     *big.Int
+// Solidity: function GEN0_AUCTION_DURATION() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCaller) GEN0AUCTIONDURATION(opts *bind.CallOpts) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "GEN0_AUCTION_DURATION")
+	return *ret0, err
+}
+
+// GEN0AUCTIONDURATION is a free data retrieval call binding the contract method 0x19c2f201.
+//
+// Solidity: function GEN0_AUCTION_DURATION() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesSession) GEN0AUCTIONDURATION() (*big.Int, error) {
+	return _CryptoKitties.Contract.GEN0AUCTIONDURATION(&_CryptoKitties.CallOpts)
+}
+
+// GEN0AUCTIONDURATION is a free data retrieval call binding the contract method 0x19c2f201.
+//
+// Solidity: function GEN0_AUCTION_DURATION() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCallerSession) GEN0AUCTIONDURATION() (*big.Int, error) {
+	return _CryptoKitties.Contract.GEN0AUCTIONDURATION(&_CryptoKitties.CallOpts)
+}
+
+// GEN0CREATIONLIMIT is a free data retrieval call binding the contract method 0x680eba27.
+//
+// Solidity: function GEN0_CREATION_LIMIT() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCaller) GEN0CREATIONLIMIT(opts *bind.CallOpts) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "GEN0_CREATION_LIMIT")
+	return *ret0, err
+}
+
+// GEN0CREATIONLIMIT is a free data retrieval call binding the contract method 0x680eba27.
+//
+// Solidity: function GEN0_CREATION_LIMIT() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesSession) GEN0CREATIONLIMIT() (*big.Int, error) {
+	return _CryptoKitties.Contract.GEN0CREATIONLIMIT(&_CryptoKitties.CallOpts)
+}
+
+// GEN0CREATIONLIMIT is a free data retrieval call binding the contract method 0x680eba27.
+//
+// Solidity: function GEN0_CREATION_LIMIT() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCallerSession) GEN0CREATIONLIMIT() (*big.Int, error) {
+	return _CryptoKitties.Contract.GEN0CREATIONLIMIT(&_CryptoKitties.CallOpts)
+}
+
+// GEN0STARTINGPRICE is a free data retrieval call binding the contract method 0x0e583df0.
+//
+// Solidity: function GEN0_STARTING_PRICE() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCaller) GEN0STARTINGPRICE(opts *bind.CallOpts) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "GEN0_STARTING_PRICE")
+	return *ret0, err
+}
+
+// GEN0STARTINGPRICE is a free data retrieval call binding the contract method 0x0e583df0.
+//
+// Solidity: function GEN0_STARTING_PRICE() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesSession) GEN0STARTINGPRICE() (*big.Int, error) {
+	return _CryptoKitties.Contract.GEN0STARTINGPRICE(&_CryptoKitties.CallOpts)
+}
+
+// GEN0STARTINGPRICE is a free data retrieval call binding the contract method 0x0e583df0.
+//
+// Solidity: function GEN0_STARTING_PRICE() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCallerSession) GEN0STARTINGPRICE() (*big.Int, error) {
+	return _CryptoKitties.Contract.GEN0STARTINGPRICE(&_CryptoKitties.CallOpts)
+}
+
+// PROMOCREATIONLIMIT is a free data retrieval call binding the contract method 0xdefb9584.
+//
+// Solidity: function PROMO_CREATION_LIMIT() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCaller) PROMOCREATIONLIMIT(opts *bind.CallOpts) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "PROMO_CREATION_LIMIT")
+	return *ret0, err
+}
+
+// PROMOCREATIONLIMIT is a free data retrieval call binding the contract method 0xdefb9584.
+//
+// Solidity: function PROMO_CREATION_LIMIT() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesSession) PROMOCREATIONLIMIT() (*big.Int, error) {
+	return _CryptoKitties.Contract.PROMOCREATIONLIMIT(&_CryptoKitties.CallOpts)
+}
+
+// PROMOCREATIONLIMIT is a free data retrieval call binding the contract method 0xdefb9584.
+//
+// Solidity: function PROMO_CREATION_LIMIT() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCallerSession) PROMOCREATIONLIMIT() (*big.Int, error) {
+	return _CryptoKitties.Contract.PROMOCREATIONLIMIT(&_CryptoKitties.CallOpts)
+}
+
+// AutoBirthFee is a free data retrieval call binding the contract method 0xb0c35c05.
+//
+// Solidity: function autoBirthFee() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCaller) AutoBirthFee(opts *bind.CallOpts) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "autoBirthFee")
+	return *ret0, err
+}
+
+// AutoBirthFee is a free data retrieval call binding the contract method 0xb0c35c05.
+//
+// Solidity: function autoBirthFee() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesSession) AutoBirthFee() (*big.Int, error) {
+	return _CryptoKitties.Contract.AutoBirthFee(&_CryptoKitties.CallOpts)
+}
+
+// AutoBirthFee is a free data retrieval call binding the contract method 0xb0c35c05.
+//
+// Solidity: function autoBirthFee() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCallerSession) AutoBirthFee() (*big.Int, error) {
+	return _CryptoKitties.Contract.AutoBirthFee(&_CryptoKitties.CallOpts)
+}
+
+// BalanceOf is a free data retrieval call binding the contract method 0x70a08231.
+//
+// Solidity: function balanceOf(address _owner) constant returns(uint256 count)
+func (_CryptoKitties *CryptoKittiesCaller) BalanceOf(opts *bind.CallOpts, _owner common.Address) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "balanceOf", _owner)
+	return *ret0, err
+}
+
+// BalanceOf is a free data retrieval call binding the contract method 0x70a08231.
+//
+// Solidity: function balanceOf(address _owner) constant returns(uint256 count)
+func (_CryptoKitties *CryptoKittiesSession) BalanceOf(_owner common.Address) (*big.Int, error) {
+	return _CryptoKitties.Contract.BalanceOf(&_CryptoKitties.CallOpts, _owner)
+}
+
+// BalanceOf is a free data retrieval call binding the contract method 0x70a08231.
+//
+// Solidity: function balanceOf(address _owner) constant returns(uint256 count)
+func (_CryptoKitties *CryptoKittiesCallerSession) BalanceOf(_owner common.Address) (*big.Int, error) {
+	return _CryptoKitties.Contract.BalanceOf(&_CryptoKitties.CallOpts, _owner)
+}
+
+// CanBreedWith is a free data retrieval call binding the contract method 0x46d22c70.
+//
+// Solidity: function canBreedWith(uint256 _matronId, uint256 _sireId) constant returns(bool)
+func (_CryptoKitties *CryptoKittiesCaller) CanBreedWith(opts *bind.CallOpts, _matronId *big.Int, _sireId *big.Int) (bool, error) {
+	var (
+		ret0 = new(bool)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "canBreedWith", _matronId, _sireId)
+	return *ret0, err
+}
+
+// CanBreedWith is a free data retrieval call binding the contract method 0x46d22c70.
+//
+// Solidity: function canBreedWith(uint256 _matronId, uint256 _sireId) constant returns(bool)
+func (_CryptoKitties *CryptoKittiesSession) CanBreedWith(_matronId *big.Int, _sireId *big.Int) (bool, error) {
+	return _CryptoKitties.Contract.CanBreedWith(&_CryptoKitties.CallOpts, _matronId, _sireId)
+}
+
+// CanBreedWith is a free data retrieval call binding the contract method 0x46d22c70.
+//
+// Solidity: function canBreedWith(uint256 _matronId, uint256 _sireId) constant returns(bool)
+func (_CryptoKitties *CryptoKittiesCallerSession) CanBreedWith(_matronId *big.Int, _sireId *big.Int) (bool, error) {
+	return _CryptoKitties.Contract.CanBreedWith(&_CryptoKitties.CallOpts, _matronId, _sireId)
+}
+
+// CeoAddress is a free data retrieval call binding the contract method 0x0a0f8168.
+//
+// Solidity: function ceoAddress() constant returns(address)
+func (_CryptoKitties *CryptoKittiesCaller) CeoAddress(opts *bind.CallOpts) (common.Address, error) {
+	var (
+		ret0 = new(common.Address)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "ceoAddress")
+	return *ret0, err
+}
+
+// CeoAddress is a free data retrieval call binding the contract method 0x0a0f8168.
+//
+// Solidity: function ceoAddress() constant returns(address)
+func (_CryptoKitties *CryptoKittiesSession) CeoAddress() (common.Address, error) {
+	return _CryptoKitties.Contract.CeoAddress(&_CryptoKitties.CallOpts)
+}
+
+// CeoAddress is a free data retrieval call binding the contract method 0x0a0f8168.
+//
+// Solidity: function ceoAddress() constant returns(address)
+func (_CryptoKitties *CryptoKittiesCallerSession) CeoAddress() (common.Address, error) {
+	return _CryptoKitties.Contract.CeoAddress(&_CryptoKitties.CallOpts)
+}
+
+// CfoAddress is a free data retrieval call binding the contract method 0x0519ce79.
+//
+// Solidity: function cfoAddress() constant returns(address)
+func (_CryptoKitties *CryptoKittiesCaller) CfoAddress(opts *bind.CallOpts) (common.Address, error) {
+	var (
+		ret0 = new(common.Address)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "cfoAddress")
+	return *ret0, err
+}
+
+// CfoAddress is a free data retrieval call binding the contract method 0x0519ce79.
+//
+// Solidity: function cfoAddress() constant returns(address)
+func (_CryptoKitties *CryptoKittiesSession) CfoAddress() (common.Address, error) {
+	return _CryptoKitties.Contract.CfoAddress(&_CryptoKitties.CallOpts)
+}
+
+// CfoAddress is a free data retrieval call binding the contract method 0x0519ce79.
+//
+// Solidity: function cfoAddress() constant returns(address)
+func (_CryptoKitties *CryptoKittiesCallerSession) CfoAddress() (common.Address, error) {
+	return _CryptoKitties.Contract.CfoAddress(&_CryptoKitties.CallOpts)
+}
+
+// CooAddress is a free data retrieval call binding the contract method 0xb047fb50.
+//
+// Solidity: function cooAddress() constant returns(address)
+func (_CryptoKitties *CryptoKittiesCaller) CooAddress(opts *bind.CallOpts) (common.Address, error) {
+	var (
+		ret0 = new(common.Address)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "cooAddress")
+	return *ret0, err
+}
+
+// CooAddress is a free data retrieval call binding the contract method 0xb047fb50.
+//
+// Solidity: function cooAddress() constant returns(address)
+func (_CryptoKitties *CryptoKittiesSession) CooAddress() (common.Address, error) {
+	return _CryptoKitties.Contract.CooAddress(&_CryptoKitties.CallOpts)
+}
+
+// CooAddress is a free data retrieval call binding the contract method 0xb047fb50.
+//
+// Solidity: function cooAddress() constant returns(address)
+func (_CryptoKitties *CryptoKittiesCallerSession) CooAddress() (common.Address, error) {
+	return _CryptoKitties.Contract.CooAddress(&_CryptoKitties.CallOpts)
+}
+
+// Cooldowns is a free data retrieval call binding the contract method 0x9d6fac6f.
+//
+// Solidity: function cooldowns(uint256 ) constant returns(uint32)
+func (_CryptoKitties *CryptoKittiesCaller) Cooldowns(opts *bind.CallOpts, arg0 *big.Int) (uint32, error) {
+	var (
+		ret0 = new(uint32)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "cooldowns", arg0)
+	return *ret0, err
+}
+
+// Cooldowns is a free data retrieval call binding the contract method 0x9d6fac6f.
+//
+// Solidity: function cooldowns(uint256 ) constant returns(uint32)
+func (_CryptoKitties *CryptoKittiesSession) Cooldowns(arg0 *big.Int) (uint32, error) {
+	return _CryptoKitties.Contract.Cooldowns(&_CryptoKitties.CallOpts, arg0)
+}
+
+// Cooldowns is a free data retrieval call binding the contract method 0x9d6fac6f.
+//
+// Solidity: function cooldowns(uint256 ) constant returns(uint32)
+func (_CryptoKitties *CryptoKittiesCallerSession) Cooldowns(arg0 *big.Int) (uint32, error) {
+	return _CryptoKitties.Contract.Cooldowns(&_CryptoKitties.CallOpts, arg0)
+}
+
+// Erc721Metadata is a free data retrieval call binding the contract method 0xbc4006f5.
+//
+// Solidity: function erc721Metadata() constant returns(address)
+func (_CryptoKitties *CryptoKittiesCaller) Erc721Metadata(opts *bind.CallOpts) (common.Address, error) {
+	var (
+		ret0 = new(common.Address)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "erc721Metadata")
+	return *ret0, err
+}
+
+// Erc721Metadata is a free data retrieval call binding the contract method 0xbc4006f5.
+//
+// Solidity: function erc721Metadata() constant returns(address)
+func (_CryptoKitties *CryptoKittiesSession) Erc721Metadata() (common.Address, error) {
+	return _CryptoKitties.Contract.Erc721Metadata(&_CryptoKitties.CallOpts)
+}
+
+// Erc721Metadata is a free data retrieval call binding the contract method 0xbc4006f5.
+//
+// Solidity: function erc721Metadata() constant returns(address)
+func (_CryptoKitties *CryptoKittiesCallerSession) Erc721Metadata() (common.Address, error) {
+	return _CryptoKitties.Contract.Erc721Metadata(&_CryptoKitties.CallOpts)
+}
+
+// Gen0CreatedCount is a free data retrieval call binding the contract method 0xf1ca9410.
+//
+// Solidity: function gen0CreatedCount() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCaller) Gen0CreatedCount(opts *bind.CallOpts) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "gen0CreatedCount")
+	return *ret0, err
+}
+
+// Gen0CreatedCount is a free data retrieval call binding the contract method 0xf1ca9410.
+//
+// Solidity: function gen0CreatedCount() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesSession) Gen0CreatedCount() (*big.Int, error) {
+	return _CryptoKitties.Contract.Gen0CreatedCount(&_CryptoKitties.CallOpts)
+}
+
+// Gen0CreatedCount is a free data retrieval call binding the contract method 0xf1ca9410.
+//
+// Solidity: function gen0CreatedCount() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCallerSession) Gen0CreatedCount() (*big.Int, error) {
+	return _CryptoKitties.Contract.Gen0CreatedCount(&_CryptoKitties.CallOpts)
+}
+
+// GeneScience is a free data retrieval call binding the contract method 0xf2b47d52.
+//
+// Solidity: function geneScience() constant returns(address)
+func (_CryptoKitties *CryptoKittiesCaller) GeneScience(opts *bind.CallOpts) (common.Address, error) {
+	var (
+		ret0 = new(common.Address)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "geneScience")
+	return *ret0, err
+}
+
+// GeneScience is a free data retrieval call binding the contract method 0xf2b47d52.
+//
+// Solidity: function geneScience() constant returns(address)
+func (_CryptoKitties *CryptoKittiesSession) GeneScience() (common.Address, error) {
+	return _CryptoKitties.Contract.GeneScience(&_CryptoKitties.CallOpts)
+}
+
+// GeneScience is a free data retrieval call binding the contract method 0xf2b47d52.
+//
+// Solidity: function geneScience() constant returns(address)
+func (_CryptoKitties *CryptoKittiesCallerSession) GeneScience() (common.Address, error) {
+	return _CryptoKitties.Contract.GeneScience(&_CryptoKitties.CallOpts)
+}
+
+// GetKitty is a free data retrieval call binding the contract method 0xe98b7f4d.
+//
+// Solidity: function getKitty(uint256 _id) constant returns(bool isGestating, bool isReady, uint256 cooldownIndex, uint256 nextActionAt, uint256 siringWithId, uint256 birthTime, uint256 matronId, uint256 sireId, uint256 generation, uint256 genes)
+func (_CryptoKitties *CryptoKittiesCaller) GetKitty(opts *bind.CallOpts, _id *big.Int) (struct {
+	IsGestating   bool
+	IsReady       bool
+	CooldownIndex *big.Int
+	NextActionAt  *big.Int
+	SiringWithId  *big.Int
+	BirthTime     *big.Int
+	MatronId      *big.Int
+	SireId        *big.Int
+	Generation    *big.Int
+	Genes         *big.Int
 }, error) {
 	ret := new(struct {
-		Seller        common.Address
-		StartingPrice *big.Int
-		EndingPrice   *big.Int
-		Duration      *big.Int
-		StartedAt     *big.Int
+		IsGestating   bool
+		IsReady       bool
+		CooldownIndex *big.Int
+		NextActionAt  *big.Int
+		SiringWithId  *big.Int
+		BirthTime     *big.Int
+		MatronId      *big.Int
+		SireId        *big.Int
+		Generation    *big.Int
+		Genes         *big.Int
 	})
 	out := ret
-	err := _CryptoKitties.contract.Call(opts, out, "getAuction", _tokenId)
+	err := _CryptoKitties.contract.Call(opts, out, "getKitty", _id)
 	return *ret, err
 }
 
-// GetAuction is a free data retrieval call binding the contract method 0x78bd7935.
+// GetKitty is a free data retrieval call binding the contract method 0xe98b7f4d.
 //
-// Solidity: function getAuction(uint256 _tokenId) constant returns(address seller, uint256 startingPrice, uint256 endingPrice, uint256 duration, uint256 startedAt)
-func (_CryptoKitties *CryptoKittiesSession) GetAuction(_tokenId *big.Int) (struct {
-	Seller        common.Address
-	StartingPrice *big.Int
-	EndingPrice   *big.Int
-	Duration      *big.Int
-	StartedAt     *big.Int
+// Solidity: function getKitty(uint256 _id) constant returns(bool isGestating, bool isReady, uint256 cooldownIndex, uint256 nextActionAt, uint256 siringWithId, uint256 birthTime, uint256 matronId, uint256 sireId, uint256 generation, uint256 genes)
+func (_CryptoKitties *CryptoKittiesSession) GetKitty(_id *big.Int) (struct {
+	IsGestating   bool
+	IsReady       bool
+	CooldownIndex *big.Int
+	NextActionAt  *big.Int
+	SiringWithId  *big.Int
+	BirthTime     *big.Int
+	MatronId      *big.Int
+	SireId        *big.Int
+	Generation    *big.Int
+	Genes         *big.Int
 }, error) {
-	return _CryptoKitties.Contract.GetAuction(&_CryptoKitties.CallOpts, _tokenId)
+	return _CryptoKitties.Contract.GetKitty(&_CryptoKitties.CallOpts, _id)
 }
 
-// GetAuction is a free data retrieval call binding the contract method 0x78bd7935.
+// GetKitty is a free data retrieval call binding the contract method 0xe98b7f4d.
 //
-// Solidity: function getAuction(uint256 _tokenId) constant returns(address seller, uint256 startingPrice, uint256 endingPrice, uint256 duration, uint256 startedAt)
-func (_CryptoKitties *CryptoKittiesCallerSession) GetAuction(_tokenId *big.Int) (struct {
-	Seller        common.Address
-	StartingPrice *big.Int
-	EndingPrice   *big.Int
-	Duration      *big.Int
-	StartedAt     *big.Int
+// Solidity: function getKitty(uint256 _id) constant returns(bool isGestating, bool isReady, uint256 cooldownIndex, uint256 nextActionAt, uint256 siringWithId, uint256 birthTime, uint256 matronId, uint256 sireId, uint256 generation, uint256 genes)
+func (_CryptoKitties *CryptoKittiesCallerSession) GetKitty(_id *big.Int) (struct {
+	IsGestating   bool
+	IsReady       bool
+	CooldownIndex *big.Int
+	NextActionAt  *big.Int
+	SiringWithId  *big.Int
+	BirthTime     *big.Int
+	MatronId      *big.Int
+	SireId        *big.Int
+	Generation    *big.Int
+	Genes         *big.Int
 }, error) {
-	return _CryptoKitties.Contract.GetAuction(&_CryptoKitties.CallOpts, _tokenId)
+	return _CryptoKitties.Contract.GetKitty(&_CryptoKitties.CallOpts, _id)
 }
 
-// GetCurrentPrice is a free data retrieval call binding the contract method 0xc55d0f56.
+// IsPregnant is a free data retrieval call binding the contract method 0x1940a936.
 //
-// Solidity: function getCurrentPrice(uint256 _tokenId) constant returns(uint256)
-func (_CryptoKitties *CryptoKittiesCaller) GetCurrentPrice(opts *bind.CallOpts, _tokenId *big.Int) (*big.Int, error) {
+// Solidity: function isPregnant(uint256 _kittyId) constant returns(bool)
+func (_CryptoKitties *CryptoKittiesCaller) IsPregnant(opts *bind.CallOpts, _kittyId *big.Int) (bool, error) {
 	var (
-		ret0 = new(*big.Int)
+		ret0 = new(bool)
 	)
 	out := ret0
-	err := _CryptoKitties.contract.Call(opts, out, "getCurrentPrice", _tokenId)
+	err := _CryptoKitties.contract.Call(opts, out, "isPregnant", _kittyId)
 	return *ret0, err
 }
 
-// GetCurrentPrice is a free data retrieval call binding the contract method 0xc55d0f56.
+// IsPregnant is a free data retrieval call binding the contract method 0x1940a936.
 //
-// Solidity: function getCurrentPrice(uint256 _tokenId) constant returns(uint256)
-func (_CryptoKitties *CryptoKittiesSession) GetCurrentPrice(_tokenId *big.Int) (*big.Int, error) {
-	return _CryptoKitties.Contract.GetCurrentPrice(&_CryptoKitties.CallOpts, _tokenId)
+// Solidity: function isPregnant(uint256 _kittyId) constant returns(bool)
+func (_CryptoKitties *CryptoKittiesSession) IsPregnant(_kittyId *big.Int) (bool, error) {
+	return _CryptoKitties.Contract.IsPregnant(&_CryptoKitties.CallOpts, _kittyId)
 }
 
-// GetCurrentPrice is a free data retrieval call binding the contract method 0xc55d0f56.
+// IsPregnant is a free data retrieval call binding the contract method 0x1940a936.
 //
-// Solidity: function getCurrentPrice(uint256 _tokenId) constant returns(uint256)
-func (_CryptoKitties *CryptoKittiesCallerSession) GetCurrentPrice(_tokenId *big.Int) (*big.Int, error) {
-	return _CryptoKitties.Contract.GetCurrentPrice(&_CryptoKitties.CallOpts, _tokenId)
+// Solidity: function isPregnant(uint256 _kittyId) constant returns(bool)
+func (_CryptoKitties *CryptoKittiesCallerSession) IsPregnant(_kittyId *big.Int) (bool, error) {
+	return _CryptoKitties.Contract.IsPregnant(&_CryptoKitties.CallOpts, _kittyId)
 }
 
-// NonFungibleContract is a free data retrieval call binding the contract method 0xdd1b7a0f.
+// IsReadyToBreed is a free data retrieval call binding the contract method 0xd3e6f49f.
 //
-// Solidity: function nonFungibleContract() constant returns(address)
-func (_CryptoKitties *CryptoKittiesCaller) NonFungibleContract(opts *bind.CallOpts) (common.Address, error) {
+// Solidity: function isReadyToBreed(uint256 _kittyId) constant returns(bool)
+func (_CryptoKitties *CryptoKittiesCaller) IsReadyToBreed(opts *bind.CallOpts, _kittyId *big.Int) (bool, error) {
+	var (
+		ret0 = new(bool)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "isReadyToBreed", _kittyId)
+	return *ret0, err
+}
+
+// IsReadyToBreed is a free data retrieval call binding the contract method 0xd3e6f49f.
+//
+// Solidity: function isReadyToBreed(uint256 _kittyId) constant returns(bool)
+func (_CryptoKitties *CryptoKittiesSession) IsReadyToBreed(_kittyId *big.Int) (bool, error) {
+	return _CryptoKitties.Contract.IsReadyToBreed(&_CryptoKitties.CallOpts, _kittyId)
+}
+
+// IsReadyToBreed is a free data retrieval call binding the contract method 0xd3e6f49f.
+//
+// Solidity: function isReadyToBreed(uint256 _kittyId) constant returns(bool)
+func (_CryptoKitties *CryptoKittiesCallerSession) IsReadyToBreed(_kittyId *big.Int) (bool, error) {
+	return _CryptoKitties.Contract.IsReadyToBreed(&_CryptoKitties.CallOpts, _kittyId)
+}
+
+// KittyIndexToApproved is a free data retrieval call binding the contract method 0x481af3d3.
+//
+// Solidity: function kittyIndexToApproved(uint256 ) constant returns(address)
+func (_CryptoKitties *CryptoKittiesCaller) KittyIndexToApproved(opts *bind.CallOpts, arg0 *big.Int) (common.Address, error) {
 	var (
 		ret0 = new(common.Address)
 	)
 	out := ret0
-	err := _CryptoKitties.contract.Call(opts, out, "nonFungibleContract")
+	err := _CryptoKitties.contract.Call(opts, out, "kittyIndexToApproved", arg0)
 	return *ret0, err
 }
 
-// NonFungibleContract is a free data retrieval call binding the contract method 0xdd1b7a0f.
+// KittyIndexToApproved is a free data retrieval call binding the contract method 0x481af3d3.
 //
-// Solidity: function nonFungibleContract() constant returns(address)
-func (_CryptoKitties *CryptoKittiesSession) NonFungibleContract() (common.Address, error) {
-	return _CryptoKitties.Contract.NonFungibleContract(&_CryptoKitties.CallOpts)
+// Solidity: function kittyIndexToApproved(uint256 ) constant returns(address)
+func (_CryptoKitties *CryptoKittiesSession) KittyIndexToApproved(arg0 *big.Int) (common.Address, error) {
+	return _CryptoKitties.Contract.KittyIndexToApproved(&_CryptoKitties.CallOpts, arg0)
 }
 
-// NonFungibleContract is a free data retrieval call binding the contract method 0xdd1b7a0f.
+// KittyIndexToApproved is a free data retrieval call binding the contract method 0x481af3d3.
 //
-// Solidity: function nonFungibleContract() constant returns(address)
-func (_CryptoKitties *CryptoKittiesCallerSession) NonFungibleContract() (common.Address, error) {
-	return _CryptoKitties.Contract.NonFungibleContract(&_CryptoKitties.CallOpts)
+// Solidity: function kittyIndexToApproved(uint256 ) constant returns(address)
+func (_CryptoKitties *CryptoKittiesCallerSession) KittyIndexToApproved(arg0 *big.Int) (common.Address, error) {
+	return _CryptoKitties.Contract.KittyIndexToApproved(&_CryptoKitties.CallOpts, arg0)
 }
 
-// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+// KittyIndexToOwner is a free data retrieval call binding the contract method 0xa45f4bfc.
 //
-// Solidity: function owner() constant returns(address)
-func (_CryptoKitties *CryptoKittiesCaller) Owner(opts *bind.CallOpts) (common.Address, error) {
+// Solidity: function kittyIndexToOwner(uint256 ) constant returns(address)
+func (_CryptoKitties *CryptoKittiesCaller) KittyIndexToOwner(opts *bind.CallOpts, arg0 *big.Int) (common.Address, error) {
 	var (
 		ret0 = new(common.Address)
 	)
 	out := ret0
-	err := _CryptoKitties.contract.Call(opts, out, "owner")
+	err := _CryptoKitties.contract.Call(opts, out, "kittyIndexToOwner", arg0)
 	return *ret0, err
 }
 
-// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+// KittyIndexToOwner is a free data retrieval call binding the contract method 0xa45f4bfc.
 //
-// Solidity: function owner() constant returns(address)
-func (_CryptoKitties *CryptoKittiesSession) Owner() (common.Address, error) {
-	return _CryptoKitties.Contract.Owner(&_CryptoKitties.CallOpts)
+// Solidity: function kittyIndexToOwner(uint256 ) constant returns(address)
+func (_CryptoKitties *CryptoKittiesSession) KittyIndexToOwner(arg0 *big.Int) (common.Address, error) {
+	return _CryptoKitties.Contract.KittyIndexToOwner(&_CryptoKitties.CallOpts, arg0)
 }
 
-// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+// KittyIndexToOwner is a free data retrieval call binding the contract method 0xa45f4bfc.
 //
-// Solidity: function owner() constant returns(address)
-func (_CryptoKitties *CryptoKittiesCallerSession) Owner() (common.Address, error) {
-	return _CryptoKitties.Contract.Owner(&_CryptoKitties.CallOpts)
+// Solidity: function kittyIndexToOwner(uint256 ) constant returns(address)
+func (_CryptoKitties *CryptoKittiesCallerSession) KittyIndexToOwner(arg0 *big.Int) (common.Address, error) {
+	return _CryptoKitties.Contract.KittyIndexToOwner(&_CryptoKitties.CallOpts, arg0)
 }
 
-// OwnerCut is a free data retrieval call binding the contract method 0x83b5ff8b.
+// Name is a free data retrieval call binding the contract method 0x06fdde03.
 //
-// Solidity: function ownerCut() constant returns(uint256)
-func (_CryptoKitties *CryptoKittiesCaller) OwnerCut(opts *bind.CallOpts) (*big.Int, error) {
+// Solidity: function name() constant returns(string)
+func (_CryptoKitties *CryptoKittiesCaller) Name(opts *bind.CallOpts) (string, error) {
 	var (
-		ret0 = new(*big.Int)
+		ret0 = new(string)
 	)
 	out := ret0
-	err := _CryptoKitties.contract.Call(opts, out, "ownerCut")
+	err := _CryptoKitties.contract.Call(opts, out, "name")
 	return *ret0, err
 }
 
-// OwnerCut is a free data retrieval call binding the contract method 0x83b5ff8b.
+// Name is a free data retrieval call binding the contract method 0x06fdde03.
 //
-// Solidity: function ownerCut() constant returns(uint256)
-func (_CryptoKitties *CryptoKittiesSession) OwnerCut() (*big.Int, error) {
-	return _CryptoKitties.Contract.OwnerCut(&_CryptoKitties.CallOpts)
+// Solidity: function name() constant returns(string)
+func (_CryptoKitties *CryptoKittiesSession) Name() (string, error) {
+	return _CryptoKitties.Contract.Name(&_CryptoKitties.CallOpts)
 }
 
-// OwnerCut is a free data retrieval call binding the contract method 0x83b5ff8b.
+// Name is a free data retrieval call binding the contract method 0x06fdde03.
 //
-// Solidity: function ownerCut() constant returns(uint256)
-func (_CryptoKitties *CryptoKittiesCallerSession) OwnerCut() (*big.Int, error) {
-	return _CryptoKitties.Contract.OwnerCut(&_CryptoKitties.CallOpts)
+// Solidity: function name() constant returns(string)
+func (_CryptoKitties *CryptoKittiesCallerSession) Name() (string, error) {
+	return _CryptoKitties.Contract.Name(&_CryptoKitties.CallOpts)
+}
+
+// NewContractAddress is a free data retrieval call binding the contract method 0x6af04a57.
+//
+// Solidity: function newContractAddress() constant returns(address)
+func (_CryptoKitties *CryptoKittiesCaller) NewContractAddress(opts *bind.CallOpts) (common.Address, error) {
+	var (
+		ret0 = new(common.Address)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "newContractAddress")
+	return *ret0, err
+}
+
+// NewContractAddress is a free data retrieval call binding the contract method 0x6af04a57.
+//
+// Solidity: function newContractAddress() constant returns(address)
+func (_CryptoKitties *CryptoKittiesSession) NewContractAddress() (common.Address, error) {
+	return _CryptoKitties.Contract.NewContractAddress(&_CryptoKitties.CallOpts)
+}
+
+// NewContractAddress is a free data retrieval call binding the contract method 0x6af04a57.
+//
+// Solidity: function newContractAddress() constant returns(address)
+func (_CryptoKitties *CryptoKittiesCallerSession) NewContractAddress() (common.Address, error) {
+	return _CryptoKitties.Contract.NewContractAddress(&_CryptoKitties.CallOpts)
+}
+
+// OwnerOf is a free data retrieval call binding the contract method 0x6352211e.
+//
+// Solidity: function ownerOf(uint256 _tokenId) constant returns(address owner)
+func (_CryptoKitties *CryptoKittiesCaller) OwnerOf(opts *bind.CallOpts, _tokenId *big.Int) (common.Address, error) {
+	var (
+		ret0 = new(common.Address)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "ownerOf", _tokenId)
+	return *ret0, err
+}
+
+// OwnerOf is a free data retrieval call binding the contract method 0x6352211e.
+//
+// Solidity: function ownerOf(uint256 _tokenId) constant returns(address owner)
+func (_CryptoKitties *CryptoKittiesSession) OwnerOf(_tokenId *big.Int) (common.Address, error) {
+	return _CryptoKitties.Contract.OwnerOf(&_CryptoKitties.CallOpts, _tokenId)
+}
+
+// OwnerOf is a free data retrieval call binding the contract method 0x6352211e.
+//
+// Solidity: function ownerOf(uint256 _tokenId) constant returns(address owner)
+func (_CryptoKitties *CryptoKittiesCallerSession) OwnerOf(_tokenId *big.Int) (common.Address, error) {
+	return _CryptoKitties.Contract.OwnerOf(&_CryptoKitties.CallOpts, _tokenId)
 }
 
 // Paused is a free data retrieval call binding the contract method 0x5c975abb.
@@ -366,151 +828,794 @@ func (_CryptoKitties *CryptoKittiesCallerSession) Paused() (bool, error) {
 	return _CryptoKitties.Contract.Paused(&_CryptoKitties.CallOpts)
 }
 
-// Bid is a paid mutator transaction binding the contract method 0x454a2ab3.
+// PregnantKitties is a free data retrieval call binding the contract method 0x183a7947.
 //
-// Solidity: function bid(uint256 _tokenId) returns()
-func (_CryptoKitties *CryptoKittiesTransactor) Bid(opts *bind.TransactOpts, _tokenId *big.Int) (*types.Transaction, error) {
-	return _CryptoKitties.contract.Transact(opts, "bid", _tokenId)
+// Solidity: function pregnantKitties() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCaller) PregnantKitties(opts *bind.CallOpts) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "pregnantKitties")
+	return *ret0, err
 }
 
-// Bid is a paid mutator transaction binding the contract method 0x454a2ab3.
+// PregnantKitties is a free data retrieval call binding the contract method 0x183a7947.
 //
-// Solidity: function bid(uint256 _tokenId) returns()
-func (_CryptoKitties *CryptoKittiesSession) Bid(_tokenId *big.Int) (*types.Transaction, error) {
-	return _CryptoKitties.Contract.Bid(&_CryptoKitties.TransactOpts, _tokenId)
+// Solidity: function pregnantKitties() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesSession) PregnantKitties() (*big.Int, error) {
+	return _CryptoKitties.Contract.PregnantKitties(&_CryptoKitties.CallOpts)
 }
 
-// Bid is a paid mutator transaction binding the contract method 0x454a2ab3.
+// PregnantKitties is a free data retrieval call binding the contract method 0x183a7947.
 //
-// Solidity: function bid(uint256 _tokenId) returns()
-func (_CryptoKitties *CryptoKittiesTransactorSession) Bid(_tokenId *big.Int) (*types.Transaction, error) {
-	return _CryptoKitties.Contract.Bid(&_CryptoKitties.TransactOpts, _tokenId)
+// Solidity: function pregnantKitties() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCallerSession) PregnantKitties() (*big.Int, error) {
+	return _CryptoKitties.Contract.PregnantKitties(&_CryptoKitties.CallOpts)
 }
 
-// CancelAuction is a paid mutator transaction binding the contract method 0x96b5a755.
+// PromoCreatedCount is a free data retrieval call binding the contract method 0x05e45546.
 //
-// Solidity: function cancelAuction(uint256 _tokenId) returns()
-func (_CryptoKitties *CryptoKittiesTransactor) CancelAuction(opts *bind.TransactOpts, _tokenId *big.Int) (*types.Transaction, error) {
-	return _CryptoKitties.contract.Transact(opts, "cancelAuction", _tokenId)
+// Solidity: function promoCreatedCount() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCaller) PromoCreatedCount(opts *bind.CallOpts) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "promoCreatedCount")
+	return *ret0, err
 }
 
-// CancelAuction is a paid mutator transaction binding the contract method 0x96b5a755.
+// PromoCreatedCount is a free data retrieval call binding the contract method 0x05e45546.
 //
-// Solidity: function cancelAuction(uint256 _tokenId) returns()
-func (_CryptoKitties *CryptoKittiesSession) CancelAuction(_tokenId *big.Int) (*types.Transaction, error) {
-	return _CryptoKitties.Contract.CancelAuction(&_CryptoKitties.TransactOpts, _tokenId)
+// Solidity: function promoCreatedCount() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesSession) PromoCreatedCount() (*big.Int, error) {
+	return _CryptoKitties.Contract.PromoCreatedCount(&_CryptoKitties.CallOpts)
 }
 
-// CancelAuction is a paid mutator transaction binding the contract method 0x96b5a755.
+// PromoCreatedCount is a free data retrieval call binding the contract method 0x05e45546.
 //
-// Solidity: function cancelAuction(uint256 _tokenId) returns()
-func (_CryptoKitties *CryptoKittiesTransactorSession) CancelAuction(_tokenId *big.Int) (*types.Transaction, error) {
-	return _CryptoKitties.Contract.CancelAuction(&_CryptoKitties.TransactOpts, _tokenId)
+// Solidity: function promoCreatedCount() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCallerSession) PromoCreatedCount() (*big.Int, error) {
+	return _CryptoKitties.Contract.PromoCreatedCount(&_CryptoKitties.CallOpts)
 }
 
-// CancelAuctionWhenPaused is a paid mutator transaction binding the contract method 0x878eb368.
+// SaleAuction is a free data retrieval call binding the contract method 0xe6cbe351.
 //
-// Solidity: function cancelAuctionWhenPaused(uint256 _tokenId) returns()
-func (_CryptoKitties *CryptoKittiesTransactor) CancelAuctionWhenPaused(opts *bind.TransactOpts, _tokenId *big.Int) (*types.Transaction, error) {
-	return _CryptoKitties.contract.Transact(opts, "cancelAuctionWhenPaused", _tokenId)
+// Solidity: function saleAuction() constant returns(address)
+func (_CryptoKitties *CryptoKittiesCaller) SaleAuction(opts *bind.CallOpts) (common.Address, error) {
+	var (
+		ret0 = new(common.Address)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "saleAuction")
+	return *ret0, err
 }
 
-// CancelAuctionWhenPaused is a paid mutator transaction binding the contract method 0x878eb368.
+// SaleAuction is a free data retrieval call binding the contract method 0xe6cbe351.
 //
-// Solidity: function cancelAuctionWhenPaused(uint256 _tokenId) returns()
-func (_CryptoKitties *CryptoKittiesSession) CancelAuctionWhenPaused(_tokenId *big.Int) (*types.Transaction, error) {
-	return _CryptoKitties.Contract.CancelAuctionWhenPaused(&_CryptoKitties.TransactOpts, _tokenId)
+// Solidity: function saleAuction() constant returns(address)
+func (_CryptoKitties *CryptoKittiesSession) SaleAuction() (common.Address, error) {
+	return _CryptoKitties.Contract.SaleAuction(&_CryptoKitties.CallOpts)
 }
 
-// CancelAuctionWhenPaused is a paid mutator transaction binding the contract method 0x878eb368.
+// SaleAuction is a free data retrieval call binding the contract method 0xe6cbe351.
 //
-// Solidity: function cancelAuctionWhenPaused(uint256 _tokenId) returns()
-func (_CryptoKitties *CryptoKittiesTransactorSession) CancelAuctionWhenPaused(_tokenId *big.Int) (*types.Transaction, error) {
-	return _CryptoKitties.Contract.CancelAuctionWhenPaused(&_CryptoKitties.TransactOpts, _tokenId)
+// Solidity: function saleAuction() constant returns(address)
+func (_CryptoKitties *CryptoKittiesCallerSession) SaleAuction() (common.Address, error) {
+	return _CryptoKitties.Contract.SaleAuction(&_CryptoKitties.CallOpts)
 }
 
-// CreateAuction is a paid mutator transaction binding the contract method 0x27ebe40a.
+// SecondsPerBlock is a free data retrieval call binding the contract method 0x7a7d4937.
 //
-// Solidity: function createAuction(uint256 _tokenId, uint256 _startingPrice, uint256 _endingPrice, uint256 _duration, address _seller) returns()
-func (_CryptoKitties *CryptoKittiesTransactor) CreateAuction(opts *bind.TransactOpts, _tokenId *big.Int, _startingPrice *big.Int, _endingPrice *big.Int, _duration *big.Int, _seller common.Address) (*types.Transaction, error) {
-	return _CryptoKitties.contract.Transact(opts, "createAuction", _tokenId, _startingPrice, _endingPrice, _duration, _seller)
+// Solidity: function secondsPerBlock() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCaller) SecondsPerBlock(opts *bind.CallOpts) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "secondsPerBlock")
+	return *ret0, err
 }
 
-// CreateAuction is a paid mutator transaction binding the contract method 0x27ebe40a.
+// SecondsPerBlock is a free data retrieval call binding the contract method 0x7a7d4937.
 //
-// Solidity: function createAuction(uint256 _tokenId, uint256 _startingPrice, uint256 _endingPrice, uint256 _duration, address _seller) returns()
-func (_CryptoKitties *CryptoKittiesSession) CreateAuction(_tokenId *big.Int, _startingPrice *big.Int, _endingPrice *big.Int, _duration *big.Int, _seller common.Address) (*types.Transaction, error) {
-	return _CryptoKitties.Contract.CreateAuction(&_CryptoKitties.TransactOpts, _tokenId, _startingPrice, _endingPrice, _duration, _seller)
+// Solidity: function secondsPerBlock() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesSession) SecondsPerBlock() (*big.Int, error) {
+	return _CryptoKitties.Contract.SecondsPerBlock(&_CryptoKitties.CallOpts)
 }
 
-// CreateAuction is a paid mutator transaction binding the contract method 0x27ebe40a.
+// SecondsPerBlock is a free data retrieval call binding the contract method 0x7a7d4937.
 //
-// Solidity: function createAuction(uint256 _tokenId, uint256 _startingPrice, uint256 _endingPrice, uint256 _duration, address _seller) returns()
-func (_CryptoKitties *CryptoKittiesTransactorSession) CreateAuction(_tokenId *big.Int, _startingPrice *big.Int, _endingPrice *big.Int, _duration *big.Int, _seller common.Address) (*types.Transaction, error) {
-	return _CryptoKitties.Contract.CreateAuction(&_CryptoKitties.TransactOpts, _tokenId, _startingPrice, _endingPrice, _duration, _seller)
+// Solidity: function secondsPerBlock() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCallerSession) SecondsPerBlock() (*big.Int, error) {
+	return _CryptoKitties.Contract.SecondsPerBlock(&_CryptoKitties.CallOpts)
+}
+
+// SireAllowedToAddress is a free data retrieval call binding the contract method 0x46116e6f.
+//
+// Solidity: function sireAllowedToAddress(uint256 ) constant returns(address)
+func (_CryptoKitties *CryptoKittiesCaller) SireAllowedToAddress(opts *bind.CallOpts, arg0 *big.Int) (common.Address, error) {
+	var (
+		ret0 = new(common.Address)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "sireAllowedToAddress", arg0)
+	return *ret0, err
+}
+
+// SireAllowedToAddress is a free data retrieval call binding the contract method 0x46116e6f.
+//
+// Solidity: function sireAllowedToAddress(uint256 ) constant returns(address)
+func (_CryptoKitties *CryptoKittiesSession) SireAllowedToAddress(arg0 *big.Int) (common.Address, error) {
+	return _CryptoKitties.Contract.SireAllowedToAddress(&_CryptoKitties.CallOpts, arg0)
+}
+
+// SireAllowedToAddress is a free data retrieval call binding the contract method 0x46116e6f.
+//
+// Solidity: function sireAllowedToAddress(uint256 ) constant returns(address)
+func (_CryptoKitties *CryptoKittiesCallerSession) SireAllowedToAddress(arg0 *big.Int) (common.Address, error) {
+	return _CryptoKitties.Contract.SireAllowedToAddress(&_CryptoKitties.CallOpts, arg0)
+}
+
+// SiringAuction is a free data retrieval call binding the contract method 0x21717ebf.
+//
+// Solidity: function siringAuction() constant returns(address)
+func (_CryptoKitties *CryptoKittiesCaller) SiringAuction(opts *bind.CallOpts) (common.Address, error) {
+	var (
+		ret0 = new(common.Address)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "siringAuction")
+	return *ret0, err
+}
+
+// SiringAuction is a free data retrieval call binding the contract method 0x21717ebf.
+//
+// Solidity: function siringAuction() constant returns(address)
+func (_CryptoKitties *CryptoKittiesSession) SiringAuction() (common.Address, error) {
+	return _CryptoKitties.Contract.SiringAuction(&_CryptoKitties.CallOpts)
+}
+
+// SiringAuction is a free data retrieval call binding the contract method 0x21717ebf.
+//
+// Solidity: function siringAuction() constant returns(address)
+func (_CryptoKitties *CryptoKittiesCallerSession) SiringAuction() (common.Address, error) {
+	return _CryptoKitties.Contract.SiringAuction(&_CryptoKitties.CallOpts)
+}
+
+// SupportsInterface is a free data retrieval call binding the contract method 0x01ffc9a7.
+//
+// Solidity: function supportsInterface(bytes4 _interfaceID) constant returns(bool)
+func (_CryptoKitties *CryptoKittiesCaller) SupportsInterface(opts *bind.CallOpts, _interfaceID [4]byte) (bool, error) {
+	var (
+		ret0 = new(bool)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "supportsInterface", _interfaceID)
+	return *ret0, err
+}
+
+// SupportsInterface is a free data retrieval call binding the contract method 0x01ffc9a7.
+//
+// Solidity: function supportsInterface(bytes4 _interfaceID) constant returns(bool)
+func (_CryptoKitties *CryptoKittiesSession) SupportsInterface(_interfaceID [4]byte) (bool, error) {
+	return _CryptoKitties.Contract.SupportsInterface(&_CryptoKitties.CallOpts, _interfaceID)
+}
+
+// SupportsInterface is a free data retrieval call binding the contract method 0x01ffc9a7.
+//
+// Solidity: function supportsInterface(bytes4 _interfaceID) constant returns(bool)
+func (_CryptoKitties *CryptoKittiesCallerSession) SupportsInterface(_interfaceID [4]byte) (bool, error) {
+	return _CryptoKitties.Contract.SupportsInterface(&_CryptoKitties.CallOpts, _interfaceID)
+}
+
+// Symbol is a free data retrieval call binding the contract method 0x95d89b41.
+//
+// Solidity: function symbol() constant returns(string)
+func (_CryptoKitties *CryptoKittiesCaller) Symbol(opts *bind.CallOpts) (string, error) {
+	var (
+		ret0 = new(string)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "symbol")
+	return *ret0, err
+}
+
+// Symbol is a free data retrieval call binding the contract method 0x95d89b41.
+//
+// Solidity: function symbol() constant returns(string)
+func (_CryptoKitties *CryptoKittiesSession) Symbol() (string, error) {
+	return _CryptoKitties.Contract.Symbol(&_CryptoKitties.CallOpts)
+}
+
+// Symbol is a free data retrieval call binding the contract method 0x95d89b41.
+//
+// Solidity: function symbol() constant returns(string)
+func (_CryptoKitties *CryptoKittiesCallerSession) Symbol() (string, error) {
+	return _CryptoKitties.Contract.Symbol(&_CryptoKitties.CallOpts)
+}
+
+// TokenMetadata is a free data retrieval call binding the contract method 0x0560ff44.
+//
+// Solidity: function tokenMetadata(uint256 _tokenId, string _preferredTransport) constant returns(string infoUrl)
+func (_CryptoKitties *CryptoKittiesCaller) TokenMetadata(opts *bind.CallOpts, _tokenId *big.Int, _preferredTransport string) (string, error) {
+	var (
+		ret0 = new(string)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "tokenMetadata", _tokenId, _preferredTransport)
+	return *ret0, err
+}
+
+// TokenMetadata is a free data retrieval call binding the contract method 0x0560ff44.
+//
+// Solidity: function tokenMetadata(uint256 _tokenId, string _preferredTransport) constant returns(string infoUrl)
+func (_CryptoKitties *CryptoKittiesSession) TokenMetadata(_tokenId *big.Int, _preferredTransport string) (string, error) {
+	return _CryptoKitties.Contract.TokenMetadata(&_CryptoKitties.CallOpts, _tokenId, _preferredTransport)
+}
+
+// TokenMetadata is a free data retrieval call binding the contract method 0x0560ff44.
+//
+// Solidity: function tokenMetadata(uint256 _tokenId, string _preferredTransport) constant returns(string infoUrl)
+func (_CryptoKitties *CryptoKittiesCallerSession) TokenMetadata(_tokenId *big.Int, _preferredTransport string) (string, error) {
+	return _CryptoKitties.Contract.TokenMetadata(&_CryptoKitties.CallOpts, _tokenId, _preferredTransport)
+}
+
+// TokensOfOwner is a free data retrieval call binding the contract method 0x8462151c.
+//
+// Solidity: function tokensOfOwner(address _owner) constant returns(uint256[] ownerTokens)
+func (_CryptoKitties *CryptoKittiesCaller) TokensOfOwner(opts *bind.CallOpts, _owner common.Address) ([]*big.Int, error) {
+	var (
+		ret0 = new([]*big.Int)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "tokensOfOwner", _owner)
+	return *ret0, err
+}
+
+// TokensOfOwner is a free data retrieval call binding the contract method 0x8462151c.
+//
+// Solidity: function tokensOfOwner(address _owner) constant returns(uint256[] ownerTokens)
+func (_CryptoKitties *CryptoKittiesSession) TokensOfOwner(_owner common.Address) ([]*big.Int, error) {
+	return _CryptoKitties.Contract.TokensOfOwner(&_CryptoKitties.CallOpts, _owner)
+}
+
+// TokensOfOwner is a free data retrieval call binding the contract method 0x8462151c.
+//
+// Solidity: function tokensOfOwner(address _owner) constant returns(uint256[] ownerTokens)
+func (_CryptoKitties *CryptoKittiesCallerSession) TokensOfOwner(_owner common.Address) ([]*big.Int, error) {
+	return _CryptoKitties.Contract.TokensOfOwner(&_CryptoKitties.CallOpts, _owner)
+}
+
+// TotalSupply is a free data retrieval call binding the contract method 0x18160ddd.
+//
+// Solidity: function totalSupply() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCaller) TotalSupply(opts *bind.CallOpts) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _CryptoKitties.contract.Call(opts, out, "totalSupply")
+	return *ret0, err
+}
+
+// TotalSupply is a free data retrieval call binding the contract method 0x18160ddd.
+//
+// Solidity: function totalSupply() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesSession) TotalSupply() (*big.Int, error) {
+	return _CryptoKitties.Contract.TotalSupply(&_CryptoKitties.CallOpts)
+}
+
+// TotalSupply is a free data retrieval call binding the contract method 0x18160ddd.
+//
+// Solidity: function totalSupply() constant returns(uint256)
+func (_CryptoKitties *CryptoKittiesCallerSession) TotalSupply() (*big.Int, error) {
+	return _CryptoKitties.Contract.TotalSupply(&_CryptoKitties.CallOpts)
+}
+
+// Approve is a paid mutator transaction binding the contract method 0x095ea7b3.
+//
+// Solidity: function approve(address _to, uint256 _tokenId) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) Approve(opts *bind.TransactOpts, _to common.Address, _tokenId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "approve", _to, _tokenId)
+}
+
+// Approve is a paid mutator transaction binding the contract method 0x095ea7b3.
+//
+// Solidity: function approve(address _to, uint256 _tokenId) returns()
+func (_CryptoKitties *CryptoKittiesSession) Approve(_to common.Address, _tokenId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.Approve(&_CryptoKitties.TransactOpts, _to, _tokenId)
+}
+
+// Approve is a paid mutator transaction binding the contract method 0x095ea7b3.
+//
+// Solidity: function approve(address _to, uint256 _tokenId) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) Approve(_to common.Address, _tokenId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.Approve(&_CryptoKitties.TransactOpts, _to, _tokenId)
+}
+
+// ApproveSiring is a paid mutator transaction binding the contract method 0x4dfff04f.
+//
+// Solidity: function approveSiring(address _addr, uint256 _sireId) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) ApproveSiring(opts *bind.TransactOpts, _addr common.Address, _sireId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "approveSiring", _addr, _sireId)
+}
+
+// ApproveSiring is a paid mutator transaction binding the contract method 0x4dfff04f.
+//
+// Solidity: function approveSiring(address _addr, uint256 _sireId) returns()
+func (_CryptoKitties *CryptoKittiesSession) ApproveSiring(_addr common.Address, _sireId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.ApproveSiring(&_CryptoKitties.TransactOpts, _addr, _sireId)
+}
+
+// ApproveSiring is a paid mutator transaction binding the contract method 0x4dfff04f.
+//
+// Solidity: function approveSiring(address _addr, uint256 _sireId) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) ApproveSiring(_addr common.Address, _sireId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.ApproveSiring(&_CryptoKitties.TransactOpts, _addr, _sireId)
+}
+
+// BidOnSiringAuction is a paid mutator transaction binding the contract method 0xed60ade6.
+//
+// Solidity: function bidOnSiringAuction(uint256 _sireId, uint256 _matronId) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) BidOnSiringAuction(opts *bind.TransactOpts, _sireId *big.Int, _matronId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "bidOnSiringAuction", _sireId, _matronId)
+}
+
+// BidOnSiringAuction is a paid mutator transaction binding the contract method 0xed60ade6.
+//
+// Solidity: function bidOnSiringAuction(uint256 _sireId, uint256 _matronId) returns()
+func (_CryptoKitties *CryptoKittiesSession) BidOnSiringAuction(_sireId *big.Int, _matronId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.BidOnSiringAuction(&_CryptoKitties.TransactOpts, _sireId, _matronId)
+}
+
+// BidOnSiringAuction is a paid mutator transaction binding the contract method 0xed60ade6.
+//
+// Solidity: function bidOnSiringAuction(uint256 _sireId, uint256 _matronId) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) BidOnSiringAuction(_sireId *big.Int, _matronId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.BidOnSiringAuction(&_CryptoKitties.TransactOpts, _sireId, _matronId)
+}
+
+// BreedWithAuto is a paid mutator transaction binding the contract method 0xf7d8c883.
+//
+// Solidity: function breedWithAuto(uint256 _matronId, uint256 _sireId) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) BreedWithAuto(opts *bind.TransactOpts, _matronId *big.Int, _sireId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "breedWithAuto", _matronId, _sireId)
+}
+
+// BreedWithAuto is a paid mutator transaction binding the contract method 0xf7d8c883.
+//
+// Solidity: function breedWithAuto(uint256 _matronId, uint256 _sireId) returns()
+func (_CryptoKitties *CryptoKittiesSession) BreedWithAuto(_matronId *big.Int, _sireId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.BreedWithAuto(&_CryptoKitties.TransactOpts, _matronId, _sireId)
+}
+
+// BreedWithAuto is a paid mutator transaction binding the contract method 0xf7d8c883.
+//
+// Solidity: function breedWithAuto(uint256 _matronId, uint256 _sireId) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) BreedWithAuto(_matronId *big.Int, _sireId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.BreedWithAuto(&_CryptoKitties.TransactOpts, _matronId, _sireId)
+}
+
+// CreateGen0Auction is a paid mutator transaction binding the contract method 0xc3bea9af.
+//
+// Solidity: function createGen0Auction(uint256 _genes) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) CreateGen0Auction(opts *bind.TransactOpts, _genes *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "createGen0Auction", _genes)
+}
+
+// CreateGen0Auction is a paid mutator transaction binding the contract method 0xc3bea9af.
+//
+// Solidity: function createGen0Auction(uint256 _genes) returns()
+func (_CryptoKitties *CryptoKittiesSession) CreateGen0Auction(_genes *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.CreateGen0Auction(&_CryptoKitties.TransactOpts, _genes)
+}
+
+// CreateGen0Auction is a paid mutator transaction binding the contract method 0xc3bea9af.
+//
+// Solidity: function createGen0Auction(uint256 _genes) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) CreateGen0Auction(_genes *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.CreateGen0Auction(&_CryptoKitties.TransactOpts, _genes)
+}
+
+// CreatePromoKitty is a paid mutator transaction binding the contract method 0x56129134.
+//
+// Solidity: function createPromoKitty(uint256 _genes, address _owner) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) CreatePromoKitty(opts *bind.TransactOpts, _genes *big.Int, _owner common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "createPromoKitty", _genes, _owner)
+}
+
+// CreatePromoKitty is a paid mutator transaction binding the contract method 0x56129134.
+//
+// Solidity: function createPromoKitty(uint256 _genes, address _owner) returns()
+func (_CryptoKitties *CryptoKittiesSession) CreatePromoKitty(_genes *big.Int, _owner common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.CreatePromoKitty(&_CryptoKitties.TransactOpts, _genes, _owner)
+}
+
+// CreatePromoKitty is a paid mutator transaction binding the contract method 0x56129134.
+//
+// Solidity: function createPromoKitty(uint256 _genes, address _owner) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) CreatePromoKitty(_genes *big.Int, _owner common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.CreatePromoKitty(&_CryptoKitties.TransactOpts, _genes, _owner)
+}
+
+// CreateSaleAuction is a paid mutator transaction binding the contract method 0x3d7d3f5a.
+//
+// Solidity: function createSaleAuction(uint256 _kittyId, uint256 _startingPrice, uint256 _endingPrice, uint256 _duration) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) CreateSaleAuction(opts *bind.TransactOpts, _kittyId *big.Int, _startingPrice *big.Int, _endingPrice *big.Int, _duration *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "createSaleAuction", _kittyId, _startingPrice, _endingPrice, _duration)
+}
+
+// CreateSaleAuction is a paid mutator transaction binding the contract method 0x3d7d3f5a.
+//
+// Solidity: function createSaleAuction(uint256 _kittyId, uint256 _startingPrice, uint256 _endingPrice, uint256 _duration) returns()
+func (_CryptoKitties *CryptoKittiesSession) CreateSaleAuction(_kittyId *big.Int, _startingPrice *big.Int, _endingPrice *big.Int, _duration *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.CreateSaleAuction(&_CryptoKitties.TransactOpts, _kittyId, _startingPrice, _endingPrice, _duration)
+}
+
+// CreateSaleAuction is a paid mutator transaction binding the contract method 0x3d7d3f5a.
+//
+// Solidity: function createSaleAuction(uint256 _kittyId, uint256 _startingPrice, uint256 _endingPrice, uint256 _duration) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) CreateSaleAuction(_kittyId *big.Int, _startingPrice *big.Int, _endingPrice *big.Int, _duration *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.CreateSaleAuction(&_CryptoKitties.TransactOpts, _kittyId, _startingPrice, _endingPrice, _duration)
+}
+
+// CreateSiringAuction is a paid mutator transaction binding the contract method 0x4ad8c938.
+//
+// Solidity: function createSiringAuction(uint256 _kittyId, uint256 _startingPrice, uint256 _endingPrice, uint256 _duration) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) CreateSiringAuction(opts *bind.TransactOpts, _kittyId *big.Int, _startingPrice *big.Int, _endingPrice *big.Int, _duration *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "createSiringAuction", _kittyId, _startingPrice, _endingPrice, _duration)
+}
+
+// CreateSiringAuction is a paid mutator transaction binding the contract method 0x4ad8c938.
+//
+// Solidity: function createSiringAuction(uint256 _kittyId, uint256 _startingPrice, uint256 _endingPrice, uint256 _duration) returns()
+func (_CryptoKitties *CryptoKittiesSession) CreateSiringAuction(_kittyId *big.Int, _startingPrice *big.Int, _endingPrice *big.Int, _duration *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.CreateSiringAuction(&_CryptoKitties.TransactOpts, _kittyId, _startingPrice, _endingPrice, _duration)
+}
+
+// CreateSiringAuction is a paid mutator transaction binding the contract method 0x4ad8c938.
+//
+// Solidity: function createSiringAuction(uint256 _kittyId, uint256 _startingPrice, uint256 _endingPrice, uint256 _duration) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) CreateSiringAuction(_kittyId *big.Int, _startingPrice *big.Int, _endingPrice *big.Int, _duration *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.CreateSiringAuction(&_CryptoKitties.TransactOpts, _kittyId, _startingPrice, _endingPrice, _duration)
+}
+
+// GiveBirth is a paid mutator transaction binding the contract method 0x88c2a0bf.
+//
+// Solidity: function giveBirth(uint256 _matronId) returns(uint256)
+func (_CryptoKitties *CryptoKittiesTransactor) GiveBirth(opts *bind.TransactOpts, _matronId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "giveBirth", _matronId)
+}
+
+// GiveBirth is a paid mutator transaction binding the contract method 0x88c2a0bf.
+//
+// Solidity: function giveBirth(uint256 _matronId) returns(uint256)
+func (_CryptoKitties *CryptoKittiesSession) GiveBirth(_matronId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.GiveBirth(&_CryptoKitties.TransactOpts, _matronId)
+}
+
+// GiveBirth is a paid mutator transaction binding the contract method 0x88c2a0bf.
+//
+// Solidity: function giveBirth(uint256 _matronId) returns(uint256)
+func (_CryptoKitties *CryptoKittiesTransactorSession) GiveBirth(_matronId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.GiveBirth(&_CryptoKitties.TransactOpts, _matronId)
 }
 
 // Pause is a paid mutator transaction binding the contract method 0x8456cb59.
 //
-// Solidity: function pause() returns(bool)
+// Solidity: function pause() returns()
 func (_CryptoKitties *CryptoKittiesTransactor) Pause(opts *bind.TransactOpts) (*types.Transaction, error) {
 	return _CryptoKitties.contract.Transact(opts, "pause")
 }
 
 // Pause is a paid mutator transaction binding the contract method 0x8456cb59.
 //
-// Solidity: function pause() returns(bool)
+// Solidity: function pause() returns()
 func (_CryptoKitties *CryptoKittiesSession) Pause() (*types.Transaction, error) {
 	return _CryptoKitties.Contract.Pause(&_CryptoKitties.TransactOpts)
 }
 
 // Pause is a paid mutator transaction binding the contract method 0x8456cb59.
 //
-// Solidity: function pause() returns(bool)
+// Solidity: function pause() returns()
 func (_CryptoKitties *CryptoKittiesTransactorSession) Pause() (*types.Transaction, error) {
 	return _CryptoKitties.Contract.Pause(&_CryptoKitties.TransactOpts)
 }
 
-// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+// SetAutoBirthFee is a paid mutator transaction binding the contract method 0x4b85fd55.
 //
-// Solidity: function transferOwnership(address newOwner) returns()
-func (_CryptoKitties *CryptoKittiesTransactor) TransferOwnership(opts *bind.TransactOpts, newOwner common.Address) (*types.Transaction, error) {
-	return _CryptoKitties.contract.Transact(opts, "transferOwnership", newOwner)
+// Solidity: function setAutoBirthFee(uint256 val) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) SetAutoBirthFee(opts *bind.TransactOpts, val *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "setAutoBirthFee", val)
 }
 
-// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+// SetAutoBirthFee is a paid mutator transaction binding the contract method 0x4b85fd55.
 //
-// Solidity: function transferOwnership(address newOwner) returns()
-func (_CryptoKitties *CryptoKittiesSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
-	return _CryptoKitties.Contract.TransferOwnership(&_CryptoKitties.TransactOpts, newOwner)
+// Solidity: function setAutoBirthFee(uint256 val) returns()
+func (_CryptoKitties *CryptoKittiesSession) SetAutoBirthFee(val *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetAutoBirthFee(&_CryptoKitties.TransactOpts, val)
 }
 
-// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+// SetAutoBirthFee is a paid mutator transaction binding the contract method 0x4b85fd55.
 //
-// Solidity: function transferOwnership(address newOwner) returns()
-func (_CryptoKitties *CryptoKittiesTransactorSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
-	return _CryptoKitties.Contract.TransferOwnership(&_CryptoKitties.TransactOpts, newOwner)
+// Solidity: function setAutoBirthFee(uint256 val) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) SetAutoBirthFee(val *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetAutoBirthFee(&_CryptoKitties.TransactOpts, val)
+}
+
+// SetCEO is a paid mutator transaction binding the contract method 0x27d7874c.
+//
+// Solidity: function setCEO(address _newCEO) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) SetCEO(opts *bind.TransactOpts, _newCEO common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "setCEO", _newCEO)
+}
+
+// SetCEO is a paid mutator transaction binding the contract method 0x27d7874c.
+//
+// Solidity: function setCEO(address _newCEO) returns()
+func (_CryptoKitties *CryptoKittiesSession) SetCEO(_newCEO common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetCEO(&_CryptoKitties.TransactOpts, _newCEO)
+}
+
+// SetCEO is a paid mutator transaction binding the contract method 0x27d7874c.
+//
+// Solidity: function setCEO(address _newCEO) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) SetCEO(_newCEO common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetCEO(&_CryptoKitties.TransactOpts, _newCEO)
+}
+
+// SetCFO is a paid mutator transaction binding the contract method 0x4e0a3379.
+//
+// Solidity: function setCFO(address _newCFO) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) SetCFO(opts *bind.TransactOpts, _newCFO common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "setCFO", _newCFO)
+}
+
+// SetCFO is a paid mutator transaction binding the contract method 0x4e0a3379.
+//
+// Solidity: function setCFO(address _newCFO) returns()
+func (_CryptoKitties *CryptoKittiesSession) SetCFO(_newCFO common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetCFO(&_CryptoKitties.TransactOpts, _newCFO)
+}
+
+// SetCFO is a paid mutator transaction binding the contract method 0x4e0a3379.
+//
+// Solidity: function setCFO(address _newCFO) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) SetCFO(_newCFO common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetCFO(&_CryptoKitties.TransactOpts, _newCFO)
+}
+
+// SetCOO is a paid mutator transaction binding the contract method 0x2ba73c15.
+//
+// Solidity: function setCOO(address _newCOO) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) SetCOO(opts *bind.TransactOpts, _newCOO common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "setCOO", _newCOO)
+}
+
+// SetCOO is a paid mutator transaction binding the contract method 0x2ba73c15.
+//
+// Solidity: function setCOO(address _newCOO) returns()
+func (_CryptoKitties *CryptoKittiesSession) SetCOO(_newCOO common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetCOO(&_CryptoKitties.TransactOpts, _newCOO)
+}
+
+// SetCOO is a paid mutator transaction binding the contract method 0x2ba73c15.
+//
+// Solidity: function setCOO(address _newCOO) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) SetCOO(_newCOO common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetCOO(&_CryptoKitties.TransactOpts, _newCOO)
+}
+
+// SetGeneScienceAddress is a paid mutator transaction binding the contract method 0x24e7a38a.
+//
+// Solidity: function setGeneScienceAddress(address _address) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) SetGeneScienceAddress(opts *bind.TransactOpts, _address common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "setGeneScienceAddress", _address)
+}
+
+// SetGeneScienceAddress is a paid mutator transaction binding the contract method 0x24e7a38a.
+//
+// Solidity: function setGeneScienceAddress(address _address) returns()
+func (_CryptoKitties *CryptoKittiesSession) SetGeneScienceAddress(_address common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetGeneScienceAddress(&_CryptoKitties.TransactOpts, _address)
+}
+
+// SetGeneScienceAddress is a paid mutator transaction binding the contract method 0x24e7a38a.
+//
+// Solidity: function setGeneScienceAddress(address _address) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) SetGeneScienceAddress(_address common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetGeneScienceAddress(&_CryptoKitties.TransactOpts, _address)
+}
+
+// SetMetadataAddress is a paid mutator transaction binding the contract method 0xe17b25af.
+//
+// Solidity: function setMetadataAddress(address _contractAddress) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) SetMetadataAddress(opts *bind.TransactOpts, _contractAddress common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "setMetadataAddress", _contractAddress)
+}
+
+// SetMetadataAddress is a paid mutator transaction binding the contract method 0xe17b25af.
+//
+// Solidity: function setMetadataAddress(address _contractAddress) returns()
+func (_CryptoKitties *CryptoKittiesSession) SetMetadataAddress(_contractAddress common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetMetadataAddress(&_CryptoKitties.TransactOpts, _contractAddress)
+}
+
+// SetMetadataAddress is a paid mutator transaction binding the contract method 0xe17b25af.
+//
+// Solidity: function setMetadataAddress(address _contractAddress) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) SetMetadataAddress(_contractAddress common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetMetadataAddress(&_CryptoKitties.TransactOpts, _contractAddress)
+}
+
+// SetNewAddress is a paid mutator transaction binding the contract method 0x71587988.
+//
+// Solidity: function setNewAddress(address _v2Address) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) SetNewAddress(opts *bind.TransactOpts, _v2Address common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "setNewAddress", _v2Address)
+}
+
+// SetNewAddress is a paid mutator transaction binding the contract method 0x71587988.
+//
+// Solidity: function setNewAddress(address _v2Address) returns()
+func (_CryptoKitties *CryptoKittiesSession) SetNewAddress(_v2Address common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetNewAddress(&_CryptoKitties.TransactOpts, _v2Address)
+}
+
+// SetNewAddress is a paid mutator transaction binding the contract method 0x71587988.
+//
+// Solidity: function setNewAddress(address _v2Address) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) SetNewAddress(_v2Address common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetNewAddress(&_CryptoKitties.TransactOpts, _v2Address)
+}
+
+// SetSaleAuctionAddress is a paid mutator transaction binding the contract method 0x6fbde40d.
+//
+// Solidity: function setSaleAuctionAddress(address _address) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) SetSaleAuctionAddress(opts *bind.TransactOpts, _address common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "setSaleAuctionAddress", _address)
+}
+
+// SetSaleAuctionAddress is a paid mutator transaction binding the contract method 0x6fbde40d.
+//
+// Solidity: function setSaleAuctionAddress(address _address) returns()
+func (_CryptoKitties *CryptoKittiesSession) SetSaleAuctionAddress(_address common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetSaleAuctionAddress(&_CryptoKitties.TransactOpts, _address)
+}
+
+// SetSaleAuctionAddress is a paid mutator transaction binding the contract method 0x6fbde40d.
+//
+// Solidity: function setSaleAuctionAddress(address _address) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) SetSaleAuctionAddress(_address common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetSaleAuctionAddress(&_CryptoKitties.TransactOpts, _address)
+}
+
+// SetSecondsPerBlock is a paid mutator transaction binding the contract method 0x5663896e.
+//
+// Solidity: function setSecondsPerBlock(uint256 secs) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) SetSecondsPerBlock(opts *bind.TransactOpts, secs *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "setSecondsPerBlock", secs)
+}
+
+// SetSecondsPerBlock is a paid mutator transaction binding the contract method 0x5663896e.
+//
+// Solidity: function setSecondsPerBlock(uint256 secs) returns()
+func (_CryptoKitties *CryptoKittiesSession) SetSecondsPerBlock(secs *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetSecondsPerBlock(&_CryptoKitties.TransactOpts, secs)
+}
+
+// SetSecondsPerBlock is a paid mutator transaction binding the contract method 0x5663896e.
+//
+// Solidity: function setSecondsPerBlock(uint256 secs) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) SetSecondsPerBlock(secs *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetSecondsPerBlock(&_CryptoKitties.TransactOpts, secs)
+}
+
+// SetSiringAuctionAddress is a paid mutator transaction binding the contract method 0x14001f4c.
+//
+// Solidity: function setSiringAuctionAddress(address _address) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) SetSiringAuctionAddress(opts *bind.TransactOpts, _address common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "setSiringAuctionAddress", _address)
+}
+
+// SetSiringAuctionAddress is a paid mutator transaction binding the contract method 0x14001f4c.
+//
+// Solidity: function setSiringAuctionAddress(address _address) returns()
+func (_CryptoKitties *CryptoKittiesSession) SetSiringAuctionAddress(_address common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetSiringAuctionAddress(&_CryptoKitties.TransactOpts, _address)
+}
+
+// SetSiringAuctionAddress is a paid mutator transaction binding the contract method 0x14001f4c.
+//
+// Solidity: function setSiringAuctionAddress(address _address) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) SetSiringAuctionAddress(_address common.Address) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.SetSiringAuctionAddress(&_CryptoKitties.TransactOpts, _address)
+}
+
+// Transfer is a paid mutator transaction binding the contract method 0xa9059cbb.
+//
+// Solidity: function transfer(address _to, uint256 _tokenId) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) Transfer(opts *bind.TransactOpts, _to common.Address, _tokenId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "transfer", _to, _tokenId)
+}
+
+// Transfer is a paid mutator transaction binding the contract method 0xa9059cbb.
+//
+// Solidity: function transfer(address _to, uint256 _tokenId) returns()
+func (_CryptoKitties *CryptoKittiesSession) Transfer(_to common.Address, _tokenId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.Transfer(&_CryptoKitties.TransactOpts, _to, _tokenId)
+}
+
+// Transfer is a paid mutator transaction binding the contract method 0xa9059cbb.
+//
+// Solidity: function transfer(address _to, uint256 _tokenId) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) Transfer(_to common.Address, _tokenId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.Transfer(&_CryptoKitties.TransactOpts, _to, _tokenId)
+}
+
+// TransferFrom is a paid mutator transaction binding the contract method 0x23b872dd.
+//
+// Solidity: function transferFrom(address _from, address _to, uint256 _tokenId) returns()
+func (_CryptoKitties *CryptoKittiesTransactor) TransferFrom(opts *bind.TransactOpts, _from common.Address, _to common.Address, _tokenId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "transferFrom", _from, _to, _tokenId)
+}
+
+// TransferFrom is a paid mutator transaction binding the contract method 0x23b872dd.
+//
+// Solidity: function transferFrom(address _from, address _to, uint256 _tokenId) returns()
+func (_CryptoKitties *CryptoKittiesSession) TransferFrom(_from common.Address, _to common.Address, _tokenId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.TransferFrom(&_CryptoKitties.TransactOpts, _from, _to, _tokenId)
+}
+
+// TransferFrom is a paid mutator transaction binding the contract method 0x23b872dd.
+//
+// Solidity: function transferFrom(address _from, address _to, uint256 _tokenId) returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) TransferFrom(_from common.Address, _to common.Address, _tokenId *big.Int) (*types.Transaction, error) {
+	return _CryptoKitties.Contract.TransferFrom(&_CryptoKitties.TransactOpts, _from, _to, _tokenId)
 }
 
 // Unpause is a paid mutator transaction binding the contract method 0x3f4ba83a.
 //
-// Solidity: function unpause() returns(bool)
+// Solidity: function unpause() returns()
 func (_CryptoKitties *CryptoKittiesTransactor) Unpause(opts *bind.TransactOpts) (*types.Transaction, error) {
 	return _CryptoKitties.contract.Transact(opts, "unpause")
 }
 
 // Unpause is a paid mutator transaction binding the contract method 0x3f4ba83a.
 //
-// Solidity: function unpause() returns(bool)
+// Solidity: function unpause() returns()
 func (_CryptoKitties *CryptoKittiesSession) Unpause() (*types.Transaction, error) {
 	return _CryptoKitties.Contract.Unpause(&_CryptoKitties.TransactOpts)
 }
 
 // Unpause is a paid mutator transaction binding the contract method 0x3f4ba83a.
 //
-// Solidity: function unpause() returns(bool)
+// Solidity: function unpause() returns()
 func (_CryptoKitties *CryptoKittiesTransactorSession) Unpause() (*types.Transaction, error) {
 	return _CryptoKitties.Contract.Unpause(&_CryptoKitties.TransactOpts)
+}
+
+// WithdrawAuctionBalances is a paid mutator transaction binding the contract method 0x91876e57.
+//
+// Solidity: function withdrawAuctionBalances() returns()
+func (_CryptoKitties *CryptoKittiesTransactor) WithdrawAuctionBalances(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _CryptoKitties.contract.Transact(opts, "withdrawAuctionBalances")
+}
+
+// WithdrawAuctionBalances is a paid mutator transaction binding the contract method 0x91876e57.
+//
+// Solidity: function withdrawAuctionBalances() returns()
+func (_CryptoKitties *CryptoKittiesSession) WithdrawAuctionBalances() (*types.Transaction, error) {
+	return _CryptoKitties.Contract.WithdrawAuctionBalances(&_CryptoKitties.TransactOpts)
+}
+
+// WithdrawAuctionBalances is a paid mutator transaction binding the contract method 0x91876e57.
+//
+// Solidity: function withdrawAuctionBalances() returns()
+func (_CryptoKitties *CryptoKittiesTransactorSession) WithdrawAuctionBalances() (*types.Transaction, error) {
+	return _CryptoKitties.Contract.WithdrawAuctionBalances(&_CryptoKitties.TransactOpts)
 }
 
 // WithdrawBalance is a paid mutator transaction binding the contract method 0x5fd8c710.
@@ -534,9 +1639,9 @@ func (_CryptoKitties *CryptoKittiesTransactorSession) WithdrawBalance() (*types.
 	return _CryptoKitties.Contract.WithdrawBalance(&_CryptoKitties.TransactOpts)
 }
 
-// CryptoKittiesAuctionCancelledIterator is returned from FilterAuctionCancelled and is used to iterate over the raw logs and unpacked data for AuctionCancelled events raised by the CryptoKitties contract.
-type CryptoKittiesAuctionCancelledIterator struct {
-	Event *CryptoKittiesAuctionCancelled // Event containing the contract specifics and raw log
+// CryptoKittiesApprovalIterator is returned from FilterApproval and is used to iterate over the raw logs and unpacked data for Approval events raised by the CryptoKitties contract.
+type CryptoKittiesApprovalIterator struct {
+	Event *CryptoKittiesApproval // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -550,7 +1655,7 @@ type CryptoKittiesAuctionCancelledIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *CryptoKittiesAuctionCancelledIterator) Next() bool {
+func (it *CryptoKittiesApprovalIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -559,7 +1664,7 @@ func (it *CryptoKittiesAuctionCancelledIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(CryptoKittiesAuctionCancelled)
+			it.Event = new(CryptoKittiesApproval)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -574,7 +1679,7 @@ func (it *CryptoKittiesAuctionCancelledIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(CryptoKittiesAuctionCancelled)
+		it.Event = new(CryptoKittiesApproval)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -590,166 +1695,540 @@ func (it *CryptoKittiesAuctionCancelledIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *CryptoKittiesAuctionCancelledIterator) Error() error {
+func (it *CryptoKittiesApprovalIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *CryptoKittiesAuctionCancelledIterator) Close() error {
+func (it *CryptoKittiesApprovalIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// CryptoKittiesAuctionCancelled represents a AuctionCancelled event raised by the CryptoKitties contract.
-type CryptoKittiesAuctionCancelled struct {
+// CryptoKittiesApproval represents a Approval event raised by the CryptoKitties contract.
+type CryptoKittiesApproval struct {
+	Owner    common.Address
+	Approved common.Address
+	TokenId  *big.Int
+	Raw      types.Log // Blockchain specific contextual infos
+}
+
+// FilterApproval is a free log retrieval operation binding the contract event 0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925.
+//
+// Solidity: event Approval(address owner, address approved, uint256 tokenId)
+func (_CryptoKitties *CryptoKittiesFilterer) FilterApproval(opts *bind.FilterOpts) (*CryptoKittiesApprovalIterator, error) {
+
+	logs, sub, err := _CryptoKitties.contract.FilterLogs(opts, "Approval")
+	if err != nil {
+		return nil, err
+	}
+	return &CryptoKittiesApprovalIterator{contract: _CryptoKitties.contract, event: "Approval", logs: logs, sub: sub}, nil
+}
+
+// WatchApproval is a free log subscription operation binding the contract event 0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925.
+//
+// Solidity: event Approval(address owner, address approved, uint256 tokenId)
+func (_CryptoKitties *CryptoKittiesFilterer) WatchApproval(opts *bind.WatchOpts, sink chan<- *CryptoKittiesApproval) (event.Subscription, error) {
+
+	logs, sub, err := _CryptoKitties.contract.WatchLogs(opts, "Approval")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(CryptoKittiesApproval)
+				if err := _CryptoKitties.contract.UnpackLog(event, "Approval", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// CryptoKittiesBirthIterator is returned from FilterBirth and is used to iterate over the raw logs and unpacked data for Birth events raised by the CryptoKitties contract.
+type CryptoKittiesBirthIterator struct {
+	Event *CryptoKittiesBirth // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *CryptoKittiesBirthIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(CryptoKittiesBirth)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(CryptoKittiesBirth)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *CryptoKittiesBirthIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *CryptoKittiesBirthIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// CryptoKittiesBirth represents a Birth event raised by the CryptoKitties contract.
+type CryptoKittiesBirth struct {
+	Owner    common.Address
+	KittyId  *big.Int
+	MatronId *big.Int
+	SireId   *big.Int
+	Genes    *big.Int
+	Raw      types.Log // Blockchain specific contextual infos
+}
+
+// FilterBirth is a free log retrieval operation binding the contract event 0x0a5311bd2a6608f08a180df2ee7c5946819a649b204b554bb8e39825b2c50ad5.
+//
+// Solidity: event Birth(address owner, uint256 kittyId, uint256 matronId, uint256 sireId, uint256 genes)
+func (_CryptoKitties *CryptoKittiesFilterer) FilterBirth(opts *bind.FilterOpts) (*CryptoKittiesBirthIterator, error) {
+
+	logs, sub, err := _CryptoKitties.contract.FilterLogs(opts, "Birth")
+	if err != nil {
+		return nil, err
+	}
+	return &CryptoKittiesBirthIterator{contract: _CryptoKitties.contract, event: "Birth", logs: logs, sub: sub}, nil
+}
+
+// WatchBirth is a free log subscription operation binding the contract event 0x0a5311bd2a6608f08a180df2ee7c5946819a649b204b554bb8e39825b2c50ad5.
+//
+// Solidity: event Birth(address owner, uint256 kittyId, uint256 matronId, uint256 sireId, uint256 genes)
+func (_CryptoKitties *CryptoKittiesFilterer) WatchBirth(opts *bind.WatchOpts, sink chan<- *CryptoKittiesBirth) (event.Subscription, error) {
+
+	logs, sub, err := _CryptoKitties.contract.WatchLogs(opts, "Birth")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(CryptoKittiesBirth)
+				if err := _CryptoKitties.contract.UnpackLog(event, "Birth", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// CryptoKittiesContractUpgradeIterator is returned from FilterContractUpgrade and is used to iterate over the raw logs and unpacked data for ContractUpgrade events raised by the CryptoKitties contract.
+type CryptoKittiesContractUpgradeIterator struct {
+	Event *CryptoKittiesContractUpgrade // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *CryptoKittiesContractUpgradeIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(CryptoKittiesContractUpgrade)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(CryptoKittiesContractUpgrade)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *CryptoKittiesContractUpgradeIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *CryptoKittiesContractUpgradeIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// CryptoKittiesContractUpgrade represents a ContractUpgrade event raised by the CryptoKitties contract.
+type CryptoKittiesContractUpgrade struct {
+	NewContract common.Address
+	Raw         types.Log // Blockchain specific contextual infos
+}
+
+// FilterContractUpgrade is a free log retrieval operation binding the contract event 0x450db8da6efbe9c22f2347f7c2021231df1fc58d3ae9a2fa75d39fa446199305.
+//
+// Solidity: event ContractUpgrade(address newContract)
+func (_CryptoKitties *CryptoKittiesFilterer) FilterContractUpgrade(opts *bind.FilterOpts) (*CryptoKittiesContractUpgradeIterator, error) {
+
+	logs, sub, err := _CryptoKitties.contract.FilterLogs(opts, "ContractUpgrade")
+	if err != nil {
+		return nil, err
+	}
+	return &CryptoKittiesContractUpgradeIterator{contract: _CryptoKitties.contract, event: "ContractUpgrade", logs: logs, sub: sub}, nil
+}
+
+// WatchContractUpgrade is a free log subscription operation binding the contract event 0x450db8da6efbe9c22f2347f7c2021231df1fc58d3ae9a2fa75d39fa446199305.
+//
+// Solidity: event ContractUpgrade(address newContract)
+func (_CryptoKitties *CryptoKittiesFilterer) WatchContractUpgrade(opts *bind.WatchOpts, sink chan<- *CryptoKittiesContractUpgrade) (event.Subscription, error) {
+
+	logs, sub, err := _CryptoKitties.contract.WatchLogs(opts, "ContractUpgrade")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(CryptoKittiesContractUpgrade)
+				if err := _CryptoKitties.contract.UnpackLog(event, "ContractUpgrade", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// CryptoKittiesPregnantIterator is returned from FilterPregnant and is used to iterate over the raw logs and unpacked data for Pregnant events raised by the CryptoKitties contract.
+type CryptoKittiesPregnantIterator struct {
+	Event *CryptoKittiesPregnant // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *CryptoKittiesPregnantIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(CryptoKittiesPregnant)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(CryptoKittiesPregnant)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *CryptoKittiesPregnantIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *CryptoKittiesPregnantIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// CryptoKittiesPregnant represents a Pregnant event raised by the CryptoKitties contract.
+type CryptoKittiesPregnant struct {
+	Owner            common.Address
+	MatronId         *big.Int
+	SireId           *big.Int
+	CooldownEndBlock *big.Int
+	Raw              types.Log // Blockchain specific contextual infos
+}
+
+// FilterPregnant is a free log retrieval operation binding the contract event 0x241ea03ca20251805084d27d4440371c34a0b85ff108f6bb5611248f73818b80.
+//
+// Solidity: event Pregnant(address owner, uint256 matronId, uint256 sireId, uint256 cooldownEndBlock)
+func (_CryptoKitties *CryptoKittiesFilterer) FilterPregnant(opts *bind.FilterOpts) (*CryptoKittiesPregnantIterator, error) {
+
+	logs, sub, err := _CryptoKitties.contract.FilterLogs(opts, "Pregnant")
+	if err != nil {
+		return nil, err
+	}
+	return &CryptoKittiesPregnantIterator{contract: _CryptoKitties.contract, event: "Pregnant", logs: logs, sub: sub}, nil
+}
+
+// WatchPregnant is a free log subscription operation binding the contract event 0x241ea03ca20251805084d27d4440371c34a0b85ff108f6bb5611248f73818b80.
+//
+// Solidity: event Pregnant(address owner, uint256 matronId, uint256 sireId, uint256 cooldownEndBlock)
+func (_CryptoKitties *CryptoKittiesFilterer) WatchPregnant(opts *bind.WatchOpts, sink chan<- *CryptoKittiesPregnant) (event.Subscription, error) {
+
+	logs, sub, err := _CryptoKitties.contract.WatchLogs(opts, "Pregnant")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(CryptoKittiesPregnant)
+				if err := _CryptoKitties.contract.UnpackLog(event, "Pregnant", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// CryptoKittiesTransferIterator is returned from FilterTransfer and is used to iterate over the raw logs and unpacked data for Transfer events raised by the CryptoKitties contract.
+type CryptoKittiesTransferIterator struct {
+	Event *CryptoKittiesTransfer // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *CryptoKittiesTransferIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(CryptoKittiesTransfer)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(CryptoKittiesTransfer)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *CryptoKittiesTransferIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *CryptoKittiesTransferIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// CryptoKittiesTransfer represents a Transfer event raised by the CryptoKitties contract.
+type CryptoKittiesTransfer struct {
+	From    common.Address
+	To      common.Address
 	TokenId *big.Int
 	Raw     types.Log // Blockchain specific contextual infos
 }
 
-// FilterAuctionCancelled is a free log retrieval operation binding the contract event 0x2809c7e17bf978fbc7194c0a694b638c4215e9140cacc6c38ca36010b45697df.
+// FilterTransfer is a free log retrieval operation binding the contract event 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef.
 //
-// Solidity: event AuctionCancelled(uint256 tokenId)
-func (_CryptoKitties *CryptoKittiesFilterer) FilterAuctionCancelled(opts *bind.FilterOpts) (*CryptoKittiesAuctionCancelledIterator, error) {
+// Solidity: event Transfer(address from, address to, uint256 tokenId)
+func (_CryptoKitties *CryptoKittiesFilterer) FilterTransfer(opts *bind.FilterOpts) (*CryptoKittiesTransferIterator, error) {
 
-	logs, sub, err := _CryptoKitties.contract.FilterLogs(opts, "AuctionCancelled")
+	logs, sub, err := _CryptoKitties.contract.FilterLogs(opts, "Transfer")
 	if err != nil {
 		return nil, err
 	}
-	return &CryptoKittiesAuctionCancelledIterator{contract: _CryptoKitties.contract, event: "AuctionCancelled", logs: logs, sub: sub}, nil
+	return &CryptoKittiesTransferIterator{contract: _CryptoKitties.contract, event: "Transfer", logs: logs, sub: sub}, nil
 }
 
-// WatchAuctionCancelled is a free log subscription operation binding the contract event 0x2809c7e17bf978fbc7194c0a694b638c4215e9140cacc6c38ca36010b45697df.
+// WatchTransfer is a free log subscription operation binding the contract event 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef.
 //
-// Solidity: event AuctionCancelled(uint256 tokenId)
-func (_CryptoKitties *CryptoKittiesFilterer) WatchAuctionCancelled(opts *bind.WatchOpts, sink chan<- *CryptoKittiesAuctionCancelled) (event.Subscription, error) {
+// Solidity: event Transfer(address from, address to, uint256 tokenId)
+func (_CryptoKitties *CryptoKittiesFilterer) WatchTransfer(opts *bind.WatchOpts, sink chan<- *CryptoKittiesTransfer) (event.Subscription, error) {
 
-	logs, sub, err := _CryptoKitties.contract.WatchLogs(opts, "AuctionCancelled")
-	if err != nil {
-		return nil, err
-	}
-	return event.NewSubscription(func(quit <-chan struct{}) error {
-		defer sub.Unsubscribe()
-		for {
-			select {
-			case log := <-logs:
-				// New log arrived, parse the event and forward to the user
-				event := new(CryptoKittiesAuctionCancelled)
-				if err := _CryptoKitties.contract.UnpackLog(event, "AuctionCancelled", log); err != nil {
-					return err
-				}
-				event.Raw = log
-
-				select {
-				case sink <- event:
-				case err := <-sub.Err():
-					return err
-				case <-quit:
-					return nil
-				}
-			case err := <-sub.Err():
-				return err
-			case <-quit:
-				return nil
-			}
-		}
-	}), nil
-}
-
-// CryptoKittiesAuctionCreatedIterator is returned from FilterAuctionCreated and is used to iterate over the raw logs and unpacked data for AuctionCreated events raised by the CryptoKitties contract.
-type CryptoKittiesAuctionCreatedIterator struct {
-	Event *CryptoKittiesAuctionCreated // Event containing the contract specifics and raw log
-
-	contract *bind.BoundContract // Generic contract to use for unpacking event data
-	event    string              // Event name to use for unpacking event data
-
-	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
-	done bool                  // Whether the subscription completed delivering logs
-	fail error                 // Occurred error to stop iteration
-}
-
-// Next advances the iterator to the subsequent event, returning whether there
-// are any more events found. In case of a retrieval or parsing error, false is
-// returned and Error() can be queried for the exact failure.
-func (it *CryptoKittiesAuctionCreatedIterator) Next() bool {
-	// If the iterator failed, stop iterating
-	if it.fail != nil {
-		return false
-	}
-	// If the iterator completed, deliver directly whatever's available
-	if it.done {
-		select {
-		case log := <-it.logs:
-			it.Event = new(CryptoKittiesAuctionCreated)
-			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-				it.fail = err
-				return false
-			}
-			it.Event.Raw = log
-			return true
-
-		default:
-			return false
-		}
-	}
-	// Iterator still in progress, wait for either a data or an error event
-	select {
-	case log := <-it.logs:
-		it.Event = new(CryptoKittiesAuctionCreated)
-		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-			it.fail = err
-			return false
-		}
-		it.Event.Raw = log
-		return true
-
-	case err := <-it.sub.Err():
-		it.done = true
-		it.fail = err
-		return it.Next()
-	}
-}
-
-// Error returns any retrieval or parsing error occurred during filtering.
-func (it *CryptoKittiesAuctionCreatedIterator) Error() error {
-	return it.fail
-}
-
-// Close terminates the iteration process, releasing any pending underlying
-// resources.
-func (it *CryptoKittiesAuctionCreatedIterator) Close() error {
-	it.sub.Unsubscribe()
-	return nil
-}
-
-// CryptoKittiesAuctionCreated represents a AuctionCreated event raised by the CryptoKitties contract.
-type CryptoKittiesAuctionCreated struct {
-	TokenId       *big.Int
-	StartingPrice *big.Int
-	EndingPrice   *big.Int
-	Duration      *big.Int
-	Raw           types.Log // Blockchain specific contextual infos
-}
-
-// FilterAuctionCreated is a free log retrieval operation binding the contract event 0xa9c8dfcda5664a5a124c713e386da27de87432d5b668e79458501eb296389ba7.
-//
-// Solidity: event AuctionCreated(uint256 tokenId, uint256 startingPrice, uint256 endingPrice, uint256 duration)
-func (_CryptoKitties *CryptoKittiesFilterer) FilterAuctionCreated(opts *bind.FilterOpts) (*CryptoKittiesAuctionCreatedIterator, error) {
-
-	logs, sub, err := _CryptoKitties.contract.FilterLogs(opts, "AuctionCreated")
-	if err != nil {
-		return nil, err
-	}
-	return &CryptoKittiesAuctionCreatedIterator{contract: _CryptoKitties.contract, event: "AuctionCreated", logs: logs, sub: sub}, nil
-}
-
-// WatchAuctionCreated is a free log subscription operation binding the contract event 0xa9c8dfcda5664a5a124c713e386da27de87432d5b668e79458501eb296389ba7.
-//
-// Solidity: event AuctionCreated(uint256 tokenId, uint256 startingPrice, uint256 endingPrice, uint256 duration)
-func (_CryptoKitties *CryptoKittiesFilterer) WatchAuctionCreated(opts *bind.WatchOpts, sink chan<- *CryptoKittiesAuctionCreated) (event.Subscription, error) {
-
-	logs, sub, err := _CryptoKitties.contract.WatchLogs(opts, "AuctionCreated")
+	logs, sub, err := _CryptoKitties.contract.WatchLogs(opts, "Transfer")
 	if err != nil {
 		return nil, err
 	}
@@ -759,374 +2238,8 @@ func (_CryptoKitties *CryptoKittiesFilterer) WatchAuctionCreated(opts *bind.Watc
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(CryptoKittiesAuctionCreated)
-				if err := _CryptoKitties.contract.UnpackLog(event, "AuctionCreated", log); err != nil {
-					return err
-				}
-				event.Raw = log
-
-				select {
-				case sink <- event:
-				case err := <-sub.Err():
-					return err
-				case <-quit:
-					return nil
-				}
-			case err := <-sub.Err():
-				return err
-			case <-quit:
-				return nil
-			}
-		}
-	}), nil
-}
-
-// CryptoKittiesAuctionSuccessfulIterator is returned from FilterAuctionSuccessful and is used to iterate over the raw logs and unpacked data for AuctionSuccessful events raised by the CryptoKitties contract.
-type CryptoKittiesAuctionSuccessfulIterator struct {
-	Event *CryptoKittiesAuctionSuccessful // Event containing the contract specifics and raw log
-
-	contract *bind.BoundContract // Generic contract to use for unpacking event data
-	event    string              // Event name to use for unpacking event data
-
-	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
-	done bool                  // Whether the subscription completed delivering logs
-	fail error                 // Occurred error to stop iteration
-}
-
-// Next advances the iterator to the subsequent event, returning whether there
-// are any more events found. In case of a retrieval or parsing error, false is
-// returned and Error() can be queried for the exact failure.
-func (it *CryptoKittiesAuctionSuccessfulIterator) Next() bool {
-	// If the iterator failed, stop iterating
-	if it.fail != nil {
-		return false
-	}
-	// If the iterator completed, deliver directly whatever's available
-	if it.done {
-		select {
-		case log := <-it.logs:
-			it.Event = new(CryptoKittiesAuctionSuccessful)
-			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-				it.fail = err
-				return false
-			}
-			it.Event.Raw = log
-			return true
-
-		default:
-			return false
-		}
-	}
-	// Iterator still in progress, wait for either a data or an error event
-	select {
-	case log := <-it.logs:
-		it.Event = new(CryptoKittiesAuctionSuccessful)
-		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-			it.fail = err
-			return false
-		}
-		it.Event.Raw = log
-		return true
-
-	case err := <-it.sub.Err():
-		it.done = true
-		it.fail = err
-		return it.Next()
-	}
-}
-
-// Error returns any retrieval or parsing error occurred during filtering.
-func (it *CryptoKittiesAuctionSuccessfulIterator) Error() error {
-	return it.fail
-}
-
-// Close terminates the iteration process, releasing any pending underlying
-// resources.
-func (it *CryptoKittiesAuctionSuccessfulIterator) Close() error {
-	it.sub.Unsubscribe()
-	return nil
-}
-
-// CryptoKittiesAuctionSuccessful represents a AuctionSuccessful event raised by the CryptoKitties contract.
-type CryptoKittiesAuctionSuccessful struct {
-	TokenId    *big.Int
-	TotalPrice *big.Int
-	Winner     common.Address
-	Raw        types.Log // Blockchain specific contextual infos
-}
-
-// FilterAuctionSuccessful is a free log retrieval operation binding the contract event 0x4fcc30d90a842164dd58501ab874a101a3749c3d4747139cefe7c876f4ccebd2.
-//
-// Solidity: event AuctionSuccessful(uint256 tokenId, uint256 totalPrice, address winner)
-func (_CryptoKitties *CryptoKittiesFilterer) FilterAuctionSuccessful(opts *bind.FilterOpts) (*CryptoKittiesAuctionSuccessfulIterator, error) {
-
-	logs, sub, err := _CryptoKitties.contract.FilterLogs(opts, "AuctionSuccessful")
-	if err != nil {
-		return nil, err
-	}
-	return &CryptoKittiesAuctionSuccessfulIterator{contract: _CryptoKitties.contract, event: "AuctionSuccessful", logs: logs, sub: sub}, nil
-}
-
-// WatchAuctionSuccessful is a free log subscription operation binding the contract event 0x4fcc30d90a842164dd58501ab874a101a3749c3d4747139cefe7c876f4ccebd2.
-//
-// Solidity: event AuctionSuccessful(uint256 tokenId, uint256 totalPrice, address winner)
-func (_CryptoKitties *CryptoKittiesFilterer) WatchAuctionSuccessful(opts *bind.WatchOpts, sink chan<- *CryptoKittiesAuctionSuccessful) (event.Subscription, error) {
-
-	logs, sub, err := _CryptoKitties.contract.WatchLogs(opts, "AuctionSuccessful")
-	if err != nil {
-		return nil, err
-	}
-	return event.NewSubscription(func(quit <-chan struct{}) error {
-		defer sub.Unsubscribe()
-		for {
-			select {
-			case log := <-logs:
-				// New log arrived, parse the event and forward to the user
-				event := new(CryptoKittiesAuctionSuccessful)
-				if err := _CryptoKitties.contract.UnpackLog(event, "AuctionSuccessful", log); err != nil {
-					return err
-				}
-				event.Raw = log
-
-				select {
-				case sink <- event:
-				case err := <-sub.Err():
-					return err
-				case <-quit:
-					return nil
-				}
-			case err := <-sub.Err():
-				return err
-			case <-quit:
-				return nil
-			}
-		}
-	}), nil
-}
-
-// CryptoKittiesPauseIterator is returned from FilterPause and is used to iterate over the raw logs and unpacked data for Pause events raised by the CryptoKitties contract.
-type CryptoKittiesPauseIterator struct {
-	Event *CryptoKittiesPause // Event containing the contract specifics and raw log
-
-	contract *bind.BoundContract // Generic contract to use for unpacking event data
-	event    string              // Event name to use for unpacking event data
-
-	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
-	done bool                  // Whether the subscription completed delivering logs
-	fail error                 // Occurred error to stop iteration
-}
-
-// Next advances the iterator to the subsequent event, returning whether there
-// are any more events found. In case of a retrieval or parsing error, false is
-// returned and Error() can be queried for the exact failure.
-func (it *CryptoKittiesPauseIterator) Next() bool {
-	// If the iterator failed, stop iterating
-	if it.fail != nil {
-		return false
-	}
-	// If the iterator completed, deliver directly whatever's available
-	if it.done {
-		select {
-		case log := <-it.logs:
-			it.Event = new(CryptoKittiesPause)
-			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-				it.fail = err
-				return false
-			}
-			it.Event.Raw = log
-			return true
-
-		default:
-			return false
-		}
-	}
-	// Iterator still in progress, wait for either a data or an error event
-	select {
-	case log := <-it.logs:
-		it.Event = new(CryptoKittiesPause)
-		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-			it.fail = err
-			return false
-		}
-		it.Event.Raw = log
-		return true
-
-	case err := <-it.sub.Err():
-		it.done = true
-		it.fail = err
-		return it.Next()
-	}
-}
-
-// Error returns any retrieval or parsing error occurred during filtering.
-func (it *CryptoKittiesPauseIterator) Error() error {
-	return it.fail
-}
-
-// Close terminates the iteration process, releasing any pending underlying
-// resources.
-func (it *CryptoKittiesPauseIterator) Close() error {
-	it.sub.Unsubscribe()
-	return nil
-}
-
-// CryptoKittiesPause represents a Pause event raised by the CryptoKitties contract.
-type CryptoKittiesPause struct {
-	Raw types.Log // Blockchain specific contextual infos
-}
-
-// FilterPause is a free log retrieval operation binding the contract event 0x6985a02210a168e66602d3235cb6db0e70f92b3ba4d376a33c0f3d9434bff625.
-//
-// Solidity: event Pause()
-func (_CryptoKitties *CryptoKittiesFilterer) FilterPause(opts *bind.FilterOpts) (*CryptoKittiesPauseIterator, error) {
-
-	logs, sub, err := _CryptoKitties.contract.FilterLogs(opts, "Pause")
-	if err != nil {
-		return nil, err
-	}
-	return &CryptoKittiesPauseIterator{contract: _CryptoKitties.contract, event: "Pause", logs: logs, sub: sub}, nil
-}
-
-// WatchPause is a free log subscription operation binding the contract event 0x6985a02210a168e66602d3235cb6db0e70f92b3ba4d376a33c0f3d9434bff625.
-//
-// Solidity: event Pause()
-func (_CryptoKitties *CryptoKittiesFilterer) WatchPause(opts *bind.WatchOpts, sink chan<- *CryptoKittiesPause) (event.Subscription, error) {
-
-	logs, sub, err := _CryptoKitties.contract.WatchLogs(opts, "Pause")
-	if err != nil {
-		return nil, err
-	}
-	return event.NewSubscription(func(quit <-chan struct{}) error {
-		defer sub.Unsubscribe()
-		for {
-			select {
-			case log := <-logs:
-				// New log arrived, parse the event and forward to the user
-				event := new(CryptoKittiesPause)
-				if err := _CryptoKitties.contract.UnpackLog(event, "Pause", log); err != nil {
-					return err
-				}
-				event.Raw = log
-
-				select {
-				case sink <- event:
-				case err := <-sub.Err():
-					return err
-				case <-quit:
-					return nil
-				}
-			case err := <-sub.Err():
-				return err
-			case <-quit:
-				return nil
-			}
-		}
-	}), nil
-}
-
-// CryptoKittiesUnpauseIterator is returned from FilterUnpause and is used to iterate over the raw logs and unpacked data for Unpause events raised by the CryptoKitties contract.
-type CryptoKittiesUnpauseIterator struct {
-	Event *CryptoKittiesUnpause // Event containing the contract specifics and raw log
-
-	contract *bind.BoundContract // Generic contract to use for unpacking event data
-	event    string              // Event name to use for unpacking event data
-
-	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
-	done bool                  // Whether the subscription completed delivering logs
-	fail error                 // Occurred error to stop iteration
-}
-
-// Next advances the iterator to the subsequent event, returning whether there
-// are any more events found. In case of a retrieval or parsing error, false is
-// returned and Error() can be queried for the exact failure.
-func (it *CryptoKittiesUnpauseIterator) Next() bool {
-	// If the iterator failed, stop iterating
-	if it.fail != nil {
-		return false
-	}
-	// If the iterator completed, deliver directly whatever's available
-	if it.done {
-		select {
-		case log := <-it.logs:
-			it.Event = new(CryptoKittiesUnpause)
-			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-				it.fail = err
-				return false
-			}
-			it.Event.Raw = log
-			return true
-
-		default:
-			return false
-		}
-	}
-	// Iterator still in progress, wait for either a data or an error event
-	select {
-	case log := <-it.logs:
-		it.Event = new(CryptoKittiesUnpause)
-		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-			it.fail = err
-			return false
-		}
-		it.Event.Raw = log
-		return true
-
-	case err := <-it.sub.Err():
-		it.done = true
-		it.fail = err
-		return it.Next()
-	}
-}
-
-// Error returns any retrieval or parsing error occurred during filtering.
-func (it *CryptoKittiesUnpauseIterator) Error() error {
-	return it.fail
-}
-
-// Close terminates the iteration process, releasing any pending underlying
-// resources.
-func (it *CryptoKittiesUnpauseIterator) Close() error {
-	it.sub.Unsubscribe()
-	return nil
-}
-
-// CryptoKittiesUnpause represents a Unpause event raised by the CryptoKitties contract.
-type CryptoKittiesUnpause struct {
-	Raw types.Log // Blockchain specific contextual infos
-}
-
-// FilterUnpause is a free log retrieval operation binding the contract event 0x7805862f689e2f13df9f062ff482ad3ad112aca9e0847911ed832e158c525b33.
-//
-// Solidity: event Unpause()
-func (_CryptoKitties *CryptoKittiesFilterer) FilterUnpause(opts *bind.FilterOpts) (*CryptoKittiesUnpauseIterator, error) {
-
-	logs, sub, err := _CryptoKitties.contract.FilterLogs(opts, "Unpause")
-	if err != nil {
-		return nil, err
-	}
-	return &CryptoKittiesUnpauseIterator{contract: _CryptoKitties.contract, event: "Unpause", logs: logs, sub: sub}, nil
-}
-
-// WatchUnpause is a free log subscription operation binding the contract event 0x7805862f689e2f13df9f062ff482ad3ad112aca9e0847911ed832e158c525b33.
-//
-// Solidity: event Unpause()
-func (_CryptoKitties *CryptoKittiesFilterer) WatchUnpause(opts *bind.WatchOpts, sink chan<- *CryptoKittiesUnpause) (event.Subscription, error) {
-
-	logs, sub, err := _CryptoKitties.contract.WatchLogs(opts, "Unpause")
-	if err != nil {
-		return nil, err
-	}
-	return event.NewSubscription(func(quit <-chan struct{}) error {
-		defer sub.Unsubscribe()
-		for {
-			select {
-			case log := <-logs:
-				// New log arrived, parse the event and forward to the user
-				event := new(CryptoKittiesUnpause)
-				if err := _CryptoKitties.contract.UnpackLog(event, "Unpause", log); err != nil {
+				event := new(CryptoKittiesTransfer)
+				if err := _CryptoKitties.contract.UnpackLog(event, "Transfer", log); err != nil {
 					return err
 				}
 				event.Raw = log

@@ -2,11 +2,13 @@ package CryptoKitties
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"github.com/BlockABC/wallet_eth_client/common/evm"
 	"github.com/BlockABC/wallet_eth_client/common/utils"
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
@@ -14,10 +16,18 @@ import (
 	"strings"
 )
 
+func BalanceAt(address, contract string, client *ethclient.Client) (*big.Int, error) {
+	instance, err := NewCryptoKitties(common.HexToAddress(contract), client)
+	if err != nil {
+		return nil, errors.New(fmt.Sprintf("new token err:%v", err))
+	}
+	return instance.BalanceOf(&bind.CallOpts{}, common.HexToAddress(address))
+}
+
 type LogTransfer struct {
-	From   common.Address `json:"from"`
-	To     common.Address `json:"to"`
-	Tokens *big.Int       `json:"tokens"`
+	From    common.Address
+	To      common.Address
+	TokenId *big.Int
 }
 
 type LogApproval struct {
@@ -50,11 +60,11 @@ func ListenTransferEvent(ctx context.Context, client *ethclient.Client, address 
 			if err != nil {
 				return err
 			}
-			transferEvent.From = common.HexToAddress(l.Topics[1].Hex())
-			transferEvent.To = common.HexToAddress(l.Topics[2].Hex())
+			//transferEvent.From = common.HexToAddress(l.Topics[1].Hex())
+			//transferEvent.To = common.HexToAddress(l.Topics[2].Hex())
 			fmt.Printf("From: %s\n", transferEvent.From.Hex())
 			fmt.Printf("To: %s\n", transferEvent.To.Hex())
-			fmt.Printf("Tokens: %s\n", transferEvent.Tokens.String())
+			fmt.Printf("Tokens: %s\n", transferEvent.TokenId.String())
 		default:
 			fmt.Println("unknown topic:", l.Topics[0].Hex())
 		}
@@ -82,11 +92,11 @@ func AnalysisLogs(logs ...types.Log) error {
 				if err != nil {
 					return err
 				}
-				transferEvent.From = common.HexToAddress(l.Topics[1].Hex())
-				transferEvent.To = common.HexToAddress(l.Topics[2].Hex())
+				//transferEvent.From = common.HexToAddress(l.Topics[1].Hex())
+				//transferEvent.To = common.HexToAddress(l.Topics[2].Hex())
 				fmt.Printf("From: %s\n", transferEvent.From.Hex())
 				fmt.Printf("To: %s\n", transferEvent.To.Hex())
-				fmt.Printf("Tokens: %s\n", transferEvent.Tokens)
+				fmt.Printf("Tokens: %s\n", transferEvent.TokenId)
 			}
 
 		default:

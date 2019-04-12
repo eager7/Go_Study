@@ -5,6 +5,9 @@ default:
 	solc --bin ${contract}.sol | awk '/Binary:/{x=1;next}x' > ${contract}.bin
 	abigen --bin=${contract}.bin --abi=${contract}.abi --pkg=${contract} --out=${contract}.go
 
+go:
+	abigen --bin=${contract}.bin --abi=${contract}.abi --pkg=${contract} --out=${contract}.go
+
 clean:
 	rm ${contract}.abi
 	rm ${contract}.bin
