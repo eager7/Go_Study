@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"hash/crc32"
 	"log"
@@ -15,6 +16,11 @@ import (
 
 func main() {
 	fmt.Println("start example...")
+	var daemon = flag.Bool("d", false, "daemon")
+	var d = flag.Int("n", 1, "int")
+	flag.Parse()
+	fmt.Println(*daemon)
+	fmt.Println(rune(*d))
 }
 
 func CRC32(s string) uint32 {
