@@ -1,4 +1,4 @@
-contract:=token
+contract:=erc721
 
 default:
 	solc --abi ${contract}.sol | awk '/JSON ABI/{x=1;next}x' > ${contract}.abi

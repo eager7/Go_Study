@@ -24,7 +24,7 @@ func TestRun(t *testing.T) {
 }
 
 func TestEth_GetChainDataByNumber(t *testing.T) {
-	eth, err := new(Eth).Initialize(new(context.Context).Initialize(), "wss://mainnet.infura.io/ws") //"wss://ropsten.infura.io/ws" "https://mainnet.infura.io"
+	eth, err := new(Eth).Initialize(new(context.Context).Initialize(), "http://47.52.157.31:8545") //"wss://ropsten.infura.io/ws" "https://mainnet.infura.io"
 	if err != nil {
 		t.Fatal(err)
 	}

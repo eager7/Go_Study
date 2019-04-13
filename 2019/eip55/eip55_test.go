@@ -1,6 +1,7 @@
 package eip55
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -16,4 +17,8 @@ func Check(address string, t *testing.T) {
 	if addr := Hex(address); addr != address {
 		t.Fatal("unequal:", addr)
 	}
+}
+
+func TestAddress(t *testing.T) {
+	fmt.Println(Address())
 }
