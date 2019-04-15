@@ -15,7 +15,17 @@ import (
 
 func main() {
 	fmt.Println("start example...")
+	kn := "0x739cd26"
+	fmt.Println(len(kn))
+	n:="739cd26"
+	for i:=0; i< 10-  len(kn); i++{
+		n ="0"+ n
+		fmt.Println(kn)
+	}
+	fmt.Println(kn)
+	fmt.Println("aft:", "0x"+n)
 }
+
 
 func CRC32(s string) uint32 {
 	ieee := crc32.NewIEEE()
