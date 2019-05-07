@@ -1,6 +1,7 @@
 package mysql
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -33,4 +34,8 @@ func check(err error) {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func TestMysqlFormat(t *testing.T) {
+	fmt.Println(MysqlFormat(`Founder's" Token_0.1`))
 }

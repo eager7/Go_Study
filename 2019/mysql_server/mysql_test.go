@@ -34,7 +34,7 @@ type contractStat struct {
 type tStatMap = map[string]contractStat
 
 func TestContractStatInfoBatch(t *testing.T) {
-	db := InitializeGorm("tTable")
+	db := InitializeGorm("eth_database")
 	stats := make(map[string]contractStat)
 	//allStats["test"] = map[string]contractStat{
 	//	"statMap": {
@@ -51,15 +51,15 @@ func TestContractStatInfoBatch(t *testing.T) {
 	}
 
 	statInfoList := make([]interface{}, 0, 120)
-		for _, statInfo := range stats {
-			statInfoList = append(statInfoList, ContractStatInfo{
-				Account:              statInfo.ContractName,
-				Date:                 "",
-				InvokedTimes:         statInfo.InvokedTimes,
-				EOSTransferAmount24h: statInfo.EosTransferAmount,
-				TradeVolume24h:       statInfo.TradeVolume,
-			})
-		}
+	for _, statInfo := range stats {
+		statInfoList = append(statInfoList, ContractStatInfo{
+			Account:              statInfo.ContractName,
+			Date:                 "",
+			InvokedTimes:         statInfo.InvokedTimes,
+			EOSTransferAmount24h: statInfo.EosTransferAmount,
+			TradeVolume24h:       statInfo.TradeVolume,
+		})
+	}
 
 	f := func(tableName, fields, valuePlaceholders string) string {
 		cmd := fmt.Sprintf("INSERT INTO %s (%s) VALUES %s ON DUPLICATE KEY UPDATE "+
@@ -113,4 +113,21 @@ func TestSearch(t *testing.T) {
 		t.Fatal(err)
 	}
 	t.Log(stats)
+}
+type D struct {
+	Id     uint64
+	Name   string
+	Symbol string
+}
+func (d*D)TableName()string{
+	return "t_test_info"
+}
+func TestIgnoreInsert(t *testing.T) {
+
+	db := InitializeGorm("eth_database")
+	//db.gorm.Callback().Create().Remove("gorm:create")
+	//db.gorm.Callback().Create().Replace("gorm:create", newCreateFunction)
+	if err := db.gorm.Create(&D{Name: "pct"}).Error; err != nil {
+		t.Fatal(err)
+	}
 }
