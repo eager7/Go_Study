@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	"text/template"
 )
 
 const TableString = "`tableTest`(`id` INT NOT NULL AUTO_INCREMENT,`name` VARCHAR(100) NOT NULL,`age` INT DEFAULT 0,`birthday` DATE,PRIMARY KEY(`id`))ENGINE=InnoDB DEFAULT CHARSET=utf8;"
@@ -51,4 +52,8 @@ func (db *DB) Show() {
 		fmt.Println(rows.Columns())
 		fmt.Println(rows.Scan())
 	}
+}
+
+func MysqlFormat(s string) string{
+	return template.HTMLEscapeString(s)
 }

@@ -8,7 +8,8 @@ import (
 
 func TestMCache(t *testing.T) {
 	router := gin.Default()
-	router.GET("/:who/ping", PingHandle)
+	cache := Initialize("localhost:8080")
+	router.GET("/:who/ping", cache.MiddleWare(), PingHandle)
 	if err := router.Run(); err != nil {
 		panic(err)
 	}

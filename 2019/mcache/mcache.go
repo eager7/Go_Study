@@ -56,6 +56,7 @@ func (c *Cache) CacheHandle(ctx *gin.Context) {
 		return
 	}
 	fmt.Println("save data into mem cache")
+	ctx.Writer.Written()
 }
 
 func Md5(message []byte) (tmp string) {
