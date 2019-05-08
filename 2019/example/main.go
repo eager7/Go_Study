@@ -10,11 +10,26 @@ import (
 	"os"
 	"reflect"
 	"strconv"
+	"sync"
 	"time"
 )
 
 func main() {
 	fmt.Println("start example...")
+	Rou()
+}
+
+func Rou() {
+	wg := sync.WaitGroup{}
+	for i := 0; i < 100; i++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			fmt.Println(i)
+		}(i)
+	}
+	wg.Wait()
+	fmt.Println("finished")
 }
 
 func CRC32(s string) uint32 {
