@@ -10,7 +10,7 @@ import (
 func Initialize() error {
 	_, _ = runCmd(fmt.Sprintf("date >> /tmp/crontab_test"))
 	task := cron.New()
-	//秒里有1时执行任务
+	//秒里有1时执行任务，相当于每分钟
 	if err := task.AddFunc("1 * * * *", func() {
 		//fmt.Println("task 1 for every minute:", time.Now().Local())
 	}); err != nil {

@@ -16,7 +16,14 @@ import (
 
 func main() {
 	fmt.Println("start example...")
-	Rou()
+	var list []int
+	fmt.Println(list[1])
+
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println(r)
+		}
+	}()
 }
 
 func Rou() {
