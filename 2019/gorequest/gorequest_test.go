@@ -2,7 +2,10 @@ package gorequest
 
 import (
 	"fmt"
+	"github.com/parnurzeal/gorequest"
+	"net/http"
 	"testing"
+	"time"
 )
 
 func TestInitialize(t *testing.T) {
@@ -28,4 +31,18 @@ func TestGetEtherScanTrxList(t *testing.T) {
 
 func TestExample(t *testing.T) {
 	Example()
+}
+
+func TestCK(t *testing.T) {
+	fmt.Println("test ck")
+	url := `https://api.cryptokitties.co/kitties/%d`
+	for i := 1; i < 200; i++ {
+		fmt.Println("url:", fmt.Sprintf(url, i))
+		resp, body, errs := gorequest.New().Timeout(time.Second * 10).Get(fmt.Sprintf(url, i)).End()
+		if errs != nil || resp.StatusCode != http.StatusOK {
+			t.Log(resp.StatusCode)
+			t.Fatal(errs)
+		}
+		fmt.Println("body:", string(body[:10]))
+	}
 }

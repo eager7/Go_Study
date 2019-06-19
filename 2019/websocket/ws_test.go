@@ -35,7 +35,9 @@ func client(t *testing.T) {
 		t.Fatal(err)
 	}
 	fmt.Println("connect to server success:", cli.RemoteAddr().String(), resp.StatusCode)
-	defer func() { _ = cli.Close() }()
+	defer func() {
+		fmt.Println("close connect:", cli.Close())
+	}()
 	if resp == nil || resp.StatusCode != http.StatusSwitchingProtocols {
 		fmt.Println("status err:", resp)
 		t.Fatal(resp)
@@ -48,5 +50,4 @@ func client(t *testing.T) {
 	if err := cli.WriteMessage(1, []byte("test message 2")); err != nil {
 		t.Fatal(err)
 	}
-	time.Sleep(time.Second * 10)
 }

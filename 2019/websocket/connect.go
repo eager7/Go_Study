@@ -2,33 +2,35 @@ package ws
 
 import (
 	"context"
-	"fmt"
 	"github.com/gorilla/websocket"
 	"log"
 	"reflect"
 	"sync"
+	"time"
 )
 
 type Connection struct {
-	wg     *sync.WaitGroup
-	ctx    context.Context
-	cancel context.CancelFunc
-	wsConn *websocket.Conn
-	send   chan interface{}
-	recv   chan interface{}
+	wg      *sync.WaitGroup
+	ctx     context.Context
+	cancel  context.CancelFunc
+	errChan chan *Connection
+	wsConn  *websocket.Conn
+	send    chan interface{}
+	recv    chan interface{}
 }
 
-func (c *Connection) Initialize(wsConn *websocket.Conn) *Connection {
+func (c *Connection) Initialize(wsConn *websocket.Conn, errChan chan *Connection) *Connection {
 	wg := &sync.WaitGroup{}
 	ctx, cancel := context.WithCancel(context.WithValue(context.Background(), "manager", wg))
 
 	return &Connection{
-		wg:     wg,
-		ctx:    ctx,
-		cancel: cancel,
-		wsConn: wsConn,
-		send:   make(chan interface{}, 10),
-		recv:   make(chan interface{}, 10),
+		wg:      wg,
+		ctx:     ctx,
+		cancel:  cancel,
+		errChan: errChan,
+		wsConn:  wsConn,
+		send:    make(chan interface{}, 10),
+		recv:    make(chan interface{}, 10),
 	}
 }
 
@@ -54,12 +56,15 @@ func (c *Connection) ReadRoutine(ctx context.Context, wg *sync.WaitGroup) {
 		default:
 			typ, body, err := c.wsConn.ReadMessage()
 			if err != nil {
-				logger.Println("read message err:", err)
+				logger.Println("read message err, closed:", err)
+				c.errChan <- c
+				time.Sleep(time.Millisecond * 100)
+			} else {
+				logger.Println("message:", typ, string(body))
+				c.recv <- &BaseMessage{identify: typ, body: body}
 			}
-			logger.Println("message:", typ, string(body))
-			c.recv <- &BaseMessage{identify: typ, body: body}
 		case <-ctx.Done():
-			fmt.Println("return read routine...")
+			log.Println("return read routine...")
 			wg.Done()
 			return
 		}
@@ -80,7 +85,7 @@ func (c *Connection) WriteRoutine(ctx context.Context, wg *sync.WaitGroup) {
 				log.Println("can't parse type:", reflect.TypeOf(in))
 			}
 		case <-ctx.Done():
-			fmt.Println("return write routine...")
+			log.Println("return write routine...")
 			wg.Done()
 			return
 		}
@@ -99,7 +104,7 @@ func (c *Connection) HandlerRoutine(ctx context.Context, wg *sync.WaitGroup) {
 				log.Println("can't parse type:", reflect.TypeOf(in))
 			}
 		case <-ctx.Done():
-			fmt.Println("return handle routine...")
+			log.Println("return handle routine...")
 			wg.Done()
 			return
 		}
