@@ -3,8 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"github.com/eager7/elog"
 	"hash/crc32"
-	"log"
 	"math/big"
 	"net"
 	"os"
@@ -14,16 +14,11 @@ import (
 	"time"
 )
 
-func main() {
-	fmt.Println("start example...")
-	var list []int
-	fmt.Println(list[1])
+var log = elog.NewLogger("example", elog.DebugLevel)
 
-	defer func() {
-		if r := recover(); r != nil {
-			fmt.Println(r)
-		}
-	}()
+func main() {
+	log.Debug("start example...")
+	select {}
 }
 
 func Rou() {
@@ -81,7 +76,7 @@ func getContext(contextFilePath string) (string, int64) {
 	var startIndex int64
 	actionIndexFile, e := os.Open(contextFilePath)
 	if e != nil {
-		log.Println("can't read action table index:", e.Error())
+		fmt.Println("can't read action table index:", e.Error())
 		return lastRunEndDate, startIndex
 	}
 	defer actionIndexFile.Close()
@@ -91,12 +86,12 @@ func getContext(contextFilePath string) (string, int64) {
 		indexLine := scanner.Text()
 		fmt.Sscanf(indexLine, "%s %d", &lastRunEndDate, &startIndex)
 
-		log.Printf("date: %s, index: %d", lastRunEndDate, startIndex)
+		fmt.Printf("date: %s, index: %d", lastRunEndDate, startIndex)
 		break
 	}
 
 	if lastRunEndDate == "" || startIndex == 0 {
-		log.Println("fail to read executed context")
+		fmt.Println("fail to read executed context")
 	}
 
 	return lastRunEndDate, startIndex
