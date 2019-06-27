@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"encoding/hex"
 	"fmt"
 	"github.com/eager7/elog"
 	"hash/crc32"
@@ -18,7 +19,8 @@ var log = elog.NewLogger("example", elog.DebugLevel)
 
 func main() {
 	log.Debug("start example...")
-	select {}
+
+	fmt.Println(hex.DecodeString("10"))
 }
 
 func Rou() {
