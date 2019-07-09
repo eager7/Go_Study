@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"encoding/hex"
 	"fmt"
 	"github.com/eager7/elog"
 	"hash/crc32"
@@ -17,10 +16,41 @@ import (
 
 var log = elog.NewLogger("example", elog.DebugLevel)
 
+type Transaciton struct {
+	GlobalSequence int64  `json:"global_sequence"`
+	FromAccount    string `json:"from_account"`
+	ToAccount      string `json:"to_account"`
+	Quantity       string `json:"quantity"`
+	ExecAccount    string `json:"exec_account"`
+	Symbol         string `json:"symbol"`
+	Memo           string `json:"memo"`
+	TrxTimestamp   string `json:"trx_timestamp"`
+	TransactionID  string `json:"transaction_id"`
+	BlockNum       int    `json:"block_num"`
+	Status         string `json:"status"`
+}
+type TransferInfo struct {
+	Errno  int64  `json:"errno"`
+	Errmsg string `json:"errmsg"`
+	Data   struct {
+		Total                    int           `json:"total"`
+		Page                     int           `json:"page"`
+		Size                     int           `json:"size"`
+		LastIrreversibleBlockNum int           `json:"last_irreversible_block_num"`
+		Transactions             []Transaciton `json:"transactions"`
+	} `json:"data"`
+}
+
 func main() {
 	log.Debug("start example...")
 
-	fmt.Println(hex.DecodeString("10"))
+	m := make([]interface{}, 2)
+	m[0] = 1
+	m[1] = nil
+	for k, v := range m {
+		fmt.Println(k, v)
+	}
+
 }
 
 func Rou() {
