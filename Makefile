@@ -1,12 +1,9 @@
 TARGET:=$(shell pwd | sed 's/\/.*.\///g')
 
-export GOPATH=$(shell pwd)
-
-default:all install
+default:all
 
 all:
-	echo $(GOPATH)
-	cd src;go build $(TARGET).go
+	export GOPROXY="https://athens.azurefd.net" && GO111MODULE=on go build main.go
 
 install:
 	mv src/$(TARGET) ./
