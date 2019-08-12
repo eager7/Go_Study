@@ -13,3 +13,4 @@ func InitRedis(addr, pass string, zone int) *redis.Client {
 		DB:       zone,
 	})
 }
+
