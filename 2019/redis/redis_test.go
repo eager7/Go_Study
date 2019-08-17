@@ -26,3 +26,19 @@ func TestRedis(t *testing.T) {
 	t.Log(r.Get("pct"))
 
 }
+
+func TestSet(t *testing.T) {
+	r := InitRedis("127.0.0.1:6379", "", 2)
+	r.HSet("key", "1", "1")//往集合里添加数据，key是集合最外层key，filed是集合内部record的key，value是record的value
+	if r.HGet("key", "1").Val() != "1" {
+		t.Fatal("must be 1")
+	}
+	r.HSet("key", "1", "2")
+	if r.HGet("key", "1").Val() != "2" {
+		t.Fatal("must be 1")
+	}
+	if err := r.HDel("key", "1").Err();err!=nil{
+		t.Fatal(err)
+	}
+	fmt.Println("ret:", r.HGet("key", "1").Val())
+}

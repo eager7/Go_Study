@@ -23,3 +23,12 @@ func TestSlice(t *testing.T) {
 	fmt.Println(SplitSliceLen(slice, 5))
 	fmt.Println(SplitSliceLen(slice, 6))
 }
+
+func TestCap(t *testing.T) {
+	a := make([]string, 0, 0)
+	a = append(a, "a", "b", "c")
+
+	b := a
+	a = append(a, "d", "e", "f", "g") // 下面代码中 b 能覆盖多少，取决于 a append 了多少
+	fmt.Println("cap-a", cap(a), cap(b))
+}
