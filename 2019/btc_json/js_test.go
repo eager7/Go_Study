@@ -1,9 +1,9 @@
 package js
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/shopspring/decimal"
 	"testing"
 )
 
@@ -11,42 +11,36 @@ const tx1 = `{"txid":"a404ab8b80d3fb3f883ef8ef26c635c8c6f9051918405fd4125d2b28fd
 
 func TestJson(t *testing.T) {
 	tx := Transaction{}
-	decoder := json.NewDecoder(bytes.NewReader([]byte(tx1)))
-	decoder.UseNumber()
-	if err := decoder.Decode(&tx); err!=nil {
+	if err := json.Unmarshal([]byte(tx1), &tx); err != nil {
 		panic(err)
 	}
-	//if err := json.Unmarshal([]byte(tx1), &tx); err != nil {
-	//	panic(err)
-	//}
 	var coinBase bool
-	var vIn, vOut uint64 //计算交易手续费用
+	var vIn, vOut decimal.Decimal //计算交易手续费用
 	for index, in := range tx.VIn {
 		if in.TxID == "" {
-			vIn = uint64(Reward(tx.BlockHeight)*Decimals)
+			vIn = decimal.NewFromFloat(Reward(tx.BlockHeight))
 			coinBase = true
 			continue //skip coin base
 		}
-		v, err := tx.VIn[index].Refer.Value.Float64()
-		if err != nil {
-			panic(err)
-		}
-		vIn += uint64(v*Decimals)
-		//vIn += tx.VIn[index].Refer.Value
-		fmt.Println("in:", v, vIn)
+		vIn = vIn.Add(decimal.NewFromFloat(tx.VIn[index].Refer.Value))
+		fmt.Println("in:", tx.VIn[index].Refer.Value, vIn)
 	}
 	for _, out := range tx.VOut {
-		v, err := out.Value.Float64()
-		if err != nil {
-			panic(err)
-		}
-		vOut += uint64(v*Decimals)
-		fmt.Println("out:", v, vOut)
+		vOut = vOut.Add(decimal.NewFromFloat(out.Value))
+		fmt.Println("out:", out.Value, vOut)
 	}
 	if coinBase {
-		tx.Fee = vOut - vIn
+		fee, ex := vOut.Sub(vIn).Mul(decimal.New(Decimals, 0)).Float64()
+		if !ex {
+			t.Fatal("ex")
+		}
+		tx.Fee = uint64(fee)
 	} else {
-		tx.Fee = vIn - vOut
+		fee, ex := vIn.Sub(vOut).Mul(decimal.New(Decimals, 0)).Float64()
+		if !ex {
+			t.Fatal("ex")
+		}
+		tx.Fee = uint64(fee)
 	}
 	fmt.Println("fee:", vIn, vOut, tx.Fee)
 	d, err := json.Marshal(tx)
@@ -54,4 +48,24 @@ func TestJson(t *testing.T) {
 		panic(err)
 	}
 	fmt.Println(string(d))
+}
+
+func TestFloat(t *testing.T) {
+	in1,in2,in3,in4,in5 := 16.83,50.0,50.0,50.0,50.0
+	value := decimal.NewFromFloat(0.0)
+
+	value = value.Add(decimal.NewFromFloat(in1))
+	fmt.Println(value.Float64())
+
+	value = value.Add(decimal.NewFromFloat(in2))
+	fmt.Println(value.Float64())
+
+	value = value.Add(decimal.NewFromFloat(in3))
+	fmt.Println(value.Float64())
+
+	value = value.Add(decimal.NewFromFloat(in4))
+	fmt.Println(value.Float64())
+
+	value = value.Add(decimal.NewFromFloat(in5))
+	fmt.Println(value.Mul(decimal.New(Decimals, 0)).Float64())
 }

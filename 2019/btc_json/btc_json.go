@@ -1,6 +1,9 @@
 package js
 
-import "errors"
+import (
+	"errors"
+	"strconv"
+)
 
 const (
 	Decimals      = 100000000
@@ -23,4 +26,12 @@ func Reward(height uint64) float64 {
 		return initReward / 4
 	}
 	return initReward / 8
+}
+
+func StringToFloat64(v string) (float64, error) {
+	f, err := strconv.ParseFloat(v, 64)
+	if err != nil {
+		return 0, errors.New("StringToFloat64 err:" + err.Error())
+	}
+	return f, nil
 }

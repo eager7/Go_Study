@@ -1,7 +1,5 @@
 package js
 
-import "encoding/json"
-
 type PubKeyType uint8
 
 const (
@@ -89,12 +87,12 @@ type Transaction struct {
 	VIn      []VIn  `json:"vin"       bson:"vin"`                //输入
 	VOut     []VOut `json:"vout"      bson:"vout"`               //输出
 
-	BlockHeight   uint64  `json:"height"        bson:"height"`         //区块高度
+	BlockHeight   uint64 `json:"height"        bson:"height"`         //区块高度
 	Fee           uint64 `json:"fee"           bson:"fee"`            //输入减去输出的值
-	BlockHash     string  `json:"blockhash"     bson:"blockhash"`      //区块哈希
-	BlockTime     int64   `json:"blocktime"     bson:"blocktime"`      //区块打包时间
-	Time          int64   `json:"time"          bson:"time,omitempty"` //区块打包时间
-	Confirmations int64   `json:"confirmations" bson:"confirmations"`  //区块确认数
+	BlockHash     string `json:"blockhash"     bson:"blockhash"`      //区块哈希
+	BlockTime     int64  `json:"blocktime"     bson:"blocktime"`      //区块打包时间
+	Time          int64  `json:"time"          bson:"time,omitempty"` //区块打包时间
+	Confirmations int64  `json:"confirmations" bson:"confirmations"`  //区块确认数
 }
 
 type ScriptSig struct {
@@ -119,7 +117,7 @@ type ScriptPubKey struct {
 }
 
 type VOut struct {
-	Value        json.Number      `json:"value"        bson:"value"`
+	Value        float64      `json:"value"        bson:"value"`
 	N            uint32       `json:"n"            bson:"n"`
 	ScriptPubKey ScriptPubKey `json:"scriptPubKey" bson:"scriptpubkey"`
 }

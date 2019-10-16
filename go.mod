@@ -13,5 +13,7 @@ require (
 	github.com/parnurzeal/gorequest v0.2.15
 	github.com/pkg/errors v0.8.1 // indirect
 	github.com/robfig/cron v1.2.0 // indirect
+	github.com/shopspring/decimal v0.0.0-20191009025716-f1972eb1d1f5
 	github.com/spf13/viper v1.4.0 // indirect
+	golang.org/x/crypto v0.0.0-20190701094942-4def268fd1a4
 )
