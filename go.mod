@@ -5,6 +5,7 @@ go 1.12
 require (
 	github.com/Shopify/sarama v1.23.0
 	github.com/bsm/sarama-cluster v2.1.15+incompatible
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/eager7/elog v0.0.0-20190515112453-f90b440a4091 // indirect
 	github.com/go-redis/redis v6.15.2+incompatible
 	github.com/gomodule/redigo v2.0.0+incompatible

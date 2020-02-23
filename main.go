@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	_ "github.com/eager7/go_study/2020/jwt"
 	"time"
 )
 
