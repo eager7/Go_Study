@@ -10,13 +10,13 @@ func NewToken(hmacSampleSecret string) string {
 	// Create a new token object, specifying signing method and the claims
 	// you would like it to contain.
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
-		Audience:  "",                       //用户
+		Audience:  "plainchant",             //用户
 		ExpiresAt: time.Now().Unix() + 1000, //到期时间
-		Id:        "",                       //jwt标识
-		IssuedAt:  0,                        //发布时间
-		Issuer:    "",                       //发行人
-		NotBefore: 0,                        //在此之前不可用
-		Subject:   "",                       //主题
+		Id:        "123",                    //jwt标识
+		IssuedAt:  time.Now().Unix(),        //发布时间
+		Issuer:    "pct",                    //发行人
+		NotBefore: time.Now().Unix(),        //在此之前不可用
+		Subject:   "test",                   //主题
 	})
 
 	// Sign and get the complete encoded token as a string using the secret
