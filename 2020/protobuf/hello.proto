@@ -1,0 +1,9 @@
+syntax='proto3';
+package hello;
+
+option go_package = "github.com/eager7/go_study/2020/protobuf/hello";
+
+message Code {
+    int64 Errno = 1;
+}
+
